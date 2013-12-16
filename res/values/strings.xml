@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bug At Tong</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- STORY LINES -->
+    
+    
+    
+    <string name="story_initial_title">PANIMULANG KWENTO</string>
+    <string name="story_level1_title">SA HARDIN</string>
+    <string name="story_level2_title">SA SILID TULUGAN</string>
+    <string name="story_level3_title">SA SALA</string>
+    <string name="story_level4_title">SA KAGUBATAN</string>
+    <string name="story_level5_title">SA ATTIC</string>
+
+    <string name="story_initial">Sina Bug at Tong ay kabilang sa isang masayang pamilya, ngunit may isang pangyayaring hindi inaasahan.
+      
+	\n\nIsang araw sina Bug at Tong ay nag away dahil lamang sa nawawalang laruan ni Tong. At dahil sa paborito at bunsong anak si Tong, sya palagi ang pinapaboran ng kanilang mga magulang. Laging sinisisi ni Tong si bug kapag nawawalan ito ng gamit at dahil doon ay madalas ding pagalitan si Bug.
+	
+	\n\nHanggang isang araw naisipan ni Bug na lumayas at dalhin lahat ng gamit ni Tong at itapon kung saan-saan. Subalit sa hindi inaasahang pangayayari ay naisama ni Bug ang mga materyales sa paboritong laruan na gagawin sana ni Tong.</string>
+    
+    <string name="story_level1">Sinimualan nang hanapin ni Tong ang kanyang mga nawawalang gamit, at dahil nasa hardin na sya dun na sya nagsimulang maghanap.</string>
+    
+    <string name="story_level2">Ilang gamit pa lamang  ang nahanap ni Tong sa hardin at isa na dito ay kabllang sa materyales na kanyang kailangan para sa bubuuing laruan.
+	 
+	 \n\n Si Tong ay nagpatuloy sa paghahanap at naisipan niyang pumunta sa silid tulugan ni Bug at nagsaliksik.</string>
+    
+    <string name="story_level3">Sa pagsasaliksik ni Tong sa silid tulugan ni Bug ay may nahanap pa syang mga nawawalang gamit, at may isang bagay na kabilang sa listahan ng mga kailangan niyang materyales. Sa pagpapatuloy ng paghahanap ni Tong biglang sumagi sa kanyang isipan na maghanap sa lugar kung saan madalas silang manood ng kanilang paboritong palabas.</string>
+    
+    <string name="story_level4">Hindi pa din kumpleto ang listahan ng mga nawawalang gamit ni Tong. Kinabukasan sinaliksik ni Tong ang buong bahay upang hanapin si Bug upang mahanap niya ang iba pa niyang nawawalang gamit, subalit hindi niya ito natagpuan kaya naisipan niyang puntahan ang paboritong lugar ni Bug sa tuwing napapagalitan ito.
+ 
+	\n\nHindi nabigo si Tong sa paghahanap kay Bug at natagpuan niya itong takot na takot dahil sa nababalot na dilim sa kagubatan. Agad nilapitan ni Tong si Bug at agad namang yumakap si Bug kay Tong, at humingi ng kapatawaran at nangakong tutulungan sa paghahanap si Tong.</string>
+   
+    <string name="story_level5">Matapos maghanap sa kagubatan, ang magkapatid ay nagtungo na sa Attic ng kanilang bahay at doon ay magkasabay nilang hinanap ang mga natitira pang nawawalang gamit ni Tong, sinuyod nila ang bawat sulok ng Attic upang mahanap ang mga ito.
+ 
+	\n\nSilang dalawa ay nagsimula nang maghanap.</string>
+
+    <!-- STORY LINES -->
+
+</resources>

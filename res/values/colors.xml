@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- COLORS -->
+    <color name="gray">#736F6E</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="platinum">#E5E4E2</color>
+    <color name="gray_goose">#D1D0CE</color>
+    <color name="splash_gray">#BDC1C5</color>
+    
+    <color name="green_w">#00FF00</color>
+    <color name="green_x">#008000</color>
+    <color name="lime_green">#32CD32</color>
+    <color name="lawn_green">#7CFC00</color>
+    <color name="meduim_forest">#347235</color>
+    <color name="kelly_green">#4CC552</color>
+    <color name="forest_green">#4E9258</color>
+    <color name="algea_green">#64E986</color>
+    
+    <color name="dark_blue">#0000A0</color>
+    <color name="mid_blue">#0000CD</color>
+    <color name="cobalt_blue">#0020C2</color>
+    <color name="ocean_blue">#2B65EC</color>
+    <color name="slate_blue">#357EC7</color>
+    <color name="dark_slate_blue">#2B3856</color>
+    <color name="metalic_light_blue">#EBEFF0</color>
+    <color name="blue_berry_blue">#0041C2</color>
+    <color name="royal_blue">#2B60DE</color>
+    <color name="blue_eyes">#1569C7</color>
+    <color name="dodger_blue">#1589FF</color>
+    <color name="light_blue">#33B5E5</color>
+    <color name="light_cyan">#E0FFFF</color>
+    <color name="crimson">#DC143C</color>
+    <color name="aqua">#00FFFF</color>
+    <color name="blue_koi">#659EC7</color>
+    
+    <color name="orange_red">#FF4500</color>
+    <color name="orange">#FF8800</color>
+    <color name="red_orange">#E74B3C</color>
+    <color name="dark_orange">#FF8C00</color>
+    <color name="peach_puff">#FFDAB9</color>
+    <color name="corn_yellow">#FFF380</color>
+    <color name="light_yellow">#FFFFE0</color>
+    <color name="school_bus_yellow">#E8A317</color>
+    
+    <color name="soft_red">#FF4444</color>
+    <color name="grape_fruit">#DC381F</color>
+    <color name="hot_red">#CC0000</color>
+    <color name="fire_engine_red">#F62817</color>
+    <color name="maroon">#7F0000</color>
+    
+    <color name="misty_rose">#FFE4E1</color>
+    <color name="fuscia">#FF00FF</color>
+    <color name="deep_pink">#FF1493</color>
+    <color name="red_wine">#990012</color>
+    
+    <color name="violet">#9933CC</color>
+    <color name="purple">#800080</color>
+    <color name="medium_purple">#8467D7</color>
+    <color name="purple_jam">#6A287E</color>
+    <color name="purple_flower">#A74AC7</color>
+    
+    <color name="red">#FF0000</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="yellow">#FFFF00</color>
+    <!-- COLORS -->
+
+ 
+    
+    
+    <color name="lightblue">#33B5E5</color>
+    <color name="lightblueshade">#0099CC</color>
+    <color name="lightorange">#FFBB33</color>
+    <color name="lightorangeshade">#FF8800</color>
+    <color name="lightred">#FF4444</color>
+    <color name="lightredshade">#CC0000</color>
+    <color name="lightgreen">#99CC00</color>
+    <color name="lightgreenshade">#669900</color>
+    <color name="lightyellow">#FFFF00</color>
+    
+    
+
+</resources>
