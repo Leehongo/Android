@@ -7,12 +7,19 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.game.bugattong.R;
+import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.SharedValues;
 
 public class SelectCharacter extends Activity {
 
 	private ImageView imgViewBug, imgViewTong;
 	private SharedValues sharedValues;
+	private FileGenerator fileGenerator;
+	
+
+	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -21,6 +28,7 @@ public class SelectCharacter extends Activity {
 		initUI();
 		
 		sharedValues = new SharedValues(getApplicationContext());
+		fileGenerator = new FileGenerator();
 	}
 
 	private void initUI() {
@@ -46,12 +54,14 @@ public class SelectCharacter extends Activity {
 				switch (v.getId()) {
 	
 				case R.id.select_char_img_bug:
+					fileGenerator.writeFile(SELECTEDCHAR, "bug");
 					sharedValues.setSelectedChar("bug");
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();
 					break;
 	
 				case R.id.select_char_img_tong:
+					fileGenerator.writeFile(SELECTEDCHAR, "tong");
 					sharedValues.setSelectedChar("tong");
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();
