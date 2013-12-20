@@ -79,10 +79,6 @@ public class StoryView extends Activity {
 		@Override
 		public void onClick(View v) {
 
-			startActivity(new Intent(StoryView.this, SelectLevel.class));
-			finish();
-			
-
 			if (nextPage.equals(strInitial)) {
 				startNewIntent(SelectLevel.class);
 			}else{
@@ -93,9 +89,7 @@ public class StoryView extends Activity {
 	};
 
 	public void onBackPressed() {
-
-		startActivity(new Intent(StoryView.this, MainScreen.class));
-		finish();
+		startNewIntent(MainScreen.class);
 
 	};
 	

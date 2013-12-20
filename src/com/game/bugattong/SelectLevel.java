@@ -139,15 +139,15 @@ public class SelectLevel extends Activity {
 	};
 
 	private void startlevel(String str) {
-		Intent intent = new Intent(getBaseContext(), StoryView.class);
+		Intent intent = new Intent(SelectLevel.this, StoryView.class);
 		intent.putExtra("getNextPage", str);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		getBaseContext().startActivity(intent);
+		startActivity(intent);
 		finish();
 	}
 
 	public void onBackPressed() {
-
+		
 		startActivity(new Intent(SelectLevel.this, MainScreen.class));
 		finish();
 

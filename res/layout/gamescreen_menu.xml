@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg_bonus"
     android:orientation="horizontal"
     android:weightSum="10" >
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
         android:layout_weight="7"
         android:gravity="center"
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/customize_char"
+            android:id="@+id/game_sreen_customize_char"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:background="@android:color/transparent" />
@@ -40,57 +40,39 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/main_screen_btn_start_continue"
+                android:id="@+id/game_screen_menu_btn_resume"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/main_button_state"
-                android:text="START"
+                android:text="RESUME"
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/main_screen_btn_restart"
+                android:id="@+id/game_screen_menu_btn_level"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/main_button_state"
-                android:text="RESTART"
+                android:text="LEVEL"
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/main_screen_btn_sound"
+                android:id="@+id/game_screen_menu_btn_main"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_button_state"
+                android:text="MAIN MENU"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/game_screen_menu_btn_sound"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/main_button_state"
                 android:text="Sound: ON"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/main_screen_btn_help"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/main_button_state"
-                android:text="help"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/main_screen_btn_customize"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/main_button_state"
-                android:text="customize"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/main_screen_btn_exit"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/main_button_state"
-                android:text="exit"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>

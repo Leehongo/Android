@@ -10,7 +10,7 @@
         android:background="@color/blue_koi" >
 
         <Button
-            android:id="@+id/btnstart"
+            android:id="@+id/game_screen_btn_pause"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
@@ -347,5 +347,5 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
-
+    
 </RelativeLayout>

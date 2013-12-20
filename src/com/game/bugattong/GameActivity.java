@@ -3,12 +3,14 @@ package com.game.bugattong;
 import java.util.StringTokenizer;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,22 +18,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
 
-public class GameActivity extends Activity implements OnClickListener,
-		OnTouchListener {
+public class GameActivity extends Activity implements OnClickListener, OnTouchListener {
 
 	private LinearLayout questionsmenu;
 	private RelativeLayout gameArea;
-	private Button btnqstnumber;
-	private Button btnhint;
-	private TextView tvquestion;
-	private TextView tvpoints;
-	private TextView tvanswer;
+	private Button btnqstnumber,btnhint, btnPause;
+	private TextView tvquestion,tvpoints,tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private int shownHints = 0;
+	
+	private Dialog gameMenuDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class GameActivity extends Activity implements OnClickListener,
 		questionsmenu = (LinearLayout) findViewById(R.id.questionmenu);
 		btnqstnumber = (Button) findViewById(R.id.btnqstnumber);
 		btnhint = (Button) findViewById(R.id.btnhint);
+		btnPause = (Button) findViewById(R.id.game_screen_btn_pause);
 		tvquestion = (TextView) findViewById(R.id.tvquestion);
 		tvpoints = (TextView) findViewById(R.id.tvpoints);
 		tvanswer = (TextView) findViewById(R.id.tvanswer);
@@ -68,6 +70,7 @@ public class GameActivity extends Activity implements OnClickListener,
 
 		btnqstnumber.setOnClickListener(this);
 		btnhint.setOnClickListener(this);
+		btnPause.setOnClickListener(this);
 		btnquestions[0].setOnClickListener(this);
 		btnquestions[1].setOnClickListener(this);
 		btnquestions[2].setOnClickListener(this);
@@ -243,7 +246,7 @@ public class GameActivity extends Activity implements OnClickListener,
 	private void goToSelectLevel() {
 //		Intent intent = ;
 //		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(new Intent(getBaseContext(), SelectLevel.class));
+		startActivity(new Intent(GameActivity.this, SelectLevel.class));
 		finish();
 	}
 
@@ -277,6 +280,29 @@ public class GameActivity extends Activity implements OnClickListener,
 						"This Question has been Answered.", Toast.LENGTH_SHORT)
 						.show();
 			}
+			break;
+			
+			
+		case R.id.game_screen_btn_pause:
+			gameMenuDialog = new Dialog(this);
+			gameMenuDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameMenuDialog.setContentView(R.layout.gamescreen_menu);
+			
+			Button menuBtnResume, menuBtnLevel, menuBtnMain,menuBtnSounds;
+			
+			menuBtnResume = (Button) gameMenuDialog.findViewById(R.id.game_screen_menu_btn_resume);
+			menuBtnLevel = (Button) gameMenuDialog.findViewById(R.id.game_screen_menu_btn_level);
+			menuBtnMain = (Button) gameMenuDialog.findViewById(R.id.game_screen_menu_btn_main);
+			menuBtnSounds = (Button) gameMenuDialog.findViewById(R.id.game_screen_menu_btn_sound);
+			
+			menuBtnResume.setOnClickListener(menuOnClick);
+			menuBtnLevel.setOnClickListener(menuOnClick);
+			menuBtnMain.setOnClickListener(menuOnClick);
+			menuBtnSounds.setOnClickListener(menuOnClick);
+			
+			gameMenuDialog.show();
+			
+			
 			break;
 		case R.id.btnquestion1_1:
 			GameSettings.currentQuestion = 1;
@@ -340,6 +366,39 @@ public class GameActivity extends Activity implements OnClickListener,
 			break;
 		}
 	}
+	
+	
+	OnClickListener menuOnClick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			switch (v.getId()) {
+
+			case R.id.game_screen_menu_btn_resume:
+				gameMenuDialog.dismiss();
+				break;
+
+			case R.id.game_screen_menu_btn_level:
+				gameMenuDialog.dismiss();
+				goToSelectLevel();
+				break;
+
+			case R.id.game_screen_menu_btn_main:
+				gameMenuDialog.dismiss();
+				startActivity(new Intent(getBaseContext(), MainScreen.class));
+				finish();
+
+				break;
+
+			case R.id.game_screen_menu_btn_sound:
+
+				break;
+
+			}
+
+		}
+	};
 
 	private void setCorrectAnswer(int btnquestionIndex) {
 		if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
@@ -460,6 +519,7 @@ public class GameActivity extends Activity implements OnClickListener,
 	@Override
 	public void onBackPressed() {
 		goToSelectLevel();
+		finish();
 		super.onBackPressed();
 	}
 }
