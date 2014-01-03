@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
 import com.game.bugattong.settings.FileGenerator;
 
 public class MainScreen extends Activity{
-
-	private Button btnStartContinue,btnRestart,btnSound,btnHelp,btnCustomize, btnExit;
+	
+	private LinearLayout layoutMainScreen;
+	private Button btnRestart,btnSound,btnHelp,btnCustomize, btnExit;
 
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	boolean isSoundOn = true;
@@ -28,7 +30,7 @@ public class MainScreen extends Activity{
 	}
 	
 	private void initUI(){
-		btnStartContinue = (Button) findViewById(R.id.main_screen_btn_start_continue);
+		layoutMainScreen = (LinearLayout) findViewById(R.id.main_screen_layout_main);
 		btnRestart = (Button) findViewById(R.id.main_screen_btn_restart);
 		btnSound = (Button) findViewById(R.id.main_screen_btn_sound);
 		btnHelp = (Button) findViewById(R.id.main_screen_btn_help);
@@ -38,7 +40,7 @@ public class MainScreen extends Activity{
 	
 	@Override
 	protected void onStart() {
-		btnStartContinue.setOnClickListener(ocl);
+		layoutMainScreen.setOnClickListener(ocl);
 		btnRestart.setOnClickListener(ocl);
 		btnSound.setOnClickListener(ocl);
 		btnHelp.setOnClickListener(ocl);
@@ -56,7 +58,7 @@ public class MainScreen extends Activity{
 
 			switch (v.getId()) {
 
-			case R.id.main_screen_btn_start_continue:
+			case R.id.main_screen_layout_main:
 				
 				//TODO if already has session, proceed to SelectLevelClass..
 //				startIntent(StoryView.class);
