@@ -64,13 +64,13 @@ public class CustomizeCharacter extends Activity {
 			
 			topDressSelected.setImageResource(R.drawable.bug_top1); // default
 			topDress1.setImageResource(R.drawable.bug_top1);
-			topDress2.setImageResource(R.drawable.bug_top1);
-			topDress3.setImageResource(R.drawable.bug_top1); 
+			topDress2.setImageResource(R.drawable.bug_top2);
+			topDress3.setImageResource(R.drawable.bug_top3); 
 			
 			bottomDressSelected.setImageResource(R.drawable.bug_bottom1); // default
 			bottomDress1.setImageResource(R.drawable.bug_bottom1);
-			bottomDress2.setImageResource(R.drawable.bug_bottom1);
-			bottomDress3.setImageResource(R.drawable.bug_bottom1); 
+			bottomDress2.setImageResource(R.drawable.bug_bottom2);
+			bottomDress3.setImageResource(R.drawable.bug_bottom3); 
 		} else {
 			selectedChar.setImageResource(R.drawable.char_tong_nude);
 			
@@ -88,28 +88,39 @@ public class CustomizeCharacter extends Activity {
 	}
 
 	private void actions() {
-		topDress1.setOnClickListener(ocl);
-		topDress2.setOnClickListener(ocl);
-		topDress3.setOnClickListener(ocl); 
-
-		bottomDress1.setOnClickListener(ocl);
-		bottomDress2.setOnClickListener(ocl);
-		bottomDress3.setOnClickListener(ocl); 
 		
-		btnSave.setOnClickListener(ocl);
-		btnCancel.setOnClickListener(ocl);
+		if (selectedCharName.equals("bug")) {
+			topDress1.setOnClickListener(bugOnCLick);
+			topDress2.setOnClickListener(bugOnCLick);
+			topDress3.setOnClickListener(bugOnCLick); 
+	
+			bottomDress1.setOnClickListener(bugOnCLick);
+			bottomDress2.setOnClickListener(bugOnCLick);
+			bottomDress3.setOnClickListener(bugOnCLick); 
+			
+		}else{
+			topDress1.setOnClickListener(tongOnCLick);
+			topDress2.setOnClickListener(tongOnCLick);
+			topDress3.setOnClickListener(tongOnCLick); 
+	
+			bottomDress1.setOnClickListener(tongOnCLick);
+			bottomDress2.setOnClickListener(tongOnCLick);
+			bottomDress3.setOnClickListener(tongOnCLick); 
+		}
+		
+		btnSave.setOnClickListener(onCLick);
+		btnCancel.setOnClickListener(onCLick);
 
 	}
 
-	OnClickListener ocl = new OnClickListener() {
+	OnClickListener tongOnCLick = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 
-			
 			//TOP 
-			case R.id.select_dress_top_1:			//TODO add condition if for boy or girl
+			case R.id.select_dress_top_1:			 
 				topDressSelected.setImageResource(R.drawable.tong_top1);
 				break;
 			case R.id.select_dress_top_2:
@@ -130,9 +141,6 @@ public class CustomizeCharacter extends Activity {
 			case R.id.select_dress_bottom_3:
 				bottomDressSelected.setImageResource(R.drawable.tong_bottom3);
 				break; 
-				
-				
-				
 
 			case R.id.btn_save:
 				//TODO insert here save the new looks
@@ -149,6 +157,74 @@ public class CustomizeCharacter extends Activity {
 
 		}
 	};
+	
+	OnClickListener bugOnCLick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+
+			//TOP 
+			case R.id.select_dress_top_1:			 
+				topDressSelected.setImageResource(R.drawable.bug_top1);
+				break;
+			case R.id.select_dress_top_2:
+				topDressSelected.setImageResource(R.drawable.bug_top2);
+				break;
+			case R.id.select_dress_top_3:
+				topDressSelected.setImageResource(R.drawable.bug_top3);
+				break; 
+				
+				//BOTTOM 
+				
+			case R.id.select_dress_bottom_1:
+				bottomDressSelected.setImageResource(R.drawable.bug_bottom1);
+				break;
+			case R.id.select_dress_bottom_2:
+				bottomDressSelected.setImageResource(R.drawable.bug_bottom2);
+				break;
+			case R.id.select_dress_bottom_3:
+				bottomDressSelected.setImageResource(R.drawable.bug_bottom3);
+				break; 
+
+			case R.id.btn_save:
+				//TODO insert here save the new looks
+				startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
+				finish();
+				break;
+				
+			case R.id.btn_cancel:
+				startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
+				finish();
+				break;
+			}
+		}
+	};
+	
+	OnClickListener onCLick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+
+
+			case R.id.btn_save:
+				//TODO insert here save the new looks
+				startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
+				finish();
+				break;
+				
+			case R.id.btn_cancel:
+				startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
+				finish();
+				break;
+			}
+
+		}
+	};
+	
+	
+	
 	
 	public void onBackPressed() {
 
