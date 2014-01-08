@@ -6,6 +6,8 @@ import com.game.bugattong.model.SearchObject;
 public class GameSettings {
 	public static LevelQuestion[][] levelQuestions = new LevelQuestion[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static SearchObject[][] levelSearchObjects = new SearchObject[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
+	public static boolean[][] userHintedNumbers = new boolean[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
+	public static int[][] userHintedNumbersHintsShows = new int[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static boolean[][] userCorrectAnswers = new boolean[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static int currentLevel = 0;
 	public static int currentQuestion = 0;
