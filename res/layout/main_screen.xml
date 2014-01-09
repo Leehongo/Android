@@ -3,7 +3,7 @@
     android:id="@+id/main_screen_layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/main_menu_bg"
     android:orientation="horizontal"
     android:gravity="center|right"
     android:weightSum="10" >
@@ -46,11 +46,10 @@
 
             <Button
                 android:id="@+id/main_screen_btn_help"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_sounds_off"
-                android:text="help"
+                android:background="@drawable/button_help_state"
                 android:textColor="@color/white" />
 
             <Button

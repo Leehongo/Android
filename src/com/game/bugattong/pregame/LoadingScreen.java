@@ -52,14 +52,12 @@ public class LoadingScreen extends Activity {
 				if(filePath.exists()){
 					existingSelectedChar = fileGenerator.readFile(SELECTEDCHAR).trim();
 					sharedValues.setSelectedChar(existingSelectedChar);
-					System.out.println("MY CHAR IS SHRED: " + sharedValues.getSelectedChar());
+					
 					startActivity(new Intent(LoadingScreen.this, MainScreen.class));
 				}else{
-					System.out.println("walang char");
 					startActivity(new Intent(LoadingScreen.this, SelectCharacter.class));
 					
 				}
-				
 				finish();
 				
 			}

@@ -56,6 +56,8 @@ public class SelectCharacter extends Activity {
 				case R.id.select_char_img_bug:
 					fileGenerator.writeFile(SELECTEDCHAR, "bug");
 					sharedValues.setSelectedChar("bug");
+					sharedValues.setCharacterTop(R.drawable.bug_top1);
+					sharedValues.setCharacterBottom(R.drawable.bug_bottom1);
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();
 					break;
@@ -63,6 +65,8 @@ public class SelectCharacter extends Activity {
 				case R.id.select_char_img_tong:
 					fileGenerator.writeFile(SELECTEDCHAR, "tong");
 					sharedValues.setSelectedChar("tong");
+					sharedValues.setCharacterTop(R.drawable.tong_top1);
+					sharedValues.setCharacterBottom(R.drawable.tong_bottom1);
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();
 					break;

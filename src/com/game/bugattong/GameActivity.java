@@ -93,35 +93,35 @@ public class GameActivity extends Activity implements OnClickListener,
 		btnquestions[14].setOnClickListener(this);
 
 		btnquestions[0]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[1]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[2]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[3]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[4]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[5]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[6]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[7]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[8]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[9]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[10]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[11]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[12]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[13]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 		btnquestions[14]
-				.setBackgroundResource(R.drawable.game_select_question_btn_red);
+				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
 
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
@@ -311,7 +311,7 @@ public class GameActivity extends Activity implements OnClickListener,
 		case R.id.game_screen_btn_pause:
 			gameMenuDialog = new Dialog(this);
 			gameMenuDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			gameMenuDialog.setContentView(R.layout.gamescreen_menu);
+			gameMenuDialog.setContentView(R.layout.gamescreen_pause_menu);
 
 			Button menuBtnResume,
 			menuBtnLevel,
@@ -442,10 +442,10 @@ public class GameActivity extends Activity implements OnClickListener,
 
 			if (btnquestionIndex == 15)
 				btnquestions[btnquestionIndex - 1]
-						.setBackgroundResource(R.drawable.game_select_question_btn_yellow);
+						.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
 			else
 				btnquestions[btnquestionIndex - 1]
-						.setBackgroundResource(R.drawable.game_select_question_btn_green);
+						.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
 		}
 		showPoints();
 	}

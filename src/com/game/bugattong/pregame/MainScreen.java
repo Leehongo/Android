@@ -1,15 +1,22 @@
 package com.game.bugattong.pregame;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
 import com.game.bugattong.settings.FileGenerator;
+import com.game.bugattong.settings.SharedValues;
 
 public class MainScreen extends Activity{
 	
@@ -19,12 +26,17 @@ public class MainScreen extends Activity{
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	boolean isSoundOn = true;
 	private FileGenerator fileGenerator;
+	private SharedValues sharedValues;
+	
+
+	private Dialog dialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.main_screen);
 		super.onCreate(savedInstanceState);
 		
+		sharedValues = new SharedValues(MainScreen.this);
 		fileGenerator = new FileGenerator();
 		initUI();
 	}
@@ -70,14 +82,15 @@ public class MainScreen extends Activity{
 				break;
 				
 			case R.id.main_screen_btn_restart:
+				sharedValues.clearData();
 				fileGenerator.removeFile(SELECTEDCHAR);
 				startIntent(LoadingScreen.class);
 				break;
 				
 
 			case R.id.main_screen_btn_sound:
-				String msg = (isSoundOn == true)? "Sound: OFF": "Sound: ON";
-				btnSound.setText(msg);
+				int msg = (isSoundOn == true)? R.drawable.game_menu_btn_sounds_off: R.drawable.game_menu_btn_sounds_on;
+				btnSound.setBackgroundResource(msg);
 				isSoundOn = !isSoundOn;
 				break;
 
@@ -89,7 +102,7 @@ public class MainScreen extends Activity{
 				break;
 
 			case R.id.main_screen_btn_exit:
-				finish();
+				alertDialog();
 				break;
 
 			default:
@@ -98,6 +111,40 @@ public class MainScreen extends Activity{
 		}
 	};
 	
+	private void alertDialog(){
+		dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.main_exit_menu);
+
+		Button btnYes, btnNo;
+
+		btnYes = (Button) dialog.findViewById(R.id.exit_menu_yes);
+		btnNo = (Button) dialog.findViewById(R.id.exit_menu_no);
+
+		btnYes.setOnClickListener(exitMenuOnClick);
+		btnNo.setOnClickListener(exitMenuOnClick);
+		
+		dialog.show();
+	}
+	
+	OnClickListener exitMenuOnClick = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+
+			case R.id.exit_menu_yes:
+				dialog.dismiss();
+				finish();
+				break;
+
+			case R.id.exit_menu_no:
+				dialog.dismiss();
+				break;
+
+			}
+
+		}
+	};
 	
 	private void startIntent(Class c){
 		startActivity(new Intent(MainScreen.this, c));
