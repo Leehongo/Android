@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
@@ -22,6 +24,7 @@ public class MainScreen extends Activity{
 	
 	private LinearLayout layoutMainScreen;
 	private Button btnRestart,btnSound,btnHelp,btnCustomize, btnExit;
+	private TextView txtTouchToStart;
 
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	boolean isSoundOn = true;
@@ -48,6 +51,10 @@ public class MainScreen extends Activity{
 		btnHelp = (Button) findViewById(R.id.main_screen_btn_help);
 		btnCustomize = (Button) findViewById(R.id.main_screen_btn_customize);
 		btnExit = (Button) findViewById(R.id.main_screen_btn_exit);
+		txtTouchToStart = (TextView) findViewById(R.id.mainscreen_txt_touch_to_continue);
+		
+		Typeface font = Typeface.createFromAsset(getAssets(), "BADABB__.TTF");  
+		txtTouchToStart.setTypeface(font);  
 	}
 	
 	@Override

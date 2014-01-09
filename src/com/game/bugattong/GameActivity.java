@@ -283,8 +283,10 @@ public class GameActivity extends Activity implements OnClickListener,
 		case R.id.btnqstnumber:
 			if (questionsmenu.isShown()) {
 				questionsmenu.setVisibility(View.GONE);
+				btnPause.setVisibility(View.VISIBLE);
 			} else {
 				questionsmenu.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.INVISIBLE);
 			}
 			break;
 		case R.id.btnhint:
