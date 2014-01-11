@@ -13,21 +13,22 @@ import android.widget.ImageView;
 
 public class SelectLevel extends Activity {
 
-	Button btnLevelHardin, btnLevelSilidTulugan, btnLevelSala,
+	private Button btnLevelHardin, btnLevelSilidTulugan, btnLevelSala,
 			btnLevelKagubatan, btnLevelAttic, btnLevelBonus;
-	
-	ImageView imgLockLevel1, imgLockLevel2, imgLockLevel3, imgLockLevel4, imgLockLevel5, imgLockLevelBonus;
+
+	private ImageView imgLockLevel1, imgLockLevel2, imgLockLevel3,
+			imgLockLevel4, imgLockLevel5, imgLockLevelBonus;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.select_level);
 		super.onCreate(savedInstanceState);
 		if (!GameSettings.hasInit) {
-			GameSettings.init();
+			GameSettings.init(this);
 			GameSettings.hasInit = true;
 			System.out.println("INIT!");
 		}
-		
+
 		initUI();
 
 	}
@@ -39,7 +40,7 @@ public class SelectLevel extends Activity {
 		btnLevelSala = (Button) findViewById(R.id.btn_level_3_sala);
 		btnLevelKagubatan = (Button) findViewById(R.id.btn_level_4_kagubatan);
 		btnLevelAttic = (Button) findViewById(R.id.btn_level_5_attic);
-		
+
 		btnLevelBonus = (Button) findViewById(R.id.btn_level_bonus);
 
 		imgLockLevel1 = (ImageView) findViewById(R.id.btn_level_1_hardin_lock);
@@ -48,7 +49,6 @@ public class SelectLevel extends Activity {
 		imgLockLevel4 = (ImageView) findViewById(R.id.btn_level_4_kagubatan_lock);
 		imgLockLevel5 = (ImageView) findViewById(R.id.btn_level_5_attic_lock);
 		imgLockLevelBonus = (ImageView) findViewById(R.id.btn_level_bonus_lock);
-		
 
 		btnLevelHardin.setOnClickListener(ocl);
 		btnLevelSilidTulugan.setOnClickListener(ocl);
@@ -56,13 +56,11 @@ public class SelectLevel extends Activity {
 		btnLevelKagubatan.setOnClickListener(ocl);
 		btnLevelAttic.setOnClickListener(ocl);
 		btnLevelBonus.setOnClickListener(ocl);
-		
 
 		if (GameSettings.levelLocked[0])
 			imgLockLevel1.setVisibility(View.VISIBLE);
 		else
 			imgLockLevel1.setVisibility(View.GONE);
-		
 
 		if (GameSettings.levelLocked[1])
 			imgLockLevel2.setVisibility(View.VISIBLE);
@@ -73,7 +71,7 @@ public class SelectLevel extends Activity {
 			imgLockLevel3.setVisibility(View.VISIBLE);
 		else
 			imgLockLevel3.setVisibility(View.GONE);
-		
+
 		if (GameSettings.levelLocked[3])
 			imgLockLevel4.setVisibility(View.VISIBLE);
 		else
@@ -83,12 +81,10 @@ public class SelectLevel extends Activity {
 			imgLockLevel5.setVisibility(View.VISIBLE);
 		else
 			imgLockLevel5.setVisibility(View.GONE);
-		
-		
-		//TODO, how about bonus level?
+
+		// TODO, how about bonus level?
 
 	}
-
 
 	OnClickListener ocl = new OnClickListener() {
 
@@ -129,9 +125,9 @@ public class SelectLevel extends Activity {
 					startlevel("level5");
 				}
 				break;
-				
+
 			case R.id.btn_level_bonus:
-				//TODO bonus level..
+				// TODO bonus level..
 				break;
 			}
 
@@ -147,7 +143,7 @@ public class SelectLevel extends Activity {
 	}
 
 	public void onBackPressed() {
-		
+
 		startActivity(new Intent(SelectLevel.this, MainScreen.class));
 		finish();
 

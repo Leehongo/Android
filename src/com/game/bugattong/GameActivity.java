@@ -266,6 +266,7 @@ public class GameActivity extends Activity implements OnClickListener,
 			System.out.println("CALLED");
 			// goToSelectLevel();
 		}
+		GameSettings.saveAll();
 		return true;
 	}
 
@@ -424,11 +425,8 @@ public class GameActivity extends Activity implements OnClickListener,
 				break;
 
 			case R.id.game_screen_menu_btn_sound:
-
 				break;
-
 			}
-
 		}
 	};
 
@@ -470,8 +468,8 @@ public class GameActivity extends Activity implements OnClickListener,
 		// if answer is not correct
 		if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 			// if has hints
-			if (GameSettings.userHintedNumbersHintsShows[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] > 0) {
-				shownHints = GameSettings.userHintedNumbersHintsShows[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1];
+			if (GameSettings.userHintedNumbersHintsShown[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] > 0) {
+				shownHints = GameSettings.userHintedNumbersHintsShown[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1];
 				showAnswer(true, true);
 			} else {
 				shownHints = 0;
@@ -526,11 +524,11 @@ public class GameActivity extends Activity implements OnClickListener,
 					GameSettings.currentPoints -= Constants.HINTPENALTYPOINTS;
 					GameSettings.userHintedNumbers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
 					shownHints++;
-					GameSettings.userHintedNumbersHintsShows[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = shownHints;
+					GameSettings.userHintedNumbersHintsShown[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = shownHints;
 				}
 				temp = currentHint;
 			} else {
-				shownHints = GameSettings.userHintedNumbersHintsShows[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1];
+				shownHints = GameSettings.userHintedNumbersHintsShown[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1];
 
 				for (int length = 0; length < answer.length(); length++) {
 					temp += " _";

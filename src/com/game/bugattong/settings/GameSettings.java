@@ -1,35 +1,55 @@
 package com.game.bugattong.settings;
 
+import android.app.Activity;
+
 import com.game.bugattong.model.LevelQuestion;
 import com.game.bugattong.model.SearchObject;
-	
+import com.game.bugattong.utilities.SaveUtility;
+
 public class GameSettings {
 	public static LevelQuestion[][] levelQuestions = new LevelQuestion[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static SearchObject[][] levelSearchObjects = new SearchObject[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static boolean[][] userHintedNumbers = new boolean[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
-	public static int[][] userHintedNumbersHintsShows = new int[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
+	public static int[][] userHintedNumbersHintsShown = new int[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static boolean[][] userCorrectAnswers = new boolean[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static int currentLevel = 0;
 	public static int currentQuestion = 0;
 	public static int currentPoints = 0;
 	public static boolean hasInit = false;
 	public static boolean[] levelLocked = new boolean[5];
+	private static SaveUtility savegame;
 
-	public static void init() {
+	public static void init(Activity act) {
+		savegame = new SaveUtility(act);
 
-		for (int level = 0; level < Constants.MAXLEVELS; level++) {
-			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
-				userCorrectAnswers[level][question] = false;
+		// load data
+		if (!savegame.isInit()) {
+			for (int level = 0; level < Constants.MAXLEVELS; level++) {
+				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+					userCorrectAnswers[level][question] = false;
+				}
 			}
+
+			levelLocked[0] = false;
+			levelLocked[1] = true;
+			levelLocked[2] = true;
+			levelLocked[3] = true;
+			levelLocked[4] = true;
+
+			currentPoints = 100;
+
+			saveAll();
+
+		} else {
+			userHintedNumbers = savegame.getUserHintedNumbers();
+			userCorrectAnswers = savegame.getUserCorrectAnswers();
+			userHintedNumbersHintsShown = savegame
+					.getUserHintedNumbersHintsShown();
+			currentLevel = savegame.getCurrentLevel();
+			levelLocked = savegame.getUnlockedLevels();
+			currentQuestion = savegame.getCurrentQuestion();
+			currentPoints = savegame.getCurrentPoints();
 		}
-
-		levelLocked[0] = false;
-		levelLocked[1] = true;
-		levelLocked[2] = true;
-		levelLocked[3] = true;
-		levelLocked[4] = true;
-
-		currentPoints = 100;
 
 		levelQuestions[0][0] = new LevelQuestion(
 				"Takbo roon, takbo rito, \n hindi makaalis sa tayong ito.",
@@ -282,14 +302,14 @@ public class GameSettings {
 		levelSearchObjects[1][1] = new SearchObject(370, 80);
 		levelSearchObjects[1][2] = new SearchObject(130, 80);
 		levelSearchObjects[1][3] = new SearchObject(190, 20);
-		levelSearchObjects[1][4] = new SearchObject(190, 80); 
+		levelSearchObjects[1][4] = new SearchObject(190, 80);
 		levelSearchObjects[1][5] = new SearchObject(310, 20);
 		levelSearchObjects[1][6] = new SearchObject(370, 20);
-		levelSearchObjects[1][7] = new SearchObject(70, 80); 
+		levelSearchObjects[1][7] = new SearchObject(70, 80);
 		levelSearchObjects[1][8] = new SearchObject(10, 80);
-		levelSearchObjects[1][9] = new SearchObject(410, 20); 
+		levelSearchObjects[1][9] = new SearchObject(410, 20);
 		levelSearchObjects[1][10] = new SearchObject(130, 20);
-		levelSearchObjects[1][11] = new SearchObject(250,20);
+		levelSearchObjects[1][11] = new SearchObject(250, 20);
 		levelSearchObjects[1][12] = new SearchObject(250, 80);
 		levelSearchObjects[1][13] = new SearchObject(10, 20);
 		levelSearchObjects[1][14] = new SearchObject(70, 20);
@@ -341,5 +361,15 @@ public class GameSettings {
 		levelSearchObjects[4][12] = new SearchObject(250, 80);
 		levelSearchObjects[4][13] = new SearchObject(310, 80);
 		levelSearchObjects[4][14] = new SearchObject(370, 80);
+	}
+
+	public static void saveAll() {
+		savegame.saveCurrentPoints(100);
+		savegame.saveCurrentLevel(currentLevel);
+		savegame.saveCurrentQuestion(currentQuestion);
+		savegame.saveUnlockedLevels(levelLocked);
+		savegame.saveUserCorrectAnswers(userCorrectAnswers);
+		savegame.saveUserHintedNumbers(userHintedNumbers);
+		savegame.saveUserHintedNumbersHintsShown(userHintedNumbersHintsShown);
 	}
 }
