@@ -25,20 +25,19 @@ import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
 
-public class GameActivity extends Activity implements OnClickListener,
-		OnTouchListener {
+public class GameActivity extends Activity implements OnClickListener {
 
 	private LinearLayout questionsmenu;
 	private RelativeLayout gameArea;
 	private Button btnqstnumber, btnhint, btnPause;
-	private Button menuBtnResume,menuBtnLevel, menuBtnMain, menuBtnSounds;
-	
+	private Button menuBtnResume, menuBtnLevel, menuBtnMain, menuBtnSounds;
+
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private int shownHints = 0;
 	boolean isSoundOn = true;
-	
+
 	private Dialog gameDialog;
 
 	@Override
@@ -97,9 +96,6 @@ public class GameActivity extends Activity implements OnClickListener,
 			btnquestions[questionIndex].setOnClickListener(this);
 		}
 
-		System.out.println("Initial Question : [" + GameSettings.currentLevel
-				+ "][" + GameSettings.currentQuestion + "]");
-
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
 		ivImages[2] = (ImageView) findViewById(R.id.image03);
@@ -126,7 +122,7 @@ public class GameActivity extends Activity implements OnClickListener,
 			gameArea.setBackgroundResource(R.drawable.bg_kagubatan);
 		} else if (GameSettings.currentLevel == 5) {
 			gameArea.setBackgroundResource(R.drawable.bg_attic);
-		}// TODO how abput bonus level?
+		}
 
 		ivImages[0].setBackgroundResource(R.drawable.item_01);
 		ivImages[1].setBackgroundResource(R.drawable.item_02);
@@ -144,80 +140,29 @@ public class GameActivity extends Activity implements OnClickListener,
 		ivImages[13].setBackgroundResource(R.drawable.item_14);
 		ivImages[14].setBackgroundResource(R.drawable.item_15);
 
-		ivImages[0].setOnTouchListener(this);
-		ivImages[1].setOnTouchListener(this);
-		ivImages[2].setOnTouchListener(this);
-		ivImages[3].setOnTouchListener(this);
-		ivImages[4].setOnTouchListener(this);
-		ivImages[5].setOnTouchListener(this);
-		ivImages[6].setOnTouchListener(this);
-		ivImages[7].setOnTouchListener(this);
-		ivImages[8].setOnTouchListener(this);
-		ivImages[9].setOnTouchListener(this);
-		ivImages[10].setOnTouchListener(this);
-		ivImages[11].setOnTouchListener(this);
-		ivImages[12].setOnTouchListener(this);
-		ivImages[13].setOnTouchListener(this);
-		ivImages[14].setOnTouchListener(this);
+		ivImages[0].setOnClickListener(this);
+		ivImages[1].setOnClickListener(this);
+		ivImages[2].setOnClickListener(this);
+		ivImages[3].setOnClickListener(this);
+		ivImages[4].setOnClickListener(this);
+		ivImages[5].setOnClickListener(this);
+		ivImages[6].setOnClickListener(this);
+		ivImages[7].setOnClickListener(this);
+		ivImages[8].setOnClickListener(this);
+		ivImages[9].setOnClickListener(this);
+		ivImages[10].setOnClickListener(this);
+		ivImages[11].setOnClickListener(this);
+		ivImages[12].setOnClickListener(this);
+		ivImages[13].setOnClickListener(this);
+		ivImages[14].setOnClickListener(this);
 
 		shownHints = 0;
 		showQuestion();
 		reset();
 		showPoints();
-		
-		GameSettings.levelPlayed[GameSettings.currentLevel-1] = true;
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		switch (v.getId()) {
-		case R.id.image01:
-			setCorrectAnswer(1);
-			break;
-		case R.id.image02:
-			setCorrectAnswer(2);
-			break;
-		case R.id.image03:
-			setCorrectAnswer(3);
-			break;
-		case R.id.image04:
-			setCorrectAnswer(4);
-			break;
-		case R.id.image05:
-			setCorrectAnswer(5);
-			break;
-		case R.id.image06:
-			setCorrectAnswer(6);
-			break;
-		case R.id.image07:
-			setCorrectAnswer(7);
-			break;
-		case R.id.image08:
-			setCorrectAnswer(8);
-			break;
-		case R.id.image09:
-			setCorrectAnswer(9);
-			break;
-		case R.id.image10:
-			setCorrectAnswer(10);
-			break;
-		case R.id.image11:
-			setCorrectAnswer(11);
-			break;
-		case R.id.image12:
-			setCorrectAnswer(12);
-			break;
-		case R.id.image13:
-			setCorrectAnswer(13);
-			break;
-		case R.id.image14:
-			setCorrectAnswer(14);
-			break;
-		case R.id.image15:
-			setCorrectAnswer(15);
-			break;
-
-		}
+	private void checkToUnlockLevel() {
 
 		// check if all has been answered
 		int correctCount = 0;
@@ -232,36 +177,25 @@ public class GameActivity extends Activity implements OnClickListener,
 			if (Constants.MAXLEVELS > GameSettings.currentLevel) {
 				GameSettings.levelLocked[GameSettings.currentLevel] = false;
 			}
-
-			System.out.println("CALLED");
-			// goToSelectLevel();
 			gameDialog = new Dialog(this);
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
-			
-			ImageView unlockLevelDialogImage = (ImageView) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_image);
-			Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
+
+			ImageView unlockLevelDialogImage = (ImageView) gameDialog
+					.findViewById(R.id.game_screen_unlock_level_dialog_image);
+			Button unlockLevelDialogBtnOk = (Button) gameDialog
+					.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
 			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					gameDialog.dismiss();
 				}
 			});
-			
 
 			gameDialog.show();
-			
 		}
 		GameSettings.saveAll();
-		return true;
-	}
-
-	private void goToSelectLevel() {
-		// Intent intent = ;
-		// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(new Intent(GameActivity.this, SelectLevel.class));
-		finish();
 	}
 
 	@Override
@@ -271,16 +205,13 @@ public class GameActivity extends Activity implements OnClickListener,
 		case R.id.btnqstnumber:
 			if (questionsmenu.isShown()) {
 				questionsmenu.setVisibility(View.GONE);
-				btnPause.setEnabled(true);
-//				btnPause.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.VISIBLE);
 			} else {
 				questionsmenu.setVisibility(View.VISIBLE);
-//				btnPause.setVisibility(View.INVISIBLE);
-				btnPause.setEnabled(false);
+				btnPause.setVisibility(View.INVISIBLE);
 			}
 			break;
 		case R.id.btnhint:
-			
 			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 				if (GameSettings.currentPoints >= Constants.HINTPENALTYPOINTS) {
 					showAnswer(true, false);
@@ -383,6 +314,79 @@ public class GameActivity extends Activity implements OnClickListener,
 			GameSettings.currentQuestion = 15;
 			reset();
 			break;
+
+		case R.id.image01:
+			setCorrectAnswer(1);
+			checkToUnlockLevel();
+			break;
+		case R.id.image02:
+			setCorrectAnswer(2);
+			checkToUnlockLevel();
+			break;
+		case R.id.image03:
+			setCorrectAnswer(3);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image04:
+			setCorrectAnswer(4);
+			checkToUnlockLevel();
+			break;
+		case R.id.image05:
+			setCorrectAnswer(5);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image06:
+			setCorrectAnswer(6);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image07:
+			setCorrectAnswer(7);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image08:
+			setCorrectAnswer(8);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image09:
+			setCorrectAnswer(9);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image10:
+			setCorrectAnswer(10);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image11:
+			setCorrectAnswer(11);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image12:
+			setCorrectAnswer(12);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image13:
+			setCorrectAnswer(13);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image14:
+			setCorrectAnswer(14);
+			checkToUnlockLevel();
+
+			break;
+		case R.id.image15:
+			setCorrectAnswer(15);
+			checkToUnlockLevel();
+
+			break;
 		}
 	}
 
@@ -411,7 +415,8 @@ public class GameActivity extends Activity implements OnClickListener,
 
 			case R.id.game_screen_menu_btn_sound:
 
-				int msg = (isSoundOn == true)? R.drawable.game_menu_btn_sounds_off: R.drawable.game_menu_btn_sounds_on;
+				int msg = (isSoundOn == true) ? R.drawable.game_menu_btn_sounds_off
+						: R.drawable.game_menu_btn_sounds_on;
 				menuBtnSounds.setBackgroundResource(msg);
 				isSoundOn = !isSoundOn;
 				break;
@@ -630,6 +635,13 @@ public class GameActivity extends Activity implements OnClickListener,
 			tempView.setVisibility(View.VISIBLE);
 		}
 
+	}
+
+	private void goToSelectLevel() {
+		// Intent intent = ;
+		// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(new Intent(GameActivity.this, SelectLevel.class));
+		finish();
 	}
 
 	@Override
