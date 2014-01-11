@@ -23,4 +23,6 @@ public class Constants {
 	
 	public static final String SAVEINIT = "hasBeenSaved";
 	public static final String SAVEBONUSLEVEL ="bonuslevel";
+	
+	public static final String PLAYEDLEVEL ="levelPlayed";
 }

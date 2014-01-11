@@ -235,4 +235,36 @@ public class SaveUtility {
 	public boolean getBonusLevel(){
 		return gamePreferences.getBoolean(Constants.SAVEBONUSLEVEL, false);
 	}
+	
+	public void savePlayedLevel(boolean[] levelLocked) {
+		String savedata = "";
+		for (int index = 0; index < levelLocked.length; index++) {
+			if (levelLocked[index]) {
+				savedata += "1|";
+			} else {
+				savedata += "0|";
+			}
+		}
+		saveString(Constants.PLAYEDLEVEL, savedata);
+	}
+
+	public boolean[] getPlayedLevel() {
+		boolean[] savedata = new boolean[Constants.MAXLEVELS];
+		String savestring = gamePreferences.getString(
+				Constants.PLAYEDLEVEL, "");
+		String temp = "";
+		StringTokenizer st = new StringTokenizer(savestring, "|");
+
+		int index = 0;
+		while (st.hasMoreTokens() && index < Constants.MAXLEVELS) {
+			temp = st.nextToken().toString();
+			if (temp.equals("1")) {
+				savedata[index] = true;
+			} else {
+				savedata[index] = false;
+			}
+			index++;
+		}
+		return savedata;
+	}
 }

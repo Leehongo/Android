@@ -140,15 +140,23 @@ public class SelectLevel extends Activity {
 		}
 	};
 
-	private void startBonus() {
-		Intent intent = new Intent(SelectLevel.this, BonusActivity.class);
+	private void startBonus() {		
+		
+		Intent intent = new Intent(SelectLevel.this, StoryView.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();
 	}
 	
 	private void startlevel(String str) {
-		Intent intent = new Intent(SelectLevel.this, StoryView.class);
+		Intent intent;
+		
+		if(GameSettings.levelPlayed[GameSettings.currentLevel-1])
+			intent = new Intent(SelectLevel.this, GameActivity.class);
+		else
+			intent = new Intent(SelectLevel.this, StoryView.class);
+		
+		
 		intent.putExtra("getNextPage", str);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);

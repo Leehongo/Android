@@ -39,7 +39,7 @@ public class GameActivity extends Activity implements OnClickListener,
 	private int shownHints = 0;
 	boolean isSoundOn = true;
 	
-	private Dialog gameMenuDialog;
+	private Dialog gameDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,9 @@ public class GameActivity extends Activity implements OnClickListener,
 			btnquestions[questionIndex].setOnClickListener(this);
 		}
 
+		System.out.println("Initial Question : [" + GameSettings.currentLevel
+				+ "][" + GameSettings.currentQuestion + "]");
+
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
 		ivImages[2] = (ImageView) findViewById(R.id.image03);
@@ -123,7 +126,7 @@ public class GameActivity extends Activity implements OnClickListener,
 			gameArea.setBackgroundResource(R.drawable.bg_kagubatan);
 		} else if (GameSettings.currentLevel == 5) {
 			gameArea.setBackgroundResource(R.drawable.bg_attic);
-		}
+		}// TODO how abput bonus level?
 
 		ivImages[0].setBackgroundResource(R.drawable.item_01);
 		ivImages[1].setBackgroundResource(R.drawable.item_02);
@@ -161,6 +164,8 @@ public class GameActivity extends Activity implements OnClickListener,
 		showQuestion();
 		reset();
 		showPoints();
+		
+		GameSettings.levelPlayed[GameSettings.currentLevel-1] = true;
 	}
 
 	@Override
@@ -230,6 +235,23 @@ public class GameActivity extends Activity implements OnClickListener,
 
 			System.out.println("CALLED");
 			// goToSelectLevel();
+			gameDialog = new Dialog(this);
+			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
+			
+			ImageView unlockLevelDialogImage = (ImageView) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_image);
+			Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
+			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					gameDialog.dismiss();
+				}
+			});
+			
+
+			gameDialog.show();
+			
 		}
 		GameSettings.saveAll();
 		return true;
@@ -249,13 +271,16 @@ public class GameActivity extends Activity implements OnClickListener,
 		case R.id.btnqstnumber:
 			if (questionsmenu.isShown()) {
 				questionsmenu.setVisibility(View.GONE);
-				btnPause.setVisibility(View.VISIBLE);
+				btnPause.setEnabled(true);
+//				btnPause.setVisibility(View.VISIBLE);
 			} else {
 				questionsmenu.setVisibility(View.VISIBLE);
-				btnPause.setVisibility(View.INVISIBLE);
+//				btnPause.setVisibility(View.INVISIBLE);
+				btnPause.setEnabled(false);
 			}
 			break;
 		case R.id.btnhint:
+			
 			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 				if (GameSettings.currentPoints >= Constants.HINTPENALTYPOINTS) {
 					showAnswer(true, false);
@@ -277,17 +302,17 @@ public class GameActivity extends Activity implements OnClickListener,
 			break;
 
 		case R.id.game_screen_btn_pause:
-			gameMenuDialog = new Dialog(this);
-			gameMenuDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			gameMenuDialog.setContentView(R.layout.gamescreen_pause_menu);
+			gameDialog = new Dialog(this);
+			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameDialog.setContentView(R.layout.gamescreen_pause_menu);
 
-			menuBtnResume = (Button) gameMenuDialog
+			menuBtnResume = (Button) gameDialog
 					.findViewById(R.id.game_screen_menu_btn_resume);
-			menuBtnLevel = (Button) gameMenuDialog
+			menuBtnLevel = (Button) gameDialog
 					.findViewById(R.id.game_screen_menu_btn_level);
-			menuBtnMain = (Button) gameMenuDialog
+			menuBtnMain = (Button) gameDialog
 					.findViewById(R.id.game_screen_menu_btn_main);
-			menuBtnSounds = (Button) gameMenuDialog
+			menuBtnSounds = (Button) gameDialog
 					.findViewById(R.id.game_screen_menu_btn_sound);
 
 			menuBtnResume.setOnClickListener(menuOnClick);
@@ -295,7 +320,7 @@ public class GameActivity extends Activity implements OnClickListener,
 			menuBtnMain.setOnClickListener(menuOnClick);
 			menuBtnSounds.setOnClickListener(menuOnClick);
 
-			gameMenuDialog.show();
+			gameDialog.show();
 
 			break;
 		case R.id.btnquestion1_1:
@@ -369,16 +394,16 @@ public class GameActivity extends Activity implements OnClickListener,
 			switch (v.getId()) {
 
 			case R.id.game_screen_menu_btn_resume:
-				gameMenuDialog.dismiss();
+				gameDialog.dismiss();
 				break;
 
 			case R.id.game_screen_menu_btn_level:
-				gameMenuDialog.dismiss();
+				gameDialog.dismiss();
 				goToSelectLevel();
 				break;
 
 			case R.id.game_screen_menu_btn_main:
-				gameMenuDialog.dismiss();
+				gameDialog.dismiss();
 				startActivity(new Intent(getBaseContext(), MainScreen.class));
 				finish();
 

@@ -17,8 +17,10 @@ public class GameSettings {
 	public static int currentPoints = 0;
 	public static boolean hasInit = false;
 	public static boolean[] levelLocked = new boolean[Constants.MAXLEVELS];
+	public static boolean[] levelPlayed = new boolean[Constants.MAXLEVELS];
 	public static boolean bonusLevelLocked = true;
 	private static SaveUtility savegame;
+	
 
 	public static void init(Activity act) {
 		savegame = new SaveUtility(act);
@@ -51,6 +53,7 @@ public class GameSettings {
 			currentQuestion = savegame.getCurrentQuestion();
 			currentPoints = savegame.getCurrentPoints();
 			bonusLevelLocked = savegame.getBonusLevel();
+			levelPlayed = savegame.getPlayedLevel();
 		}
 
 		levelQuestions[0][0] = new LevelQuestion(
@@ -60,7 +63,7 @@ public class GameSettings {
 				"Heto na si Lulong, \n bubulong bulong", "BUBUYOG",
 				"6,1,4,0,2,3,5");
 		levelQuestions[0][2] = new LevelQuestion(
-				"Napapagod kung tumitigil,\n kung tumatakbo\'y gumigiliw.",
+				"Napapagod kung tumitigil,\n kung tumatakbo�\'y gumigiliw.",
 				"BISIKLETA", "6,8,4,3,7,1,0,2,5");
 		levelQuestions[0][3] = new LevelQuestion(
 				"Isang senyora nakaupo sa tasa.", "KASOY", "0,2,1,4,3");
@@ -347,7 +350,7 @@ public class GameSettings {
 		levelSearchObjects[3][12] = new SearchObject(250, 80);
 		levelSearchObjects[3][13] = new SearchObject(310, 80);
 		levelSearchObjects[3][14] = new SearchObject(370, 80);
-
+		
 		levelSearchObjects[4][0] = new SearchObject(10, 20);
 		levelSearchObjects[4][1] = new SearchObject(70, 20);
 		levelSearchObjects[4][2] = new SearchObject(130, 20);
@@ -374,5 +377,6 @@ public class GameSettings {
 		savegame.saveUserHintedNumbers(userHintedNumbers);
 		savegame.saveUserHintedNumbersHintsShown(userHintedNumbersHintsShown);
 		savegame.saveBonusLevel(bonusLevelLocked);
+		savegame.savePlayedLevel(levelPlayed);
 	}
 }
