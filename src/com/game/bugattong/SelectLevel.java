@@ -82,8 +82,10 @@ public class SelectLevel extends Activity {
 		else
 			imgLockLevel5.setVisibility(View.GONE);
 
-		// TODO, how about bonus level?
-
+		if (GameSettings.levelLocked[5])
+			imgLockLevelBonus.setVisibility(View.VISIBLE);
+		else
+			imgLockLevelBonus.setVisibility(View.GONE);
 	}
 
 	OnClickListener ocl = new OnClickListener() {
@@ -127,13 +129,24 @@ public class SelectLevel extends Activity {
 				break;
 
 			case R.id.btn_level_bonus:
-				// TODO bonus level..
+				if (!GameSettings.bonusLevelLocked) {
+					GameSettings.currentLevel = 5;
+					GameSettings.currentQuestion = 1;
+					startBonus();
+				}
 				break;
 			}
 
 		}
 	};
 
+	private void startBonus() {
+		Intent intent = new Intent(SelectLevel.this, StoryView.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+		finish();
+	}
+	
 	private void startlevel(String str) {
 		Intent intent = new Intent(SelectLevel.this, StoryView.class);
 		intent.putExtra("getNextPage", str);

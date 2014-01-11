@@ -22,4 +22,5 @@ public class Constants {
 	public static final String SAVECURRENTQUESTION = "currentquestion";
 	
 	public static final String SAVEINIT = "hasBeenSaved";
+	public static final String SAVEBONUSLEVEL ="bonuslevel";
 }

@@ -57,6 +57,7 @@ public class GameActivity extends Activity implements OnClickListener,
 		tvquestion = (TextView) findViewById(R.id.tvquestion);
 		tvpoints = (TextView) findViewById(R.id.tvpoints);
 		tvanswer = (TextView) findViewById(R.id.tvanswer);
+
 		btnquestions[0] = (Button) findViewById(R.id.btnquestion1_1);
 		btnquestions[1] = (Button) findViewById(R.id.btnquestion1_2);
 		btnquestions[2] = (Button) findViewById(R.id.btnquestion1_3);
@@ -76,53 +77,28 @@ public class GameActivity extends Activity implements OnClickListener,
 		btnqstnumber.setOnClickListener(this);
 		btnhint.setOnClickListener(this);
 		btnPause.setOnClickListener(this);
-		btnquestions[0].setOnClickListener(this);
-		btnquestions[1].setOnClickListener(this);
-		btnquestions[2].setOnClickListener(this);
-		btnquestions[3].setOnClickListener(this);
-		btnquestions[4].setOnClickListener(this);
-		btnquestions[5].setOnClickListener(this);
-		btnquestions[6].setOnClickListener(this);
-		btnquestions[7].setOnClickListener(this);
-		btnquestions[8].setOnClickListener(this);
-		btnquestions[9].setOnClickListener(this);
-		btnquestions[10].setOnClickListener(this);
-		btnquestions[11].setOnClickListener(this);
-		btnquestions[12].setOnClickListener(this);
-		btnquestions[13].setOnClickListener(this);
-		btnquestions[14].setOnClickListener(this);
 
-		btnquestions[0]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[1]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[2]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[3]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[4]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[5]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[6]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[7]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[8]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[9]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[10]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[11]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[12]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[13]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
-		btnquestions[14]
-				.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
+		for (int questionIndex = 0; questionIndex < Constants.MAXQUESTIONS; questionIndex++) {
+			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][questionIndex]) {
+				if (questionIndex == Constants.MAXQUESTIONS - 1) {
+					btnquestions[questionIndex]
+							.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
+				} else {
+					btnquestions[questionIndex]
+							.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
+				}
 
+			} else {
+				btnquestions[questionIndex]
+						.setBackgroundResource(R.drawable.gamescreen_question_button_red_state);
+			}
+			btnquestions[questionIndex].setOnClickListener(this);
+		}
+		if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+			String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
+					.getAnswer();
+			tvanswer.setText(answer);
+		}
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
 		ivImages[2] = (ImageView) findViewById(R.id.image03);
@@ -252,15 +228,6 @@ public class GameActivity extends Activity implements OnClickListener,
 		if (correctCount == Constants.MAXANSWERTOUNLOCK) {
 			if (Constants.MAXLEVELS > GameSettings.currentLevel) {
 				GameSettings.levelLocked[GameSettings.currentLevel] = false;
-
-				if (GameSettings.currentLevel == Constants.MAXLEVELS) {
-					Toast.makeText(getApplicationContext(),
-							"BONUS STAGE UNLOCKED", Toast.LENGTH_SHORT).show();
-				}
-
-				System.out.println("[DATA] Unlock "
-						+ (GameSettings.currentLevel));
-				// goToSelectLevel();
 			}
 
 			System.out.println("CALLED");
@@ -480,6 +447,28 @@ public class GameActivity extends Activity implements OnClickListener,
 					.getAnswer();
 			tvanswer.setText(answer);
 		}
+
+		// Start BOnus Stage
+		// check if all questions have been unlocked in order to unlock bonus
+		// stage
+		boolean unlockBonus = true;
+
+		// check all are unlocked
+		for (int level = 0; level < Constants.MAXLEVELS; level++) {
+			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+				if (!GameSettings.userCorrectAnswers[level][question]) {
+					unlockBonus = false;
+					break;
+				}
+			}
+		}
+
+		if (unlockBonus) {
+			GameSettings.bonusLevelLocked = false;
+			Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
+					Toast.LENGTH_SHORT).show();
+		}
+		// End Bonus Stage
 	}
 
 	private void showAnswer(boolean hasHint, boolean isforshow) {

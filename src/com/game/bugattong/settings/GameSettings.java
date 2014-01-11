@@ -16,7 +16,8 @@ public class GameSettings {
 	public static int currentQuestion = 0;
 	public static int currentPoints = 0;
 	public static boolean hasInit = false;
-	public static boolean[] levelLocked = new boolean[5];
+	public static boolean[] levelLocked = new boolean[Constants.MAXLEVELS];
+	public static boolean bonusLevelLocked = true;
 	private static SaveUtility savegame;
 
 	public static void init(Activity act) {
@@ -35,7 +36,7 @@ public class GameSettings {
 			levelLocked[2] = true;
 			levelLocked[3] = true;
 			levelLocked[4] = true;
-
+			bonusLevelLocked = true;
 			currentPoints = 100;
 
 			saveAll();
@@ -49,6 +50,7 @@ public class GameSettings {
 			levelLocked = savegame.getUnlockedLevels();
 			currentQuestion = savegame.getCurrentQuestion();
 			currentPoints = savegame.getCurrentPoints();
+			bonusLevelLocked = savegame.getBonusLevel();
 		}
 
 		levelQuestions[0][0] = new LevelQuestion(
@@ -58,7 +60,7 @@ public class GameSettings {
 				"Heto na si Lulong, \n bubulong bulong", "BUBUYOG",
 				"6,1,4,0,2,3,5");
 		levelQuestions[0][2] = new LevelQuestion(
-				"Napapagod kung tumitigil,\n kung tumatakbo�y gumigiliw.",
+				"Napapagod kung tumitigil,\n kung tumatakbo�\'y gumigiliw.",
 				"BISIKLETA", "6,8,4,3,7,1,0,2,5");
 		levelQuestions[0][3] = new LevelQuestion(
 				"Isang senyora nakaupo sa tasa.", "KASOY", "0,2,1,4,3");
@@ -371,5 +373,6 @@ public class GameSettings {
 		savegame.saveUserCorrectAnswers(userCorrectAnswers);
 		savegame.saveUserHintedNumbers(userHintedNumbers);
 		savegame.saveUserHintedNumbersHintsShown(userHintedNumbersHintsShown);
+		savegame.saveBonusLevel(bonusLevelLocked);
 	}
 }

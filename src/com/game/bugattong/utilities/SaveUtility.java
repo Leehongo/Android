@@ -227,4 +227,12 @@ public class SaveUtility {
 	public boolean isInit(){
 		return gamePreferences.getBoolean(Constants.SAVEINIT, false);
 	}
+	
+	public void saveBonusLevel(boolean value){
+		saveBoolean(value, Constants.SAVEBONUSLEVEL);
+	}
+	
+	public boolean getBonusLevel(){
+		return gamePreferences.getBoolean(Constants.SAVEBONUSLEVEL, false);
+	}
 }
