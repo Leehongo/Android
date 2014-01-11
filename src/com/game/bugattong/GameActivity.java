@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
@@ -32,11 +31,13 @@ public class GameActivity extends Activity implements OnClickListener,
 	private LinearLayout questionsmenu;
 	private RelativeLayout gameArea;
 	private Button btnqstnumber, btnhint, btnPause;
+	private Button menuBtnResume,menuBtnLevel, menuBtnMain, menuBtnSounds;
+	
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private int shownHints = 0;
-
+	boolean isSoundOn = true;
 	private Dialog gameMenuDialog;
 
 	@Override
@@ -94,11 +95,10 @@ public class GameActivity extends Activity implements OnClickListener,
 			}
 			btnquestions[questionIndex].setOnClickListener(this);
 		}
-		if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
-			String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-					.getAnswer();
-			tvanswer.setText(answer);
-		}
+
+		System.out.println("Initial Question : [" + GameSettings.currentLevel
+				+ "][" + GameSettings.currentQuestion + "]");
+
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
 		ivImages[2] = (ImageView) findViewById(R.id.image03);
@@ -161,7 +161,7 @@ public class GameActivity extends Activity implements OnClickListener,
 
 		shownHints = 0;
 		showQuestion();
-		showAnswer(false, false);
+		reset();
 		showPoints();
 	}
 
@@ -283,11 +283,6 @@ public class GameActivity extends Activity implements OnClickListener,
 			gameMenuDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameMenuDialog.setContentView(R.layout.gamescreen_pause_menu);
 
-			Button menuBtnResume,
-			menuBtnLevel,
-			menuBtnMain,
-			menuBtnSounds;
-
 			menuBtnResume = (Button) gameMenuDialog
 					.findViewById(R.id.game_screen_menu_btn_resume);
 			menuBtnLevel = (Button) gameMenuDialog
@@ -392,6 +387,10 @@ public class GameActivity extends Activity implements OnClickListener,
 				break;
 
 			case R.id.game_screen_menu_btn_sound:
+
+				int msg = (isSoundOn == true)? R.drawable.game_menu_btn_sounds_off: R.drawable.game_menu_btn_sounds_on;
+				menuBtnSounds.setBackgroundResource(msg);
+				isSoundOn = !isSoundOn;
 				break;
 			}
 		}
@@ -413,6 +412,20 @@ public class GameActivity extends Activity implements OnClickListener,
 			else
 				btnquestions[btnquestionIndex - 1]
 						.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
+
+			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+				if (GameSettings.currentQuestion == Constants.MAXQUESTIONS) {
+					btnqstnumber
+							.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
+				} else {
+					btnqstnumber
+							.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
+				}
+			} else {
+				btnqstnumber
+						.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
+
+			}
 		}
 		showPoints();
 	}
@@ -446,6 +459,20 @@ public class GameActivity extends Activity implements OnClickListener,
 			String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					.getAnswer();
 			tvanswer.setText(answer);
+		}
+
+		if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+			if (GameSettings.currentQuestion == Constants.MAXQUESTIONS) {
+				btnqstnumber
+						.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
+			} else {
+				btnqstnumber
+						.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
+			}
+		} else {
+			btnqstnumber
+					.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
+
 		}
 
 		// Start BOnus Stage

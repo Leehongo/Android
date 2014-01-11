@@ -82,7 +82,7 @@ public class SelectLevel extends Activity {
 		else
 			imgLockLevel5.setVisibility(View.GONE);
 
-		if (GameSettings.levelLocked[5])
+		if (GameSettings.bonusLevelLocked)
 			imgLockLevelBonus.setVisibility(View.VISIBLE);
 		else
 			imgLockLevelBonus.setVisibility(View.GONE);
