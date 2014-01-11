@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@color/blue"
+    android:orientation="vertical"
+    android:gravity="center" >
+    
+    <ImageView
+        android:id="@+id/game_screen_unlock_level_dialog_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lvl_hardin"/>
+
+    <Button
+        android:id="@+id/game_screen_unlock_level_dialog_btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/game_menu_btn_sounds_on"
+        android:textColor="@color/white" />
+
+</LinearLayout>
