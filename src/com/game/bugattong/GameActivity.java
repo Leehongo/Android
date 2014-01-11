@@ -38,6 +38,7 @@ public class GameActivity extends Activity implements OnClickListener,
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private int shownHints = 0;
 	boolean isSoundOn = true;
+	
 	private Dialog gameMenuDialog;
 
 	@Override
