@@ -60,7 +60,7 @@ public class GameSettings {
 				"Heto na si Lulong, \n bubulong bulong", "BUBUYOG",
 				"6,1,4,0,2,3,5");
 		levelQuestions[0][2] = new LevelQuestion(
-				"Napapagod kung tumitigil,\n kung tumatakbo�\'y gumigiliw.",
+				"Napapagod kung tumitigil,\n kung tumatakbo\'y gumigiliw.",
 				"BISIKLETA", "6,8,4,3,7,1,0,2,5");
 		levelQuestions[0][3] = new LevelQuestion(
 				"Isang senyora nakaupo sa tasa.", "KASOY", "0,2,1,4,3");

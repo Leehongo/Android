@@ -141,7 +141,7 @@ public class SelectLevel extends Activity {
 	};
 
 	private void startBonus() {
-		Intent intent = new Intent(SelectLevel.this, StoryView.class);
+		Intent intent = new Intent(SelectLevel.this, BonusActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();

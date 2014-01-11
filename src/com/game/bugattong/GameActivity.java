@@ -97,9 +97,6 @@ public class GameActivity extends Activity implements OnClickListener,
 			btnquestions[questionIndex].setOnClickListener(this);
 		}
 
-		System.out.println("Initial Question : [" + GameSettings.currentLevel
-				+ "][" + GameSettings.currentQuestion + "]");
-
 		ivImages[0] = (ImageView) findViewById(R.id.image01);
 		ivImages[1] = (ImageView) findViewById(R.id.image02);
 		ivImages[2] = (ImageView) findViewById(R.id.image03);
@@ -126,7 +123,7 @@ public class GameActivity extends Activity implements OnClickListener,
 			gameArea.setBackgroundResource(R.drawable.bg_kagubatan);
 		} else if (GameSettings.currentLevel == 5) {
 			gameArea.setBackgroundResource(R.drawable.bg_attic);
-		}// TODO how abput bonus level?
+		}
 
 		ivImages[0].setBackgroundResource(R.drawable.item_01);
 		ivImages[1].setBackgroundResource(R.drawable.item_02);
