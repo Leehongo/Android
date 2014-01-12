@@ -9,11 +9,12 @@ import java.util.StringTokenizer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
@@ -40,12 +42,30 @@ public class GameActivity extends Activity implements OnClickListener {
 
 	private Dialog gameDialog;
 
+	private SoundPool sounds = null;
+	private int correctSound;
+	private int errorSound;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamescreen);
 		init();
 		initImages();
+
+		// load music
+		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+		sounds.setOnLoadCompleteListener(new OnLoadCompleteListener() {
+
+			@Override
+			public void onLoadComplete(SoundPool soundPool, int sampleId,
+					int status) {
+				System.out.println("Loaded : " + sampleId);
+			}
+		});
+
+		correctSound = sounds.load(this, R.raw.normal, 1);
+		errorSound = sounds.load(this, R.raw.error, 1);
 	}
 
 	private void init() {
@@ -123,6 +143,8 @@ public class GameActivity extends Activity implements OnClickListener {
 		} else if (GameSettings.currentLevel == 5) {
 			gameArea.setBackgroundResource(R.drawable.bg_attic);
 		}
+
+		gameArea.setOnClickListener(this);
 
 		ivImages[0].setBackgroundResource(R.drawable.item_01);
 		ivImages[1].setBackgroundResource(R.drawable.item_02);
@@ -254,6 +276,7 @@ public class GameActivity extends Activity implements OnClickListener {
 			gameDialog.show();
 
 			break;
+
 		case R.id.btnquestion1_1:
 			GameSettings.currentQuestion = 1;
 			reset();
@@ -326,7 +349,6 @@ public class GameActivity extends Activity implements OnClickListener {
 		case R.id.image03:
 			setCorrectAnswer(3);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image04:
 			setCorrectAnswer(4);
@@ -335,57 +357,50 @@ public class GameActivity extends Activity implements OnClickListener {
 		case R.id.image05:
 			setCorrectAnswer(5);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image06:
 			setCorrectAnswer(6);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image07:
 			setCorrectAnswer(7);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image08:
 			setCorrectAnswer(8);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image09:
 			setCorrectAnswer(9);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image10:
 			setCorrectAnswer(10);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image11:
 			setCorrectAnswer(11);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image12:
 			setCorrectAnswer(12);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image13:
 			setCorrectAnswer(13);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image14:
 			setCorrectAnswer(14);
 			checkToUnlockLevel();
-
 			break;
 		case R.id.image15:
 			setCorrectAnswer(15);
 			checkToUnlockLevel();
-
+			break;
+		case R.id.gamearea:
+			if (isSoundOn)
+				playClickSound(true);
 			break;
 		}
 	}
@@ -420,13 +435,31 @@ public class GameActivity extends Activity implements OnClickListener {
 				menuBtnSounds.setBackgroundResource(msg);
 				isSoundOn = !isSoundOn;
 				break;
+
 			}
 		}
 	};
 
+	private void playClickSound(boolean isError) {
+		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+		float actualVolume = (float) audioManager
+				.getStreamVolume(AudioManager.STREAM_MUSIC);
+		float maxVolume = (float) audioManager
+				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		float volume = actualVolume / maxVolume;
+
+		if (isError) {
+			sounds.play(errorSound, volume, volume, 1, 0, 1f);
+		} else {
+			sounds.play(correctSound, volume, volume, 1, 0, 1f);
+		}
+	}
+
 	private void setCorrectAnswer(int btnquestionIndex) {
 		if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 				&& btnquestionIndex == GameSettings.currentQuestion) {
+			if (isSoundOn)
+				playClickSound(false);
 			GameSettings.currentPoints += Constants.CORRECTPOINT;
 			GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
 
@@ -454,6 +487,9 @@ public class GameActivity extends Activity implements OnClickListener {
 						.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
 
 			}
+		} else {
+			if (isSoundOn)
+				playClickSound(true);
 		}
 		showPoints();
 	}
