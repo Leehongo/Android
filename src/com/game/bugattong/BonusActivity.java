@@ -16,11 +16,12 @@ public class BonusActivity extends Activity implements OnClickListener {
 	private TextView[] letters = new TextView[10];
 	private ImageView[] letterHints = new ImageView[10];
 	private TextView tvQuestion;
+	private TextView[] hintedWords = new TextView[5];
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.bonuslevel_layout);
 
 		tvQuestion = (TextView) findViewById(R.id.question);
 		letters[0] = (TextView) findViewById(R.id.answer_01);
@@ -44,6 +45,18 @@ public class BonusActivity extends Activity implements OnClickListener {
 		letterHints[7] = (ImageView) findViewById(R.id.hint_08); // E
 		letterHints[8] = (ImageView) findViewById(R.id.hint_09); // P
 		letterHints[9] = (ImageView) findViewById(R.id.hint_10); // R
+
+		hintedWords[0] = (TextView) findViewById(R.id.hintword_1);
+		hintedWords[1] = (TextView) findViewById(R.id.hintword_2);
+		hintedWords[2] = (TextView) findViewById(R.id.hintword_3);
+		hintedWords[3] = (TextView) findViewById(R.id.hintword_4);
+		hintedWords[4] = (TextView) findViewById(R.id.hintword_5);
+
+		hintedWords[0].setText("WALIS-TINGTING");
+		hintedWords[1].setText("PISI");
+		hintedWords[2].setText("DYARYO");
+		hintedWords[3].setText("LAPIS");
+		hintedWords[4].setText("GUNTING");
 
 		letters[0].setOnClickListener(this);
 		letters[1].setOnClickListener(this);

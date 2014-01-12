@@ -2,15 +2,14 @@ package com.game.bugattong.pregame;
 
 import java.io.File;
 
-import com.game.bugattong.R;
-import com.game.bugattong.R.layout;
-import com.game.bugattong.settings.FileGenerator;
-import com.game.bugattong.settings.SharedValues;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
+import com.game.bugattong.R;
+import com.game.bugattong.settings.FileGenerator;
+import com.game.bugattong.settings.SharedValues;
 
 public class LoadingScreen extends Activity {
 	

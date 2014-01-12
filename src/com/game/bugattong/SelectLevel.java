@@ -1,8 +1,5 @@
 package com.game.bugattong;
 
-import com.game.bugattong.pregame.MainScreen;
-import com.game.bugattong.settings.GameSettings;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.game.bugattong.pregame.MainScreen;
+import com.game.bugattong.settings.GameSettings;
 
 public class SelectLevel extends Activity {
 
@@ -130,8 +130,6 @@ public class SelectLevel extends Activity {
 
 			case R.id.btn_level_bonus:
 				if (!GameSettings.bonusLevelLocked) {
-					GameSettings.currentLevel = 5;
-					GameSettings.currentQuestion = 1;
 					startBonus();
 				}
 				break;
@@ -142,7 +140,7 @@ public class SelectLevel extends Activity {
 
 	private void startBonus() {		
 		
-		Intent intent = new Intent(SelectLevel.this, StoryView.class);
+		Intent intent = new Intent(SelectLevel.this, BonusActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();
@@ -155,7 +153,6 @@ public class SelectLevel extends Activity {
 			intent = new Intent(SelectLevel.this, GameActivity.class);
 		else
 			intent = new Intent(SelectLevel.this, StoryView.class);
-		
 		
 		intent.putExtra("getNextPage", str);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

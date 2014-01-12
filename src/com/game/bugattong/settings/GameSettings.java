@@ -24,10 +24,10 @@ public class GameSettings {
 	public static boolean[] levelPlayed = new boolean[Constants.MAXLEVELS];
 	public static boolean bonusLevelLocked = true;
 	private static SaveUtility savegame;
-	
-	public static String[] levels = {"Level 2 - Silid Tulugan","Level 3 - Sala"
-						,"Level 4 - Kagubatan","Level 5 - Attic","Bonus Level"};
-	
+
+	public static String[] levels = { "Level 2 - Silid Tulugan",
+			"Level 3 - Sala", "Level 4 - Kagubatan", "Level 5 - Attic",
+			"Bonus Level" };
 
 	public static void init(Activity act) {
 		savegame = new SaveUtility(act);
@@ -77,20 +77,20 @@ public class GameSettings {
 		levelQuestions[0][4] = new LevelQuestion(
 				"Mataas ang paupo, kesa patayo.", "ASO", "0,2,1");
 		levelQuestions[0][5] = new LevelQuestion(
-				"Ang ina\'y gumagapang pa, ang anak ay umuupo na.",
-				"KALABASA", "0,2,5,4,3,1,7,6");
+				"Ang ina\'y gumagapang pa, ang anak ay umuupo na.", "KALABASA",
+				"0,2,5,4,3,1,7,6");
 		levelQuestions[0][6] = new LevelQuestion(
 				"Manok kong pula, inutusan ko ng umaga, nang umuwi\'y gabi na.",
 				"ARAW", "3,1,0,2");
 		levelQuestions[0][7] = new LevelQuestion(
-				"Bulaklak muna ang dapat gawin, bago mo ito kainin.",
-				"SAGING", "3,5,1,4,2,0");
+				"Bulaklak muna ang dapat gawin, bago mo ito kainin.", "SAGING",
+				"3,5,1,4,2,0");
 		levelQuestions[0][8] = new LevelQuestion(
-				"Nang sumipot sa maliwanag, kulubot na ang balat.",
-				"AMPALAYA", "0,2,5,4,3,1,7,6");
+				"Nang sumipot sa maliwanag, kulubot na ang balat.", "AMPALAYA",
+				"0,2,5,4,3,1,7,6");
 		levelQuestions[0][9] = new LevelQuestion(
-				"Hindi pari, hindi hari, nagdadamit ng sari-sari",
-				"PARUPARO", "0,2,5,4,3,1,7,6");
+				"Hindi pari, hindi hari, nagdadamit ng sari-sari", "PARUPARO",
+				"0,2,5,4,3,1,7,6");
 		levelQuestions[0][10] = new LevelQuestion(
 				"Pusong bibitin-bitin, mabango parang hasmin, \n masarap kainin.",
 				"MANGGA", "3,5,1,3,2,0");
@@ -186,8 +186,7 @@ public class GameSettings {
 				"Walang hininga ay may buhay,  walang paa ay may kamay, \n mabilog na parang buwan, ang mukha\'y may bilang.",
 				"ORASAN", "3,5,1,4,2,0");
 		levelQuestions[2][10] = new LevelQuestion(
-				"Binatak ko ang isa, pawis ang kasama.", "PANYO", 
-				"4,1,0,3,2");
+				"Binatak ko ang isa, pawis ang kasama.", "PANYO", "4,1,0,3,2");
 		levelQuestions[2][11] = new LevelQuestion(
 				"Walang paa, lumalakad, walang bibig, nangungusap, \n walang hindi hinaharap, may dala-dalang sulat.",
 				"SOBRE", "4,1,0,3,2");
@@ -206,8 +205,8 @@ public class GameSettings {
 				"Heto na si bayaw, dala-dala\'y ilaw.", "ALITAPTAP",
 				"0,2,4,8,3,5,7,1,6");
 		levelQuestions[3][1] = new LevelQuestion(
-				"May ulo\'y walang buhok, may tiyan walang pusod.",
-				"PALAKA", "3,5,1,4,2,0");
+				"May ulo\'y walang buhok, may tiyan walang pusod.", "PALAKA",
+				"3,5,1,4,2,0");
 		levelQuestions[3][2] = new LevelQuestion(
 				"Bahay ni Kahuli, haligi\'y bali-bali, ang bubong ay kawali.",
 				"ALIMANGO", "0,2,5,4,3,1,7,6");
@@ -244,8 +243,8 @@ public class GameSettings {
 				"Balat berde, buto itim, laman pula, turingan mo kung sino siya.",
 				"PAKWAN", "3,5,1,4,2,0");
 		levelQuestions[3][14] = new LevelQuestion(
-				"Sandata ng mga matalino, papel lamang ang hasaan.",
-				"LAPIS", "4,1,0,3,2", true);
+				"Sandata ng mga matalino, papel lamang ang hasaan.", "LAPIS",
+				"4,1,0,3,2", true);
 
 		// Question Level 5
 		levelQuestions[4][0] = new LevelQuestion(
@@ -261,8 +260,8 @@ public class GameSettings {
 				"Sa maling kalabit, may buhay na kapalit.", "BARIL",
 				"4,1,0,3,2");
 		levelQuestions[4][4] = new LevelQuestion(
-				"Hindi tao, hindi hayop, kung uminom ay salup-salop.",
-				"BATYA", "4,1,0,3,2");
+				"Hindi tao, hindi hayop, kung uminom ay salup-salop.", "BATYA",
+				"4,1,0,3,2");
 		levelQuestions[4][5] = new LevelQuestion(
 				"Ang ulo\'y nalalaga, ang katawa\'y pagala-gala.", "SANDOK",
 				"3,5,1,4,2,0");
@@ -357,7 +356,7 @@ public class GameSettings {
 		levelSearchObjects[3][12] = new SearchObject(250, 80);
 		levelSearchObjects[3][13] = new SearchObject(310, 80);
 		levelSearchObjects[3][14] = new SearchObject(370, 80);
-		
+
 		levelSearchObjects[4][0] = new SearchObject(10, 20);
 		levelSearchObjects[4][1] = new SearchObject(70, 20);
 		levelSearchObjects[4][2] = new SearchObject(130, 20);
@@ -386,10 +385,11 @@ public class GameSettings {
 		savegame.saveBonusLevel(bonusLevelLocked);
 		savegame.savePlayedLevel(levelPlayed);
 	}
-	
-	public static void CustomTextView(Context context,View textView){
-		Typeface font = Typeface.createFromAsset(context.getAssets(), "BADABB__.TTF");  
-		((TextView) textView).setTypeface(font); 
-		
+
+	public static void CustomTextView(Context context, View textView) {
+		Typeface font = Typeface.createFromAsset(context.getAssets(),
+				"BADABB__.TTF");
+		((TextView) textView).setTypeface(font);
+
 	}
 }

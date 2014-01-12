@@ -69,8 +69,8 @@ public class GameActivity extends Activity implements OnClickListener {
 			}
 		});
 
-//		correctSound = sounds.load(this, R.raw.normal, 1);
-//		errorSound = sounds.load(this, R.raw.error, 1);
+		correctSound = sounds.load(this, R.raw.normal, 1);
+		errorSound = sounds.load(this, R.raw.error, 1);
 	}
 
 	private void init() {
@@ -207,6 +207,8 @@ public class GameActivity extends Activity implements OnClickListener {
 		showQuestion();
 		reset();
 		showPoints();
+		
+		GameSettings.levelPlayed[GameSettings.currentLevel - 1] = true;
 	}
 
 	private void checkToUnlockLevel() {

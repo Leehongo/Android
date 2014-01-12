@@ -1,8 +1,5 @@
 package com.game.bugattong;
 
-import com.game.bugattong.pregame.MainScreen;
-import com.game.bugattong.settings.GameSettings;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.game.bugattong.pregame.MainScreen;
 
 public class StoryView extends Activity {
 
