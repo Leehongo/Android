@@ -38,13 +38,14 @@ public class GameActivity extends Activity implements OnClickListener {
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private int shownHints = 0;
-	boolean isSoundOn = true;
+	boolean isSoundOn;
 
 	private Dialog gameDialog;
 
 	private SoundPool sounds = null;
 	private int correctSound;
 	private int errorSound;
+	private boolean isInit = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,11 @@ public class GameActivity extends Activity implements OnClickListener {
 		init();
 		initImages();
 
+		if (!isInit) {
+			isSoundOn = true;
+			isInit = true;
+		}
+
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 		sounds.setOnLoadCompleteListener(new OnLoadCompleteListener() {
@@ -60,7 +66,6 @@ public class GameActivity extends Activity implements OnClickListener {
 			@Override
 			public void onLoadComplete(SoundPool soundPool, int sampleId,
 					int status) {
-				System.out.println("Loaded : " + sampleId);
 			}
 		});
 
@@ -268,6 +273,16 @@ public class GameActivity extends Activity implements OnClickListener {
 			menuBtnSounds = (Button) gameDialog
 					.findViewById(R.id.game_screen_menu_btn_sound);
 
+			int msg = 0;
+			if (!isSoundOn) {
+				msg = R.drawable.game_menu_btn_sounds_off;
+
+			} else {
+				msg = R.drawable.game_menu_btn_sounds_on;
+
+			}
+			menuBtnSounds.setBackgroundResource(msg);
+
 			menuBtnResume.setOnClickListener(menuOnClick);
 			menuBtnLevel.setOnClickListener(menuOnClick);
 			menuBtnMain.setOnClickListener(menuOnClick);
@@ -429,11 +444,16 @@ public class GameActivity extends Activity implements OnClickListener {
 				break;
 
 			case R.id.game_screen_menu_btn_sound:
-
-				int msg = (isSoundOn == true) ? R.drawable.game_menu_btn_sounds_off
-						: R.drawable.game_menu_btn_sounds_on;
+				int msg = 0;
+				System.out.println("May Imgay ? " + isSoundOn);
+				if (!isSoundOn) {
+					msg = R.drawable.game_menu_btn_sounds_on;
+					isSoundOn = true;
+				} else {
+					msg = R.drawable.game_menu_btn_sounds_off;
+					isSoundOn = false;
+				}
 				menuBtnSounds.setBackgroundResource(msg);
-				isSoundOn = !isSoundOn;
 				break;
 
 			}
