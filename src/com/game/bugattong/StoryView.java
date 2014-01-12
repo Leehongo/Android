@@ -1,6 +1,7 @@
 package com.game.bugattong;
 
 import com.game.bugattong.pregame.MainScreen;
+import com.game.bugattong.settings.GameSettings;
 
 import android.app.Activity;
 import android.content.Intent;

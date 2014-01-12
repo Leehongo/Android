@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.game.bugattong.GameActivity;
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
 import com.game.bugattong.settings.FileGenerator;
+import com.game.bugattong.settings.GameSettings;
 import com.game.bugattong.settings.SharedValues;
 
 public class MainScreen extends Activity{
@@ -27,7 +29,6 @@ public class MainScreen extends Activity{
 	private TextView txtTouchToStart;
 
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
-	boolean isSoundOn = true;
 	private FileGenerator fileGenerator;
 	private SharedValues sharedValues;
 	
@@ -53,8 +54,9 @@ public class MainScreen extends Activity{
 		btnExit = (Button) findViewById(R.id.main_screen_btn_exit);
 		txtTouchToStart = (TextView) findViewById(R.id.mainscreen_txt_touch_to_continue);
 		
-		Typeface font = Typeface.createFromAsset(getAssets(), "BADABB__.TTF");  
-		txtTouchToStart.setTypeface(font);  
+//		Typeface font = Typeface.createFromAsset(getAssets(), "BADABB__.TTF");  
+//		txtTouchToStart.setTypeface(font);  
+		GameSettings.CustomTextView(MainScreen.this, txtTouchToStart);
 	}
 	
 	@Override
@@ -96,9 +98,9 @@ public class MainScreen extends Activity{
 				
 
 			case R.id.main_screen_btn_sound:
-				int msg = (isSoundOn == true)? R.drawable.game_menu_btn_sounds_off: R.drawable.game_menu_btn_sounds_on;
+				int msg = (GameActivity.isSoundOn == true)? R.drawable.game_menu_btn_sounds_off: R.drawable.game_menu_btn_sounds_on;
 				btnSound.setBackgroundResource(msg);
-				isSoundOn = !isSoundOn;
+				GameActivity.isSoundOn = !GameActivity.isSoundOn;
 				break;
 
 			case R.id.main_screen_btn_help:

@@ -3,7 +3,7 @@
     android:baselineAligned="false"
     android:layout_width="500dp"
     android:layout_height="300dp"
-    android:background="@drawable/background"
+    android:background="@drawable/dialog_background"
     android:orientation="horizontal">
 
  

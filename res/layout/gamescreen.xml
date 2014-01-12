@@ -23,33 +23,37 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="2dp"
-            android:background="@color/lightred" />
+            android:background="@drawable/game_select_question_btn_red_normal"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/layouttext"
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
-            android:gravity="center"
             android:background="@drawable/gamescreen_question_bar"
-            android:orientation="vertical"
-            android:weightSum="10" >
+            android:gravity="center"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/tvquestion"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:lines="2"
-                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mocha"
+                android:textSize="17sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="410dp"
+                android:layout_height="1dp"
+                android:background="@color/white" />
 
             <TextView
                 android:id="@+id/tvanswer"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:textColor="@color/white" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/mocha"
+                android:textSize="17sp" />
         </LinearLayout>
 
         <Button
@@ -72,10 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="100"
+                android:textColor="@color/mocha"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/red" />
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -184,7 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/topmenu"
         android:layout_centerInParent="true"
-        android:background="@drawable/game_select_question"
+        android:background="@drawable/dialog_background"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone" >

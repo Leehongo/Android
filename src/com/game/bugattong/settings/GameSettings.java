@@ -1,6 +1,10 @@
 package com.game.bugattong.settings;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.View;
+import android.widget.TextView;
 
 import com.game.bugattong.model.LevelQuestion;
 import com.game.bugattong.model.SearchObject;
@@ -20,6 +24,9 @@ public class GameSettings {
 	public static boolean[] levelPlayed = new boolean[Constants.MAXLEVELS];
 	public static boolean bonusLevelLocked = true;
 	private static SaveUtility savegame;
+	
+	public static String[] levels = {"Level 2 - Silid Tulugan","Level 3 - Sala"
+						,"Level 4 - Kagubatan","Level 5 - Attic","Bonus Level"};
 	
 
 	public static void init(Activity act) {
@@ -57,155 +64,155 @@ public class GameSettings {
 		}
 
 		levelQuestions[0][0] = new LevelQuestion(
-				"Takbo roon, takbo rito, \n hindi makaalis sa tayong ito.",
+				"Takbo roon, takbo rito, hindi makaalis sa tayong ito.",
 				"DUYAN", "4,1,0,3,2");
 		levelQuestions[0][1] = new LevelQuestion(
-				"Heto na si Lulong, \n bubulong bulong", "BUBUYOG",
+				"Heto na si Lulong, bubulong bulong", "BUBUYOG",
 				"6,1,4,0,2,3,5");
 		levelQuestions[0][2] = new LevelQuestion(
-				"Napapagod kung tumitigil,\n kung tumatakbo�\'y gumigiliw.",
+				"Napapagod kung tumitigil, kung tumatakbo\'y gumigiliw.",
 				"BISIKLETA", "6,8,4,3,7,1,0,2,5");
 		levelQuestions[0][3] = new LevelQuestion(
 				"Isang senyora nakaupo sa tasa.", "KASOY", "0,2,1,4,3");
 		levelQuestions[0][4] = new LevelQuestion(
-				"Mataas ang paupo, \n kesa patayo.", "ASO", "0,2,1");
+				"Mataas ang paupo, kesa patayo.", "ASO", "0,2,1");
 		levelQuestions[0][5] = new LevelQuestion(
-				"Ang ina�y gumagapang pa, \n ang anak ay umuupo na.",
+				"Ang ina\'y gumagapang pa, ang anak ay umuupo na.",
 				"KALABASA", "0,2,5,4,3,1,7,6");
 		levelQuestions[0][6] = new LevelQuestion(
-				"Manok kong pula, \n inutusan ko ng umaga, \n nang umuwi�y gabi na.",
+				"Manok kong pula, inutusan ko ng umaga, nang umuwi\'y gabi na.",
 				"ARAW", "3,1,0,2");
 		levelQuestions[0][7] = new LevelQuestion(
-				"Bulaklak muna ang dapat gawin, \n bago mo ito kainin.",
+				"Bulaklak muna ang dapat gawin, bago mo ito kainin.",
 				"SAGING", "3,5,1,4,2,0");
 		levelQuestions[0][8] = new LevelQuestion(
-				"Nang sumipot sa maliwanag,\n kulubot na ang balat.",
+				"Nang sumipot sa maliwanag, kulubot na ang balat.",
 				"AMPALAYA", "0,2,5,4,3,1,7,6");
 		levelQuestions[0][9] = new LevelQuestion(
-				"Hindi pari, hindi hari, \n nagdadamit ng sari-sari",
+				"Hindi pari, hindi hari, nagdadamit ng sari-sari",
 				"PARUPARO", "0,2,5,4,3,1,7,6");
 		levelQuestions[0][10] = new LevelQuestion(
-				"Pusong bibitin-bitin, \n mabango parang hasmin, \n masarap kainin.",
+				"Pusong bibitin-bitin, mabango parang hasmin, \n masarap kainin.",
 				"MANGGA", "3,5,1,3,2,0");
 		levelQuestions[0][11] = new LevelQuestion(
-				"Ang mukha\'y parang tao, \n magaling lumukso.", "UNGGOY",
+				"Ang mukha\'y parang tao, magaling lumukso.", "UNGGOY",
 				"3,5,1,4,2,0");
 		levelQuestions[0][12] = new LevelQuestion(
-				"Aso kong si pula, sumampa sa sanga, \n nagpakita ng ganda.",
+				"Aso kong si pula, sumampa sa sanga, nagpakita ng ganda.",
 				"GUMAMELA", "0,2,5,4,3,1,7,6");
 		levelQuestions[0][13] = new LevelQuestion(
-				"Ang puno\'y buku-buko, \n ang sanga\'y baril, \n ang bunga ay bote, \n ang laman ay diyamante.",
+				"Ang puno\'y buku-buko,  ang sanga\'y baril, \n ang bunga ay bote, ang laman ay diyamante.",
 				"PAPAYA", "3,5,1,4,2,0");
 		levelQuestions[0][14] = new LevelQuestion(
-				"Dumaing paa\'y walang kamay,\n may pamigkis sa baywang, \n ang ulo\'y parang tagayan, \n alagad ng kalinisan.",
+				"Dumaing paa\'y walang kamay, may pamigkis sa baywang,\n ang ulo\'y parang tagayan, alagad ng kalinisan.",
 				"WALIS-TINGTING", "10,1,0,6,4,7,12,1,3,9,5,13,8,2,11", true);
 
 		// Question Level 2
 		levelQuestions[1][0] = new LevelQuestion(
-				"Alipin ng hari, \n hindi makalakad, \n kung hindi itali.",
+				"Alipin ng hari, hindi makalakad, kung hindi itali.",
 				"SAPATOS", "6,1,4,0,2,3,5");
 		levelQuestions[1][1] = new LevelQuestion(
-				"Wala sa langit,wala sa lupa, \n kung lumakad ay patihaya.",
+				"Wala sa langit,wala sa lupa, kung lumakad ay patihaya.",
 				"BANGKA", "3,5,1,4,2,0");
 		levelQuestions[1][2] = new LevelQuestion(
-				"Kung araw ay patung-patong, \n kung gabi\'y dugtong-dugtong.",
+				"Kung araw ay patung-patong, kung gabi\'y dugtong-dugtong.",
 				"UNAN", "3,1,0,2");
 		levelQuestions[1][3] = new LevelQuestion(
-				"Hindi tao, hindi ibon, \n bumabalik kung itapon.", "YOYO",
+				"Hindi tao, hindi ibon, bumabalik kung itapon.", "YOYO",
 				"3,1,0,2");
 		levelQuestions[1][4] = new LevelQuestion(
-				"Bumili ako ng alipin, \n mas mataas pa sa akin.", "SUMBRERO",
+				"Bumili ako ng alipin, mas mataas pa sa akin.", "SUMBRERO",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[1][5] = new LevelQuestion(
-				"Ipinalilok ko at ipinalubid, \n naghigpitan ang kapit.",
+				"Ipinalilok ko at ipinalubid, naghigpitan ang kapit.",
 				"SINTURON", "0,2,5,4,3,1,7,6");
 		levelQuestions[1][6] = new LevelQuestion(
-				"Dugtong-dugtong, magkakarugtong,\n tanikalang umuugong.",
+				"Dugtong-dugtong, magkakarugtong, tanikalang umuugong.",
 				"TREN", "3,1,0,2");
 		levelQuestions[1][7] = new LevelQuestion(
-				"Nakalantay kung gabi,\n kung araw ay nakatabi.", "BANIG",
+				"Nakalantay kung gabi, kung araw ay nakatabi.", "BANIG",
 				"4,1,0,3,2");
 		levelQuestions[1][8] = new LevelQuestion(
 				"isang butil ng palay, buong bahay ay nakakalatan.", "ILAW",
 				"4,1,0,3,2");
 		levelQuestions[1][9] = new LevelQuestion(
-				"Isa ang pasukan,\n tatlo ang labasan.", "KAMISETA",
+				"Isa ang pasukan, tatlo ang labasan.", "KAMISETA",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[1][10] = new LevelQuestion(
-				"Nang hawak ay patay, \n nang ihagis ay nabuhay.", "TRUMPO",
+				"Nang hawak ay patay, nang ihagis ay nabuhay.", "TRUMPO",
 				"3,5,1,4,2,0");
 		levelQuestions[1][11] = new LevelQuestion(
-				"Isang biyas ng kawayan, \n maraming lamang kayamanan.",
+				"Isang biyas ng kawayan, maraming lamang kayamanan.",
 				"ALKANSIYA", "0,2,4,8,3,5,7,1,6");
 		levelQuestions[1][12] = new LevelQuestion(
-				"Isang tingting na matigas, \n nang ikiskis namulaklak.",
+				"Isang tingting na matigas, nang ikiskis namulaklak.",
 				"POSPORO", "6,1,4,0,2,3,5");
 		levelQuestions[1][13] = new LevelQuestion(
-				"Hinila ko ang tadyang, \n lumapad ang tiyan.", "PAYONG",
+				"Hinila ko ang tadyang, lumapad ang tiyan.", "PAYONG",
 				"3,5,1,4,2,0");
 		levelQuestions[1][14] = new LevelQuestion(
-				"Saranggolang naglalayag sa kalangitan, \n Napapalayo pa nito ang paglalakbay",
+				"Saranggolang naglalayag sa kalangitan, Napapalayo pa nito ang paglalakbay",
 				"PISI", "3,1,0,2", true);
 
 		// Question Level 3
 		levelQuestions[2][0] = new LevelQuestion(
-				"Sa buhatan ay may silbi, \n sa igiban ay walang sinabi.",
+				"Sa buhatan ay may silbi, sa igiban ay walang sinabi.",
 				"BASKET", "3,5,1,4,2,0");
 		levelQuestions[2][1] = new LevelQuestion(
-				"Hindi halaman, maraming dahon, \n ang ibinubunga ay dunong.",
+				"Hindi halaman, maraming dahon, ang ibinubunga ay dunong.",
 				"AKLAT", "4,1,0,3,2");
 		levelQuestions[2][2] = new LevelQuestion(
-				"Ngayon lang nangyayari,\n nakikita na ng marami, \n kahit sila\'y wala rine.",
+				"Ngayon lang nangyayari, nakikita na ng marami, \n kahit sila\'y wala rine.",
 				"TELEBISYON", "9,1,6,0,3,5,2,1,7,4");
 		levelQuestions[2][3] = new LevelQuestion(
-				"May katawa�y walang bituka, \n may puwit walang paa, \n nakakagat tuwina.",
+				"May katawa\'y walang bituka, may puwit walang paa, \n nakakagat tuwina.",
 				"BASO", "3,1,0,2");
 		levelQuestions[2][4] = new LevelQuestion(
-				"Dalawang katawan, \n tagusan ang tadyang.", "HAGDANAN",
+				"Dalawang katawan, tagusan ang tadyang.", "HAGDANAN",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[2][5] = new LevelQuestion(
-				"Dalawang ibong marikit,\n nagtitimbangan ng siit.", "HIKAW",
+				"Dalawang ibong marikit, nagtitimbangan ng siit.", "HIKAW",
 				"4,1,0,3,2");
 		levelQuestions[2][6] = new LevelQuestion(
-				"Munting tumataginting,\n kung saan nanggagaling.", "TELEPONO",
+				"Munting tumataginting, kung saan nanggagaling.", "TELEPONO",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[2][7] = new LevelQuestion(
-				"Bugtong kong sapin sapin,\n Nakasabit, nakabitin, \n Araw araw kung bilangin, \n Isang taon kung tapusin.",
+				"Bugtong kong sapin sapin, Nakasabit, nakabitin, \n Araw araw kung bilangin, Isang taon kung tapusin.",
 				"KALENDARYO", "9,1,6,0,3,5,2,1,7,4");
 		levelQuestions[2][8] = new LevelQuestion(
-				"Hiyas akong mabilog, \n sa daliri isinusuot.", "SINGSING",
+				"Hiyas akong mabilog, sa daliri isinusuot.", "SINGSING",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[2][9] = new LevelQuestion(
-				"Walang hininga ay may buhay, \n walang paa ay may kamay, \n mabilog na parang buwan, \n ang mukha\'y may bilang.",
+				"Walang hininga ay may buhay,  walang paa ay may kamay, \n mabilog na parang buwan, ang mukha\'y may bilang.",
 				"ORASAN", "3,5,1,4,2,0");
 		levelQuestions[2][10] = new LevelQuestion(
-				"Binatak ko ang isa, \n pawis ang kasama.", "PANYO",
+				"Binatak ko ang isa, pawis ang kasama.", "PANYO", 
 				"4,1,0,3,2");
 		levelQuestions[2][11] = new LevelQuestion(
-				"Walang paa, lumalakad, \n walang bibig, nangungusap, \n walang hindi hinaharap, \n may dala-dalang sulat.",
+				"Walang paa, lumalakad, walang bibig, nangungusap, \n walang hindi hinaharap, may dala-dalang sulat.",
 				"SOBRE", "4,1,0,3,2");
 		levelQuestions[2][12] = new LevelQuestion(
-				"Tumutugtuog, umaawit,\n walang pagod ang pagpihit.", "RADYO",
+				"Tumutugtuog, umaawit, walang pagod ang pagpihit.", "RADYO",
 				"4,1,0,3,2");
 		levelQuestions[2][13] = new LevelQuestion(
-				"Sapagkat lahat na ay nakahihipo; \n walang kasindumi\'t walang kasimbaho, \n bakit mahal nati\'t ipinakatatago.",
+				"Sapagkat lahat na ay nakahihipo, walang kasindumi\'t walang kasimbaho, \n bakit mahal nati\'t ipinakatatago.",
 				"SALAPI", "3,5,1,4,2,0");
 		levelQuestions[2][14] = new LevelQuestion(
-				"Tangan-tangan sa umaga,\n galaw ng bansa ay nakikita.",
+				"Tangan-tangan sa umaga, galaw ng bansa ay nakikita.",
 				"DYARYO", "3,5,1,4,2,0", true);
 
 		// Question Level 4
 		levelQuestions[3][0] = new LevelQuestion(
-				"Heto na si bayaw, \n dala-dala\'y ilaw.", "ALITAPTAP",
+				"Heto na si bayaw, dala-dala\'y ilaw.", "ALITAPTAP",
 				"0,2,4,8,3,5,7,1,6");
 		levelQuestions[3][1] = new LevelQuestion(
-				"May ulo\'y walang buhok, \n may tiyan walang pusod.",
+				"May ulo\'y walang buhok, may tiyan walang pusod.",
 				"PALAKA", "3,5,1,4,2,0");
 		levelQuestions[3][2] = new LevelQuestion(
-				"Bahay ni Kahuli,\n haligi\'y bali-bali, \n ang bubong ay kawali.",
+				"Bahay ni Kahuli, haligi\'y bali-bali, ang bubong ay kawali.",
 				"ALIMANGO", "0,2,5,4,3,1,7,6");
 		levelQuestions[3][3] = new LevelQuestion(
-				"Sa araw nahimhimbing, \n at sa gabi ay gising na gising.",
+				"Sa araw nahimhimbing, at sa gabi ay gising na gising.",
 				"PANIKI", "3,5,1,4,2,0");
 		levelQuestions[3][4] = new LevelQuestion(
 				"Yumuko man ang reyna, di malalaglag ang korona.", "BAYABAS",
@@ -216,7 +223,7 @@ public class GameSettings {
 		levelQuestions[3][6] = new LevelQuestion(
 				"Baston ng kapitan, hindi mahawakan.", "AHAS", "3,1,0,2");
 		levelQuestions[3][7] = new LevelQuestion(
-				"Buhay na hindi kumikibo, \n patay na hindi bumabaho.", "BATO",
+				"Buhay na hindi kumikibo, patay na hindi bumabaho.", "BATO",
 				"3,1,0,2");
 		levelQuestions[3][8] = new LevelQuestion(
 				"Isang hayop na maliit, dumudumi ng sinulid.", "GAGAMBA",
@@ -225,19 +232,19 @@ public class GameSettings {
 				"Isang dalagang may korona, kahit saan ay may mata.", "PINYA",
 				"4,1,0,3,2");
 		levelQuestions[3][10] = new LevelQuestion(
-				"Nang sanggol pa ay palalo, \n mataas na langit ang itinuturo; \n nang lumaki at lumago, \n sa sariling puno ay yumuko.",
+				"Nang sanggol pa ay palalo, mataas na langit ang itinuturo; \n nang lumaki at lumago, sa sariling puno ay yumuko.",
 				"KAWAYAN", "6,1,4,0,2,3,5");
 		levelQuestions[3][11] = new LevelQuestion(
-				"Itinanim sa kagabihan, \n inani sa kaumagahan.", "BITUIN",
+				"Itinanim sa kagabihan, inani sa kaumagahan.", "BITUIN",
 				"3,5,1,4,2,0");
 		levelQuestions[3][12] = new LevelQuestion(
 				"Isang pamalo-palo, libot na libot ng ginto.", "MAIS",
 				"3,1,0,2");
 		levelQuestions[3][13] = new LevelQuestion(
-				"Balat berde, buto itim, \n laman pula, turingan mo kung sino siya.",
+				"Balat berde, buto itim, laman pula, turingan mo kung sino siya.",
 				"PAKWAN", "3,5,1,4,2,0");
 		levelQuestions[3][14] = new LevelQuestion(
-				"Sandata ng mga matalino, \n papel lamang ang hasaan.",
+				"Sandata ng mga matalino, papel lamang ang hasaan.",
 				"LAPIS", "4,1,0,3,2", true);
 
 		// Question Level 5
@@ -245,31 +252,31 @@ public class GameSettings {
 				"Dumaan ang hari, nagkagatan ang mga pari.", "SIPER",
 				"4,1,0,3,2");
 		levelQuestions[4][1] = new LevelQuestion(
-				"May katawan walang mukha, \n walang mata\'y lumuluha.",
+				"May katawan walang mukha, walang mata\'y lumuluha.",
 				"KANDILA", "6,1,4,0,2,3,5");
 		levelQuestions[4][2] = new LevelQuestion(
-				"Nagsaing si Kurutong, \n kumulo\'y walang gatong.", "SABON",
+				"Nagsaing si Kurutong, kumulo\'y walang gatong.", "SABON",
 				"4,1,0,3,2");
 		levelQuestions[4][3] = new LevelQuestion(
-				"Sa maling kalabit, \n may buhay na kapalit.", "BARIL",
+				"Sa maling kalabit, may buhay na kapalit.", "BARIL",
 				"4,1,0,3,2");
 		levelQuestions[4][4] = new LevelQuestion(
-				"Hindi tao, hindi hayop, \n kung uminom ay salup-salop.",
+				"Hindi tao, hindi hayop, kung uminom ay salup-salop.",
 				"BATYA", "4,1,0,3,2");
 		levelQuestions[4][5] = new LevelQuestion(
-				"Ang ulo\'y nalalaga, \n ang katawa\'y pagala-gala.", "SANDOK",
+				"Ang ulo\'y nalalaga, ang katawa\'y pagala-gala.", "SANDOK",
 				"3,5,1,4,2,0");
 		levelQuestions[4][6] = new LevelQuestion(
-				"Hinila ko ang baging, \n sumigaw ang matsing.", "KAMPANA",
+				"Hinila ko ang baging, sumigaw ang matsing.", "KAMPANA",
 				"6,1,4,0,2,3,5");
 		levelQuestions[4][7] = new LevelQuestion(
-				"Kadena\'y isinabit, \n sa batok nakakawit.", "KUWINTAS",
+				"Kadena\'y isinabit, sa batok nakakawit.", "KUWINTAS",
 				"0,2,5,4,3,1,7,6");
 		levelQuestions[4][8] = new LevelQuestion(
-				"Itulak at hilahin, \n sigurado ang kain.", "LAGARI",
+				"Itulak at hilahin, sigurado ang kain.", "LAGARI",
 				"3,5,1,4,2,0");
 		levelQuestions[4][9] = new LevelQuestion(
-				"Instrumentong pangharana, \n higis nito ay katawan ng dalaga.",
+				"Instrumentong pangharana, higis nito ay katawan ng dalaga.",
 				"GITARA", "3,5,1,4,2,0");
 		levelQuestions[4][10] = new LevelQuestion(
 				"Nagtago si Pedro, nakalitaw ang ulo.", "PAKO", "3,1,0,2");
@@ -378,5 +385,11 @@ public class GameSettings {
 		savegame.saveUserHintedNumbersHintsShown(userHintedNumbersHintsShown);
 		savegame.saveBonusLevel(bonusLevelLocked);
 		savegame.savePlayedLevel(levelPlayed);
+	}
+	
+	public static void CustomTextView(Context context,View textView){
+		Typeface font = Typeface.createFromAsset(context.getAssets(), "BADABB__.TTF");  
+		((TextView) textView).setTypeface(font); 
+		
 	}
 }
