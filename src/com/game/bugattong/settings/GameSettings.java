@@ -47,7 +47,7 @@ public class GameSettings {
 			levelLocked[4] = true;
 			bonusLevelLocked = true;
 			currentPoints = 100;
-
+			savegame.setInit(true);
 			saveAll();
 
 		} else {

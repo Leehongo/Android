@@ -235,7 +235,7 @@ public class SaveUtility {
 	public boolean getBonusLevel(){
 		return gamePreferences.getBoolean(Constants.SAVEBONUSLEVEL, false);
 	}
-	
+
 	public void savePlayedLevel(boolean[] levelLocked) {
 		String savedata = "";
 		for (int index = 0; index < levelLocked.length; index++) {

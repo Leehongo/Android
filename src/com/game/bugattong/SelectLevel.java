@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.game.bugattong.pregame.MainScreen;
+import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
 
 public class SelectLevel extends Activity {
@@ -18,6 +21,8 @@ public class SelectLevel extends Activity {
 
 	private ImageView imgLockLevel1, imgLockLevel2, imgLockLevel3,
 			imgLockLevel4, imgLockLevel5, imgLockLevelBonus;
+
+	private TextView[] answered = new TextView[5];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,25 @@ public class SelectLevel extends Activity {
 
 		initUI();
 
+		// check all are unlocked
+		boolean unlockBonus = true;
+		for (int level = 0; level < Constants.MAXLEVELS; level++) {
+			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+				if (!GameSettings.userCorrectAnswers[level][question]) {
+					unlockBonus = false;
+					break;
+				}
+			}
+		}
+		if (unlockBonus) {
+			GameSettings.bonusLevelLocked = false;
+			Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
+					Toast.LENGTH_SHORT).show();
+			if (GameSettings.bonusLevelLocked)
+				imgLockLevelBonus.setVisibility(View.VISIBLE);
+			else
+				imgLockLevelBonus.setVisibility(View.GONE);
+		}
 	}
 
 	private void initUI() {
@@ -49,6 +73,12 @@ public class SelectLevel extends Activity {
 		imgLockLevel4 = (ImageView) findViewById(R.id.btn_level_4_kagubatan_lock);
 		imgLockLevel5 = (ImageView) findViewById(R.id.btn_level_5_attic_lock);
 		imgLockLevelBonus = (ImageView) findViewById(R.id.btn_level_bonus_lock);
+
+		answered[0] = (TextView) findViewById(R.id.level_1_answered);
+		answered[1] = (TextView) findViewById(R.id.level_2_answered);
+		answered[2] = (TextView) findViewById(R.id.level_3_answered);
+		answered[3] = (TextView) findViewById(R.id.level_4_answered);
+		answered[4] = (TextView) findViewById(R.id.level_5_answered);
 
 		btnLevelHardin.setOnClickListener(ocl);
 		btnLevelSilidTulugan.setOnClickListener(ocl);
@@ -86,6 +116,17 @@ public class SelectLevel extends Activity {
 			imgLockLevelBonus.setVisibility(View.VISIBLE);
 		else
 			imgLockLevelBonus.setVisibility(View.GONE);
+
+		// answered
+		int correct = 0;
+		for (int level = 0; level < Constants.MAXLEVELS; level++) {
+			correct = 0;
+			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+				if (GameSettings.userCorrectAnswers[level][question])
+					correct++;
+			}
+			answered[level].setText(correct + " out of 15 ");
+		}
 	}
 
 	OnClickListener ocl = new OnClickListener() {
@@ -131,29 +172,34 @@ public class SelectLevel extends Activity {
 			case R.id.btn_level_bonus:
 				if (!GameSettings.bonusLevelLocked) {
 					startBonus();
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Please answer all questions first.",
+							Toast.LENGTH_SHORT).show();
 				}
+
 				break;
 			}
 
 		}
 	};
 
-	private void startBonus() {		
-		
+	private void startBonus() {
+
 		Intent intent = new Intent(SelectLevel.this, BonusActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();
 	}
-	
+
 	private void startlevel(String str) {
 		Intent intent;
-		
-		if(GameSettings.levelPlayed[GameSettings.currentLevel-1])
+
+		if (GameSettings.levelPlayed[GameSettings.currentLevel - 1])
 			intent = new Intent(SelectLevel.this, GameActivity.class);
 		else
 			intent = new Intent(SelectLevel.this, StoryView.class);
-		
+
 		intent.putExtra("getNextPage", str);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
