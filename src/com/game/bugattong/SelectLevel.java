@@ -47,9 +47,10 @@ public class SelectLevel extends Activity {
 			}
 		}
 		if (unlockBonus) {
+			if (GameSettings.bonusLevelLocked)
+				Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
+						Toast.LENGTH_SHORT).show();
 			GameSettings.bonusLevelLocked = false;
-			Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
-					Toast.LENGTH_SHORT).show();
 			if (GameSettings.bonusLevelLocked)
 				imgLockLevelBonus.setVisibility(View.VISIBLE);
 			else

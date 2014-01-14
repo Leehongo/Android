@@ -46,6 +46,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	private int correctSound;
 	private int errorSound;
 	private boolean isInit = false;
+	private boolean isQuestionMenuVisible = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -244,40 +245,47 @@ public class GameActivity extends Activity implements OnClickListener {
 		}
 		if (correctCount == Constants.MAXANSWERTOUNLOCK) {
 			if (Constants.MAXLEVELS > GameSettings.currentLevel) {
+
+				if (GameSettings.levelLocked[GameSettings.currentLevel]) {
+					gameDialog = new Dialog(this);
+					gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+					gameDialog
+							.setContentView(R.layout.gamescreen__dialog_unlock_level);
+
+					TextView txtViewNote = (TextView) gameDialog
+							.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_note);
+					TextView txtViewUnlockLevel = (TextView) gameDialog
+							.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_unlock_level);
+					GameSettings.CustomTextView(GameActivity.this, txtViewNote);
+					GameSettings.CustomTextView(GameActivity.this,
+							txtViewUnlockLevel);
+
+					txtViewUnlockLevel
+							.setText(GameSettings.levels[GameSettings.currentLevel - 1]);
+
+					ImageView unlockLevelDialogImage = (ImageView) gameDialog
+							.findViewById(R.id.game_screen_unlock_level_dialog_image);
+					Button unlockLevelDialogBtnOk = (Button) gameDialog
+							.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
+
+					unlockLevelDialogBtnOk
+							.setOnClickListener(new OnClickListener() {
+
+								@Override
+								public void onClick(View v) {
+									gameDialog.dismiss();
+								}
+							});
+
+					gameDialog.show();
+				}
 				GameSettings.levelLocked[GameSettings.currentLevel] = false;
 
 				if (GameSettings.currentLevel == Constants.MAXLEVELS) {
 					GameSettings.bonusLevelLocked = false;
 				}
 			}
-			gameDialog = new Dialog(this);
-			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
 
-			TextView txtViewNote = (TextView) gameDialog
-					.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_note);
-			TextView txtViewUnlockLevel = (TextView) gameDialog
-					.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_unlock_level);
-			GameSettings.CustomTextView(GameActivity.this, txtViewNote);
-			GameSettings.CustomTextView(GameActivity.this, txtViewUnlockLevel);
-
-			txtViewUnlockLevel
-					.setText(GameSettings.levels[GameSettings.currentLevel - 1]);
-
-			ImageView unlockLevelDialogImage = (ImageView) gameDialog
-					.findViewById(R.id.game_screen_unlock_level_dialog_image);
-			Button unlockLevelDialogBtnOk = (Button) gameDialog
-					.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
-
-			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					gameDialog.dismiss();
-				}
-			});
-
-			gameDialog.show();
 		}
 		GameSettings.saveAll();
 	}
@@ -311,7 +319,7 @@ public class GameActivity extends Activity implements OnClickListener {
 							.show();
 			} else {
 				Toast.makeText(getApplicationContext(),
-						"This Question has been Answered.", Toast.LENGTH_SHORT)
+						"This Question has been answered.", Toast.LENGTH_SHORT)
 						.show();
 			}
 			break;
@@ -474,6 +482,32 @@ public class GameActivity extends Activity implements OnClickListener {
 			if (isSoundOn)
 				playClickSound(true);
 			questionsmenu.setVisibility(View.GONE);
+
+			GameSettings.wrongClicks++;
+			boolean isLevelComplete = true;
+			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+				if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question]) {
+					isLevelComplete = false;
+					break;
+				}
+			}
+
+			if (GameSettings.wrongClicks >= Constants.WRONGCLICKPENALTYCOUNT
+					&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
+					&& !isLevelComplete) {
+				GameSettings.wrongClicks = 0;
+				Toast.makeText(
+						getApplicationContext(),
+						"You have clicked 5 wrong items. 15 Points was deducted.",
+						Toast.LENGTH_SHORT).show();
+
+				if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
+					GameSettings.currentPoints -= 15;
+				} else {
+					GameSettings.currentPoints = 0;
+				}
+			}
+
 			break;
 		}
 	}
@@ -532,55 +566,77 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 
 	private void setCorrectAnswer(int btnquestionIndex) {
-		if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-				&& btnquestionIndex == GameSettings.currentQuestion) {
-			if (isSoundOn)
-				playClickSound(false);
-			GameSettings.currentPoints += Constants.CORRECTPOINT;
-			GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
 
-			ivImages[GameSettings.currentQuestion - 1].setVisibility(View.GONE);
+		if (!questionsmenu.isShown()) {
+			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
+					&& btnquestionIndex == GameSettings.currentQuestion) {
+				if (isSoundOn)
+					playClickSound(false);
+				GameSettings.currentPoints += Constants.CORRECTPOINT;
+				GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
 
-			String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-					.getAnswer();
-			tvanswer.setText(answer);
+				ivImages[GameSettings.currentQuestion - 1]
+						.setVisibility(View.GONE);
 
-			if (btnquestionIndex == 15) {
-				btnquestions[btnquestionIndex - 1]
-						.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
-				btnquestions[btnquestionIndex - 1].setTextColor(getResources()
-						.getColor(R.color.black));
-			} else {
-				btnquestions[btnquestionIndex - 1]
-						.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
-				btnquestions[btnquestionIndex - 1].setTextColor(getResources()
-						.getColor(R.color.white));
-			}
+				String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
+						.getAnswer();
+				tvanswer.setText(answer);
 
-			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
-				if (GameSettings.currentQuestion == Constants.MAXQUESTIONS) {
-					btnqstnumber
-							.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
-					btnqstnumber.setTextColor(getResources().getColor(
-							R.color.black));
+				if (btnquestionIndex == 15) {
+					btnquestions[btnquestionIndex - 1]
+							.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
+					btnquestions[btnquestionIndex - 1]
+							.setTextColor(getResources()
+									.getColor(R.color.black));
+				} else {
+					btnquestions[btnquestionIndex - 1]
+							.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
+					btnquestions[btnquestionIndex - 1]
+							.setTextColor(getResources()
+									.getColor(R.color.white));
+				}
+
+				if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+					if (GameSettings.currentQuestion == Constants.MAXQUESTIONS) {
+						btnqstnumber
+								.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
+						btnqstnumber.setTextColor(getResources().getColor(
+								R.color.black));
+					} else {
+						btnqstnumber
+								.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
+						btnqstnumber.setTextColor(getResources().getColor(
+								R.color.white));
+					}
 				} else {
 					btnqstnumber
-							.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
+							.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
 					btnqstnumber.setTextColor(getResources().getColor(
 							R.color.white));
+
 				}
 			} else {
-				btnqstnumber
-						.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
-				btnqstnumber.setTextColor(getResources()
-						.getColor(R.color.white));
+				if (isSoundOn)
+					playClickSound(true);
+				GameSettings.wrongClicks++;
 
+				if (GameSettings.wrongClicks == Constants.WRONGCLICKPENALTYCOUNT
+						&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+					GameSettings.wrongClicks = 0;
+					Toast.makeText(
+							getApplicationContext(),
+							"You have clicked 5 wrong items. 15 Points was deducted.",
+							Toast.LENGTH_SHORT).show();
+
+					if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
+						GameSettings.currentPoints -= 15;
+					} else {
+						GameSettings.currentPoints = 0;
+					}
+				}
 			}
-		} else {
-			if (isSoundOn)
-				playClickSound(true);
+			showPoints();
 		}
-		showPoints();
 	}
 
 	private void showQuestion() {
@@ -647,7 +703,6 @@ public class GameActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		
 
 		boolean completed = true;
 		for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
@@ -656,12 +711,13 @@ public class GameActivity extends Activity implements OnClickListener {
 				break;
 			}
 		}
-		
-		if(completed){
-			Toast.makeText(getApplicationContext(), "All Questions have been answeded.",
-					Toast.LENGTH_SHORT).show();
+
+		if (completed) {
+			Toast.makeText(getApplicationContext(),
+					"All Questions have been answeded.", Toast.LENGTH_SHORT)
+					.show();
 		}
-		
+
 		if (unlockBonus) {
 			GameSettings.bonusLevelLocked = false;
 			Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",

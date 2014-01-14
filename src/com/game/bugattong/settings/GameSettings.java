@@ -23,6 +23,7 @@ public class GameSettings {
 	public static boolean[] levelLocked = new boolean[Constants.MAXLEVELS];
 	public static boolean[] levelPlayed = new boolean[Constants.MAXLEVELS];
 	public static boolean bonusLevelLocked = true;
+	public static int wrongClicks=0;
 	private static SaveUtility savegame;
 
 	public static String[] levels = { "Level 2 - Silid Tulugan",

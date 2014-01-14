@@ -8,6 +8,8 @@ package com.game.bugattong.settings;
 public class Constants {
 	public static final int CORRECTPOINT = 10;
 	public static final int HINTPENALTYPOINTS = 20;
+	public static final int WRONGCLICKPENALTYPOINTS = 15;
+	public static final int WRONGCLICKPENALTYCOUNT= 5;
 	public static final int STARTINGPOINTS = 100;
 	public static final int MAXLEVELS = 5;
 	public static final int MAXQUESTIONS = 15;
