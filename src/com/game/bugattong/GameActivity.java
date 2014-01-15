@@ -527,6 +527,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				} else {
 					GameSettings.currentPoints = 0;
 				}
+				showPoints();
 			}
 
 			break;
