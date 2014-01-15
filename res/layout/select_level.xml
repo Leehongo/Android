@@ -9,23 +9,22 @@
     <LinearLayout
         android:id="@+id/select_level_layout_title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="72dp"
         android:gravity="center" >
 
         <ImageView
             android:id="@+id/select_char_img"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/select_level_title" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/select_level_layout_1st"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:gravity="center" >
+        android:layout_height="180dp"
+        android:gravity="center"
+        android:visibility="visible" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -37,8 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_hardin"
-                android:text="HARDIN"
+                android:background="@drawable/lvl_btn_hardin"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -47,8 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
-                android:visibility="visible" />
+                android:background="@drawable/lvl_btn_hardin_lock"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/level_1_answered"
@@ -67,8 +65,8 @@
                 android:id="@+id/btn_level_2_silid_tulugan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/lvl_bedroom"
-                android:text="SILID TULUGAN"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_silid_tulugan"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -77,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
+                android:background="@drawable/lvl_btn_silid_tulugan_lock"
                 android:visibility="visible" />
 
             <TextView
@@ -97,8 +95,8 @@
                 android:id="@+id/btn_level_3_sala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/lvl_sala"
-                android:text="SALA"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_sala"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -107,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
+                android:background="@drawable/lvl_btn_sala_lock"
                 android:visibility="visible" />
 
             <TextView
@@ -122,9 +120,9 @@
     <LinearLayout
         android:id="@+id/select_level_layout_2nd"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:gravity="center" >
+        android:layout_height="180dp"
+        android:gravity="center"
+        android:visibility="visible" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -135,9 +133,9 @@
                 android:id="@+id/btn_level_4_kagubatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/lvl_kagubatan"
-                android:text="KAGUBATAN"
+                android:background="@drawable/lvl_btn_kagubatan"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -146,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
+                android:background="@drawable/lvl_btn_kagubatan_lock"
                 android:visibility="visible" />
 
             <TextView
@@ -163,21 +161,21 @@
             android:layout_marginRight="50dp" >
 
             <Button
-                android:id="@+id/btn_level_bonus"
+                android:id="@+id/btn_level_mystery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/lvl_bonus"
-                android:text="BONUS LEVEL"
+                android:background="@drawable/lvl_btn_mystery"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/btn_level_bonus_lock"
+                android:id="@+id/btn_level_mystery_lock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
+                android:background="@drawable/lvl_btn_mystery_lock"
                 android:visibility="visible" />
         </RelativeLayout>
 
@@ -190,8 +188,8 @@
                 android:id="@+id/btn_level_5_attic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/lvl_attic"
-                android:text="ATTIC"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_attic"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -200,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/lvl_lock"
+                android:background="@drawable/lvl_btn_attic_lock"
                 android:visibility="visible" />
 
             <TextView

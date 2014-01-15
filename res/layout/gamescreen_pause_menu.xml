@@ -27,8 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/main_button_state"
-                android:text="RESUME"
+                android:background="@drawable/button_play_state"
                 android:textColor="@color/white" />
 
             <Button
@@ -36,8 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/main_button_state"
-                android:text="LEVEL"
+                android:background="@drawable/gamescreen_pause_menu_level_state"
                 android:textColor="@color/white" />
 
             <Button
@@ -45,8 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/main_button_state"
-                android:text="MAIN MENU"
+                android:background="@drawable/gamescreen_pause_menu_home_state"
                 android:textColor="@color/white" />
 
             <Button
@@ -54,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_sounds_on"
+                android:background="@drawable/button_sounds_on_state"
                 android:textColor="@color/white" />
         </LinearLayout>
     </RelativeLayout>

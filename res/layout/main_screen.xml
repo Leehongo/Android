@@ -1,74 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_screen_layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="horizontal"
-    android:gravity="center|right"
-    android:weightSum="10" >
-    
-    <TextView
+    android:background="@drawable/background" >
+
+    <ImageView
         android:id="@+id/mainscreen_txt_touch_to_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TOUCH TO CONTINUE"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/main_touch" />
 
-    
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginRight="30dp"
-        android:layout_weight="3"
-        android:gravity="center" 
-        android:orientation="vertical" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="60dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible" >
 
-        <LinearLayout
+        <Button
+            android:id="@+id/main_screen_btn_restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:background="@drawable/button_restart_state"
+            android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/main_screen_btn_restart"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_restart"
-                android:textColor="@color/white" />
+        <Button
+            android:id="@+id/main_screen_btn_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_sounds_on_state"
+            android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/main_screen_btn_sound"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_sounds_on"
-                android:textColor="@color/white" />
+        <Button
+            android:id="@+id/main_screen_btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_help_state"
+            android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/main_screen_btn_help"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_help_state"
-                android:textColor="@color/white" />
+        <Button
+            android:id="@+id/main_screen_btn_customize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_customize_state"
+            android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/main_screen_btn_customize"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_customize"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/main_screen_btn_exit"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/game_menu_btn_exit"
-                android:textColor="@color/white" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/main_screen_btn_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_exit_state"
+            android:textColor="@color/white" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

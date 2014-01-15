@@ -20,7 +20,7 @@ public class SelectLevel extends Activity {
 			btnLevelKagubatan, btnLevelAttic, btnLevelBonus;
 
 	private ImageView imgLockLevel1, imgLockLevel2, imgLockLevel3,
-			imgLockLevel4, imgLockLevel5, imgLockLevelBonus;
+			imgLockLevel4, imgLockLevel5, imgLockLevelMystery;
 
 	private TextView[] answered = new TextView[5];
 
@@ -48,13 +48,12 @@ public class SelectLevel extends Activity {
 		}
 		if (unlockBonus) {
 			if (GameSettings.bonusLevelLocked)
-				Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",Toast.LENGTH_SHORT).show();
 			GameSettings.bonusLevelLocked = false;
 			if (GameSettings.bonusLevelLocked)
-				imgLockLevelBonus.setVisibility(View.VISIBLE);
+				imgLockLevelMystery.setVisibility(View.VISIBLE);
 			else
-				imgLockLevelBonus.setVisibility(View.GONE);
+				imgLockLevelMystery.setVisibility(View.GONE);
 		}
 	}
 
@@ -66,14 +65,14 @@ public class SelectLevel extends Activity {
 		btnLevelKagubatan = (Button) findViewById(R.id.btn_level_4_kagubatan);
 		btnLevelAttic = (Button) findViewById(R.id.btn_level_5_attic);
 
-		btnLevelBonus = (Button) findViewById(R.id.btn_level_bonus);
+		btnLevelBonus = (Button) findViewById(R.id.btn_level_mystery);
 
 		imgLockLevel1 = (ImageView) findViewById(R.id.btn_level_1_hardin_lock);
 		imgLockLevel2 = (ImageView) findViewById(R.id.btn_level_2_silid_tulugan_lock);
 		imgLockLevel3 = (ImageView) findViewById(R.id.btn_level_3_sala_lock);
 		imgLockLevel4 = (ImageView) findViewById(R.id.btn_level_4_kagubatan_lock);
 		imgLockLevel5 = (ImageView) findViewById(R.id.btn_level_5_attic_lock);
-		imgLockLevelBonus = (ImageView) findViewById(R.id.btn_level_bonus_lock);
+		imgLockLevelMystery = (ImageView) findViewById(R.id.btn_level_mystery_lock);
 
 		answered[0] = (TextView) findViewById(R.id.level_1_answered);
 		answered[1] = (TextView) findViewById(R.id.level_2_answered);
@@ -91,7 +90,7 @@ public class SelectLevel extends Activity {
 		if (GameSettings.levelLocked[0])
 			imgLockLevel1.setVisibility(View.VISIBLE);
 		else
-			imgLockLevel1.setVisibility(View.GONE);
+			imgLockLevel1.setVisibility(View.GONE);	
 
 		if (GameSettings.levelLocked[1])
 			imgLockLevel2.setVisibility(View.VISIBLE);
@@ -114,9 +113,9 @@ public class SelectLevel extends Activity {
 			imgLockLevel5.setVisibility(View.GONE);
 
 		if (GameSettings.bonusLevelLocked)
-			imgLockLevelBonus.setVisibility(View.VISIBLE);
+			imgLockLevelMystery.setVisibility(View.VISIBLE);
 		else
-			imgLockLevelBonus.setVisibility(View.GONE);
+			imgLockLevelMystery.setVisibility(View.GONE);
 
 		// answered
 		int correct = 0;
@@ -170,7 +169,7 @@ public class SelectLevel extends Activity {
 				}
 				break;
 
-			case R.id.btn_level_bonus:
+			case R.id.btn_level_mystery:
 				if (!GameSettings.bonusLevelLocked) {
 					startBonus();
 				} else {

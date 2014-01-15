@@ -33,14 +33,13 @@
 
     <Button
         android:id="@+id/btn_ok"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/main_button_state"
-        android:text="Next"
+        android:background="@drawable/button_next_state"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

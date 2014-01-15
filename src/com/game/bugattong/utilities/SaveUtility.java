@@ -14,6 +14,11 @@ public class SaveUtility {
 	public SaveUtility(Activity act) {
 		gamePreferences = act.getPreferences(act.MODE_PRIVATE);
 	}
+	
+	public void clearData() {
+		Editor editor = gamePreferences.edit();
+		editor.clear().commit();
+	}
 
 	private void saveString(String saveReference, String savedate) {
 		Editor editor = gamePreferences.edit();

@@ -15,29 +15,18 @@
         android:textColor="@color/mocha"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/game_screen_unlock_level_dialog_txt_congrats_unlock_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Level --"
-        android:textColor="@color/mocha"
-        android:textSize="30sp" />
-
     <ImageView
         android:id="@+id/game_screen_unlock_level_dialog_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/lvl_hardin" />
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/game_screen_unlock_level_dialog_btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/mainscreen_button_normal"
-        android:text="OK"
+        android:background="@drawable/button_ok_state"
         android:textColor="@color/white"
         android:textSize="30sp" />
 

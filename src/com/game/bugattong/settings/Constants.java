@@ -1,5 +1,7 @@
 package com.game.bugattong.settings;
 
+import com.game.bugattong.R;
+
 
 /*
  *	01072014 added MAXANSWERTOUNLOCK
@@ -29,4 +31,7 @@ public class Constants {
 	public static final String PLAYEDLEVEL ="levelPlayed";
 	
 	public static int BTNQUESTIONCOUNTER = 0;
+	
+	public static int UNLOCKLEVELIMAGEDIALOG[] = {R.drawable.lvl_btn_silid_tulugan,R.drawable.lvl_btn_sala
+			,R.drawable.lvl_btn_kagubatan,R.drawable.lvl_btn_attic};
 }
