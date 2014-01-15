@@ -277,39 +277,6 @@ public class GameActivity extends Activity implements OnClickListener {
 			}
 
 		}
-		//==========
-//		if((GameSettings.currentLevel-1)!=4){
-//			if (correctCount == Constants.MAXANSWERTOUNLOCK) {
-//				if (Constants.MAXLEVELS > GameSettings.currentLevel) {
-//					GameSettings.levelLocked[GameSettings.currentLevel] = false;
-//	
-//					if (GameSettings.currentLevel == Constants.MAXLEVELS) {
-//						GameSettings.bonusLevelLocked = false;
-//					}
-//				}
-//				gameDialog = new Dialog(this);
-//				gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//				gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
-//				
-//				TextView txtViewNote = (TextView) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_note);
-//				GameSettings.CustomTextView(GameActivity.this, txtViewNote);
-//	
-//				ImageView unlockLevelDialogImage = (ImageView) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_image);
-//				Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.game_screen_unlock_level_dialog_btn_ok);
-//				
-//				unlockLevelDialogImage.setBackgroundResource(Constants.UNLOCKLEVELIMAGEDIALOG[GameSettings.currentLevel-1]);
-//	
-//				unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
-//	
-//					@Override
-//					public void onClick(View v) {
-//						gameDialog.dismiss();
-//					}
-//				});
-//	
-//				gameDialog.show();
-//			}
-//		}
 		GameSettings.saveAll();
 	}
 
