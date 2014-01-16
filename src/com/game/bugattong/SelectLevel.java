@@ -126,6 +126,7 @@ public class SelectLevel extends Activity {
 					correct++;
 			}
 			answered[level].setText(correct + " out of 15 ");
+			GameSettings.CustomTextView(SelectLevel.this, answered[level]);
 		}
 	}
 

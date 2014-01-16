@@ -10,8 +10,11 @@ import android.widget.TextView;
 public class BonusActivity extends Activity implements OnClickListener {
 
 	// private SaveUtility saveinstance;
-	private final static char[] BONUSANSWER = { 'S', 'A', 'R', 'N', 'G', 'O',
-			'L', }; // "SARANGGOLA";
+//	private final static char[] BONUSANSWER = { 'S', 'A', 'R', 'N', 'G', 'O',
+//			'L', }; // "SARANGGOLA";
+	
+	private final static char[] BONUSANSWER = { 'L', 'O', 'D', 'S', 'A', 'G',
+	'N','E','P','R' }; // "SARANGGOLA";
 	private final static String BONUSQUESTION = "Buto’t balat na malapad, kay galing kung lumipad.";
 	private TextView[] letters = new TextView[10];
 	private ImageView[] letterHints = new ImageView[10];
@@ -88,27 +91,34 @@ public class BonusActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.hint_01:
-			setLetter(BONUSANSWER[6]);
-			break;
-		case R.id.hint_02:
-			setLetter(BONUSANSWER[5]);
-			break;
-		case R.id.hint_04:
 			setLetter(BONUSANSWER[0]);
 			break;
-		case R.id.hint_05:
+		case R.id.hint_02:
 			setLetter(BONUSANSWER[1]);
-
 			break;
-		case R.id.hint_06:
-
-			setLetter(BONUSANSWER[4]);
+		case R.id.hint_03:				//
+			setLetter(BONUSANSWER[2]);
 			break;
-		case R.id.hint_07:
+		case R.id.hint_04:
 			setLetter(BONUSANSWER[3]);
 			break;
+		case R.id.hint_05:
+			setLetter(BONUSANSWER[4]);
+			break;
+		case R.id.hint_06:
+			setLetter(BONUSANSWER[5]);
+			break;
+		case R.id.hint_07:
+			setLetter(BONUSANSWER[6]);
+			break;
+		case R.id.hint_08:			//
+			setLetter(BONUSANSWER[7]);
+			break;
+		case R.id.hint_09:			//
+			setLetter(BONUSANSWER[8]);
+			break;
 		case R.id.hint_10:
-			setLetter(BONUSANSWER[2]);
+			setLetter(BONUSANSWER[9]);
 			break;
 
 		case R.id.answer_01:
