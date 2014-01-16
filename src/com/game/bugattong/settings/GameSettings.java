@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
+import com.game.bugattong.R;
 import com.game.bugattong.model.LevelQuestion;
 import com.game.bugattong.model.SearchObject;
 import com.game.bugattong.utilities.SaveUtility;
@@ -25,10 +26,8 @@ public class GameSettings {
 	public static boolean bonusLevelLocked = true;
 	public static int wrongClicks=0;
 	private static SaveUtility savegame;
-
-	public static String[] levels = { "Level 2 - Silid Tulugan",
-			"Level 3 - Sala", "Level 4 - Kagubatan", "Level 5 - Attic",
-			"Bonus Level" };
+	
+	public static Integer[][] levelObjects = new Integer[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 
 	public static void init(Activity act) {
 		savegame = new SaveUtility(act);
@@ -54,8 +53,7 @@ public class GameSettings {
 		} else {
 			userHintedNumbers = savegame.getUserHintedNumbers();
 			userCorrectAnswers = savegame.getUserCorrectAnswers();
-			userHintedNumbersHintsShown = savegame
-					.getUserHintedNumbersHintsShown();
+			userHintedNumbersHintsShown = savegame.getUserHintedNumbersHintsShown();
 			currentLevel = savegame.getCurrentLevel();
 			levelLocked = savegame.getUnlockedLevels();
 			currentQuestion = savegame.getCurrentQuestion();
@@ -294,53 +292,53 @@ public class GameSettings {
 				"GUNTING", "6,1,4,0,2,3,5", true);
 
 		// set image locations
-		levelSearchObjects[0][0] = new SearchObject(10, 20);
-		levelSearchObjects[0][1] = new SearchObject(70, 20);
+		levelSearchObjects[0][0] = new SearchObject(339, 127);
+		levelSearchObjects[0][1] = new SearchObject(70, 130);
 		levelSearchObjects[0][2] = new SearchObject(130, 20);
-		levelSearchObjects[0][3] = new SearchObject(190, 20);
-		levelSearchObjects[0][4] = new SearchObject(250, 20);
-		levelSearchObjects[0][5] = new SearchObject(310, 20);
-		levelSearchObjects[0][6] = new SearchObject(370, 20);
-		levelSearchObjects[0][7] = new SearchObject(410, 20);
-		levelSearchObjects[0][8] = new SearchObject(10, 80);
-		levelSearchObjects[0][9] = new SearchObject(70, 80);
-		levelSearchObjects[0][10] = new SearchObject(130, 80);
-		levelSearchObjects[0][11] = new SearchObject(190, 80);
-		levelSearchObjects[0][12] = new SearchObject(250, 80);
-		levelSearchObjects[0][13] = new SearchObject(310, 80);
-		levelSearchObjects[0][14] = new SearchObject(370, 80);
+		levelSearchObjects[0][3] = new SearchObject(98, 327);
+		levelSearchObjects[0][4] = new SearchObject(695, 287);
+		levelSearchObjects[0][5] = new SearchObject(282, 209);
+		levelSearchObjects[0][6] = new SearchObject(776, 173);
+		levelSearchObjects[0][7] = new SearchObject(556, 293);
+		levelSearchObjects[0][8] = new SearchObject(265, 290);
+		levelSearchObjects[0][9] = new SearchObject(521, 122);
+		levelSearchObjects[0][10] = new SearchObject(648, 404);
+		levelSearchObjects[0][11] = new SearchObject(240, 150);
+		levelSearchObjects[0][12] = new SearchObject(467, 203);
+		levelSearchObjects[0][13] = new SearchObject(192, 337);
+		levelSearchObjects[0][14] = new SearchObject(767, 340);
 
-		levelSearchObjects[1][0] = new SearchObject(310, 80);
-		levelSearchObjects[1][1] = new SearchObject(370, 80);
-		levelSearchObjects[1][2] = new SearchObject(130, 80);
-		levelSearchObjects[1][3] = new SearchObject(190, 20);
-		levelSearchObjects[1][4] = new SearchObject(190, 80);
-		levelSearchObjects[1][5] = new SearchObject(310, 20);
-		levelSearchObjects[1][6] = new SearchObject(370, 20);
-		levelSearchObjects[1][7] = new SearchObject(70, 80);
-		levelSearchObjects[1][8] = new SearchObject(10, 80);
-		levelSearchObjects[1][9] = new SearchObject(410, 20);
-		levelSearchObjects[1][10] = new SearchObject(130, 20);
-		levelSearchObjects[1][11] = new SearchObject(250, 20);
-		levelSearchObjects[1][12] = new SearchObject(250, 80);
-		levelSearchObjects[1][13] = new SearchObject(10, 20);
-		levelSearchObjects[1][14] = new SearchObject(70, 20);
+		levelSearchObjects[1][0] = new SearchObject(545, 395);
+		levelSearchObjects[1][1] = new SearchObject(69, 276);
+		levelSearchObjects[1][2] = new SearchObject(310, 180);
+		levelSearchObjects[1][3] = new SearchObject(458, 19);
+		levelSearchObjects[1][4] = new SearchObject(488, 253);
+		levelSearchObjects[1][5] = new SearchObject(27, 393);
+		levelSearchObjects[1][6] = new SearchObject(652, 29);
+		levelSearchObjects[1][7] = new SearchObject(654, 90);
+		levelSearchObjects[1][8] = new SearchObject(176, 202);
+		levelSearchObjects[1][9] = new SearchObject(134, 37);
+		levelSearchObjects[1][10] = new SearchObject(312, 173);
+		levelSearchObjects[1][11] = new SearchObject(444, 89);
+		levelSearchObjects[1][12] = new SearchObject(551, 30);
+		levelSearchObjects[1][13] = new SearchObject(468, 69);
+		levelSearchObjects[1][14] = new SearchObject(277, 378);
 
-		levelSearchObjects[2][0] = new SearchObject(10, 20);
-		levelSearchObjects[2][1] = new SearchObject(70, 20);
-		levelSearchObjects[2][2] = new SearchObject(130, 20);
-		levelSearchObjects[2][3] = new SearchObject(190, 20);
-		levelSearchObjects[2][4] = new SearchObject(250, 20);
-		levelSearchObjects[2][5] = new SearchObject(310, 20);
-		levelSearchObjects[2][6] = new SearchObject(370, 20);
-		levelSearchObjects[2][7] = new SearchObject(410, 20);
-		levelSearchObjects[2][8] = new SearchObject(10, 80);
-		levelSearchObjects[2][9] = new SearchObject(70, 80);
-		levelSearchObjects[2][10] = new SearchObject(130, 80);
-		levelSearchObjects[2][11] = new SearchObject(190, 80);
-		levelSearchObjects[2][12] = new SearchObject(250, 80);
-		levelSearchObjects[2][13] = new SearchObject(310, 80);
-		levelSearchObjects[2][14] = new SearchObject(370, 80);
+		levelSearchObjects[2][0] = new SearchObject(44, 335);
+		levelSearchObjects[2][1] = new SearchObject(150, 380);
+		levelSearchObjects[2][2] = new SearchObject(716, 307);
+		levelSearchObjects[2][3] = new SearchObject(598, 53);
+		levelSearchObjects[2][4] = new SearchObject(670, 167);
+		levelSearchObjects[2][5] = new SearchObject(22, 83);
+		levelSearchObjects[2][6] = new SearchObject(371, 179);
+		levelSearchObjects[2][7] = new SearchObject(752, 181);
+		levelSearchObjects[2][8] = new SearchObject(668, 376);
+		levelSearchObjects[2][9] = new SearchObject(128, 231);
+		levelSearchObjects[2][10] = new SearchObject(446, 442);
+		levelSearchObjects[2][11] = new SearchObject(403, 266);
+		levelSearchObjects[2][12] = new SearchObject(758, 61);
+		levelSearchObjects[2][13] = new SearchObject(100, 150);
+		levelSearchObjects[2][14] = new SearchObject(319, 345);
 
 		levelSearchObjects[3][0] = new SearchObject(10, 20);
 		levelSearchObjects[3][1] = new SearchObject(70, 20);
@@ -373,6 +371,88 @@ public class GameSettings {
 		levelSearchObjects[4][12] = new SearchObject(250, 80);
 		levelSearchObjects[4][13] = new SearchObject(310, 80);
 		levelSearchObjects[4][14] = new SearchObject(370, 80);
+		
+		
+		levelObjects[0][0] = new Integer(R.drawable.hardin_1_duyan);
+		levelObjects[0][1] = new Integer(R.drawable.hardin_2_bubuyog);
+		levelObjects[0][2] = new Integer(R.drawable.hardin_3_bisikleta);
+		levelObjects[0][3] = new Integer(R.drawable.hardin_4_kasoy);
+		levelObjects[0][4] = new Integer(R.drawable.hardin_5_aso);
+		levelObjects[0][5] = new Integer(R.drawable.hardin_6_kalabasa);
+		levelObjects[0][6] = new Integer(R.drawable.hardin_7_araw);
+		levelObjects[0][7] = new Integer(R.drawable.hardin_8_saging);
+		levelObjects[0][8] = new Integer(R.drawable.hardin_9_ampalaya);
+		levelObjects[0][9] = new Integer(R.drawable.hardin_10_paruparo);
+		levelObjects[0][10] = new Integer(R.drawable.hardin_11_mangga);
+		levelObjects[0][11] = new Integer(R.drawable.hardin_12_unggoy);
+		levelObjects[0][12] = new Integer(R.drawable.hardin_13_gumamela);
+		levelObjects[0][13] = new Integer(R.drawable.hardin_14_papaya);
+		levelObjects[0][14] = new Integer(R.drawable.hardin_15_walistingting);
+		
+		levelObjects[1][0] = new Integer(R.drawable.tulugan_1_sapatos);
+		levelObjects[1][1] = new Integer(R.drawable.tulugan_2_bangka);
+		levelObjects[1][2] = new Integer(R.drawable.tulugan_3_unan);
+		levelObjects[1][3] = new Integer(R.drawable.tulugan_4_yoyo);
+		levelObjects[1][4] = new Integer(R.drawable.tulugan_5_sumbrero);
+		levelObjects[1][5] = new Integer(R.drawable.tulugan_6_sinturon);
+		levelObjects[1][6] = new Integer(R.drawable.tulugan_7_tren);
+		levelObjects[1][7] = new Integer(R.drawable.tulugan_8_banig);
+		levelObjects[1][8] = new Integer(R.drawable.tulugan_9_ilaw);
+		levelObjects[1][9] = new Integer(R.drawable.tulugan_10_kamiseta);
+		levelObjects[1][10] = new Integer(R.drawable.tulugan_11_trumpo);
+		levelObjects[1][11] = new Integer(R.drawable.tulugan_12_alkansya);
+		levelObjects[1][12] = new Integer(R.drawable.tulugan_13_posporo);
+		levelObjects[1][13] = new Integer(R.drawable.tulugan_14_payong);
+		levelObjects[1][14] = new Integer(R.drawable.tulugan_15_pisi);
+		
+		levelObjects[2][0] = new Integer(R.drawable.sala_1_basket);
+		levelObjects[2][1] = new Integer(R.drawable.sala_2_aklat);
+		levelObjects[2][2] = new Integer(R.drawable.sala_3_telebisyon);
+		levelObjects[2][3] = new Integer(R.drawable.sala_4_baso);
+		levelObjects[2][4] = new Integer(R.drawable.sala_5_hagdan);
+		levelObjects[2][5] = new Integer(R.drawable.sala_6_hikaw);
+		levelObjects[2][6] = new Integer(R.drawable.sala_7_telepono);
+		levelObjects[2][7] = new Integer(R.drawable.sala_8_kalendaryo);
+		levelObjects[2][8] = new Integer(R.drawable.sala_9_singsing);
+		levelObjects[2][9] = new Integer(R.drawable.sala_10_orasan);
+		levelObjects[2][10] = new Integer(R.drawable.sala_11_panyo);
+		levelObjects[2][11] = new Integer(R.drawable.sala_12_sobre);
+		levelObjects[2][12] = new Integer(R.drawable.sala_13_radyo);
+		levelObjects[2][13] = new Integer(R.drawable.sala_14_salapi);
+		levelObjects[2][14] = new Integer(R.drawable.sala_15_dyaryo);
+
+		levelObjects[3][0] = new Integer(R.drawable.kagubatan_1_alitaptap);
+		levelObjects[3][1] = new Integer(R.drawable.kagubatan_2_palaka);
+		levelObjects[3][2] = new Integer(R.drawable.kagubatan_3_alimango);
+		levelObjects[3][3] = new Integer(R.drawable.kagubatan_4_paniki);
+		levelObjects[3][4] = new Integer(R.drawable.kagubatan_5_bayabas);
+		levelObjects[3][5] = new Integer(R.drawable.kagubatan_6_niyog);
+		levelObjects[3][6] = new Integer(R.drawable.kagubatan_7_ahas);
+		levelObjects[3][7] = new Integer(R.drawable.kagubatan_8_bato);
+		levelObjects[3][8] = new Integer(R.drawable.kagubatan_9_gagamba);
+		levelObjects[3][9] = new Integer(R.drawable.kagubatan_10_pinya);
+		levelObjects[3][10] = new Integer(R.drawable.kagubatan_11_kawayan);
+		levelObjects[3][11] = new Integer(R.drawable.kagubatan_12_bituin);
+		levelObjects[3][12] = new Integer(R.drawable.kagubatan_13_mais);
+		levelObjects[3][13] = new Integer(R.drawable.kagubatan_14_pakwan);
+		levelObjects[3][14] = new Integer(R.drawable.kagubatan_15_lapis);
+
+		levelObjects[4][0] = new Integer(R.drawable.attic_1_siper);
+		levelObjects[4][1] = new Integer(R.drawable.attic_2_kandila);
+		levelObjects[4][2] = new Integer(R.drawable.attic_3_sabon);
+		levelObjects[4][3] = new Integer(R.drawable.attic_4_baril);
+		levelObjects[4][4] = new Integer(R.drawable.attic_5_batya);
+		levelObjects[4][5] = new Integer(R.drawable.attic_6_sandok);
+		levelObjects[4][6] = new Integer(R.drawable.attic_7_kampana);
+		levelObjects[4][7] = new Integer(R.drawable.attic_8_kwintas);
+		levelObjects[4][8] = new Integer(R.drawable.attic_9_lagari);
+		levelObjects[4][9] = new Integer(R.drawable.attic_10_gitara);
+		levelObjects[4][10] = new Integer(R.drawable.attic_11_pako);
+		levelObjects[4][11] = new Integer(R.drawable.attic_12_plantsa);
+		levelObjects[4][12] = new Integer(R.drawable.attic_13_posporo);
+		levelObjects[4][13] = new Integer(R.drawable.attic_14_salamin);
+		levelObjects[4][14] = new Integer(R.drawable.attic_15_gunting);
+		
 	}
 
 	public static void saveAll() {

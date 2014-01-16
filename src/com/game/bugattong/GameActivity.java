@@ -185,22 +185,12 @@ public class GameActivity extends Activity implements OnClickListener {
 
 		gameArea.setOnClickListener(this);
 
-		ivImages[0].setBackgroundResource(R.drawable.item_01);
-		ivImages[1].setBackgroundResource(R.drawable.item_02);
-		ivImages[2].setBackgroundResource(R.drawable.item_03);
-		ivImages[3].setBackgroundResource(R.drawable.item_04);
-		ivImages[4].setBackgroundResource(R.drawable.item_05);
-		ivImages[5].setBackgroundResource(R.drawable.item_06);
-		ivImages[6].setBackgroundResource(R.drawable.item_07);
-		ivImages[7].setBackgroundResource(R.drawable.item_08);
-		ivImages[8].setBackgroundResource(R.drawable.item_09);
-		ivImages[9].setBackgroundResource(R.drawable.item_10);
-		ivImages[10].setBackgroundResource(R.drawable.item_11);
-		ivImages[11].setBackgroundResource(R.drawable.item_12);
-		ivImages[12].setBackgroundResource(R.drawable.item_13);
-		ivImages[13].setBackgroundResource(R.drawable.item_14);
-		ivImages[14].setBackgroundResource(R.drawable.item_15);
-
+			int levelObjectCounter = 0;
+			while(levelObjectCounter < Constants.MAXQUESTIONS){
+				ivImages[levelObjectCounter].setBackgroundResource(GameSettings.levelObjects[GameSettings.currentLevel-1][levelObjectCounter]);
+				levelObjectCounter++;
+			}
+		
 		ivImages[0].setOnClickListener(this);
 		ivImages[1].setOnClickListener(this);
 		ivImages[2].setOnClickListener(this);
@@ -330,10 +320,10 @@ public class GameActivity extends Activity implements OnClickListener {
 
 			int msg = 0;
 			if (!isSoundOn) {
-				msg = R.drawable.game_menu_btn_sounds_off;
+				msg = R.drawable.button_sounds_off_state;
 
 			} else {
-				msg = R.drawable.game_menu_btn_sounds_on;
+				msg = R.drawable.button_sounds_on_state;
 
 			}
 			menuBtnSounds.setBackgroundResource(msg);
@@ -494,8 +484,9 @@ public class GameActivity extends Activity implements OnClickListener {
 				} else {
 					GameSettings.currentPoints = 0;
 				}
-				showPoints();
 			}
+
+			showPoints();
 
 			break;
 		}
