@@ -23,21 +23,26 @@ public class GameSettings {
 	public static boolean hasInit = false;
 	public static boolean[] levelLocked = new boolean[Constants.MAXLEVELS];
 	public static boolean[] levelPlayed = new boolean[Constants.MAXLEVELS];
+	public static boolean[] levelAllQuestionsAnswered = new boolean[Constants.MAXLEVELS];
 	public static boolean bonusLevelLocked = true;
-	public static int wrongClicks=0;
+	public static int wrongClicks = 0;
 	private static SaveUtility savegame;
-	
+	public static boolean hasAnsweredBonus = false;
 	public static Integer[][] levelObjects = new Integer[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 
-	public static void init(Activity act) {
+	public static void init(Activity act, boolean reset) {
 		savegame = new SaveUtility(act);
 
 		// load data
-		if (!savegame.isInit()) {
+		if (!savegame.isInit() || reset) {
 			for (int level = 0; level < Constants.MAXLEVELS; level++) {
 				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 					userCorrectAnswers[level][question] = false;
+					userHintedNumbers[level][question] = false;
+					userHintedNumbersHintsShown[level][question] = 0;
 				}
+				levelPlayed[level] = false;
+				levelAllQuestionsAnswered[level] = false;
 			}
 
 			levelLocked[0] = false;
@@ -45,8 +50,10 @@ public class GameSettings {
 			levelLocked[2] = true;
 			levelLocked[3] = true;
 			levelLocked[4] = true;
+			wrongClicks = 0;
 			bonusLevelLocked = true;
 			currentPoints = 100;
+			hasAnsweredBonus = false;
 			savegame.setInit(true);
 			saveAll();
 
@@ -60,6 +67,8 @@ public class GameSettings {
 			currentPoints = savegame.getCurrentPoints();
 			bonusLevelLocked = savegame.getBonusLevel();
 			levelPlayed = savegame.getPlayedLevel();
+			levelAllQuestionsAnswered = savegame.getLevelAllQuestionsAnswered();
+			hasAnsweredBonus = savegame.isBonusLevelAnswered();
 		}
 
 		levelQuestions[0][0] = new LevelQuestion(
@@ -464,7 +473,9 @@ public class GameSettings {
 		savegame.saveUserHintedNumbers(userHintedNumbers);
 		savegame.saveUserHintedNumbersHintsShown(userHintedNumbersHintsShown);
 		savegame.saveBonusLevel(bonusLevelLocked);
+		savegame.saveLevelAllQuestionsAnswered(levelAllQuestionsAnswered);
 		savegame.savePlayedLevel(levelPlayed);
+		savegame.saveBonusLevelAnswered(hasAnsweredBonus);
 	}
 
 	public static void CustomTextView(Context context, View textView) {

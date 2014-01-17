@@ -233,6 +233,14 @@ public class SaveUtility {
 		return gamePreferences.getBoolean(Constants.SAVEINIT, false);
 	}
 	
+	public void saveBonusLevelAnswered(boolean value){
+		saveBoolean(value, Constants.SAVEBONUSLEVELANSWERED);
+	}
+	
+	public boolean isBonusLevelAnswered(){
+		return gamePreferences.getBoolean(Constants.SAVEBONUSLEVELANSWERED, false);
+	}
+	
 	public void saveBonusLevel(boolean value){
 		saveBoolean(value, Constants.SAVEBONUSLEVEL);
 	}
@@ -272,4 +280,38 @@ public class SaveUtility {
 		}
 		return savedata;
 	}
+	
+	public void saveLevelAllQuestionsAnswered(boolean[] levelLocked) {
+		String savedata = "";
+		for (int index = 0; index < levelLocked.length; index++) {
+			if (levelLocked[index]) {
+				savedata += "1|";
+			} else {
+				savedata += "0|";
+			}
+		}
+		saveString(Constants.ANSWEREDALLQUESTIONINLEVEL, savedata);
+	}
+
+	public boolean[] getLevelAllQuestionsAnswered() {
+		boolean[] savedata = new boolean[Constants.MAXLEVELS];
+		String savestring = gamePreferences.getString(
+				Constants.ANSWEREDALLQUESTIONINLEVEL, "");
+		String temp = "";
+		StringTokenizer st = new StringTokenizer(savestring, "|");
+
+		int index = 0;
+		while (st.hasMoreTokens() && index < Constants.MAXLEVELS) {
+			temp = st.nextToken().toString();
+			if (temp.equals("1")) {
+				savedata[index] = true;
+			} else {
+				savedata[index] = false;
+			}
+			index++;
+		}
+		return savedata;
+	}
+	
+	
 }

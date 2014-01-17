@@ -1,6 +1,7 @@
 package com.game.bugattong;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,9 @@ public class SelectLevel extends Activity {
 			btnLevelKagubatan, btnLevelAttic, btnLevelBonus;
 
 	private ImageView imgLockLevel1, imgLockLevel2, imgLockLevel3,
-			imgLockLevel4, imgLockLevel5, imgLockLevelMystery;
+			imgLockLevel4, imgLockLevel5;
+	
+	private static ImageView imgLockLevelMystery;
 
 	private TextView[] answered = new TextView[5];
 
@@ -29,7 +32,7 @@ public class SelectLevel extends Activity {
 		setContentView(R.layout.select_level);
 		super.onCreate(savedInstanceState);
 		if (!GameSettings.hasInit) {
-			GameSettings.init(this);
+			GameSettings.init(this, false);
 			GameSettings.hasInit = true;
 			System.out.println("INIT!");
 		}
@@ -37,24 +40,7 @@ public class SelectLevel extends Activity {
 		initUI();
 
 		// check all are unlocked
-		boolean unlockBonus = true;
-		for (int level = 0; level < Constants.MAXLEVELS; level++) {
-			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
-				if (!GameSettings.userCorrectAnswers[level][question]) {
-					unlockBonus = false;
-					break;
-				}
-			}
-		}
-		if (unlockBonus) {
-			if (GameSettings.bonusLevelLocked)
-				Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",Toast.LENGTH_SHORT).show();
-			GameSettings.bonusLevelLocked = false;
-			if (GameSettings.bonusLevelLocked)
-				imgLockLevelMystery.setVisibility(View.VISIBLE);
-			else
-				imgLockLevelMystery.setVisibility(View.GONE);
-		}
+		unlockBonus(this);
 	}
 
 	private void initUI() {
@@ -213,5 +199,25 @@ public class SelectLevel extends Activity {
 		finish();
 
 	};
-
+	
+	public static void unlockBonus(Context context){
+		boolean unlockBonus = true;
+		for (int level = 0; level < Constants.MAXLEVELS; level++) {
+			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+				if (!GameSettings.userCorrectAnswers[level][question]) {
+					unlockBonus = false;
+					break;
+				}
+			}
+		}
+		if (unlockBonus) {
+			if (GameSettings.bonusLevelLocked)
+				Toast.makeText(context, "BONUS STAGE UNLOCKED",Toast.LENGTH_SHORT).show();
+			GameSettings.bonusLevelLocked = false;
+			if (GameSettings.bonusLevelLocked)
+				imgLockLevelMystery.setVisibility(View.VISIBLE);
+			else
+				imgLockLevelMystery.setVisibility(View.GONE);
+		}
+	}
 }

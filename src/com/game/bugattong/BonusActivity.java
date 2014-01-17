@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.game.bugattong.settings.GameSettings;
 
 public class BonusActivity extends Activity implements OnClickListener {
 
@@ -153,6 +156,28 @@ public class BonusActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+		if (!GameSettings.hasAnsweredBonus)
+			if (checkAnswer()) {
+				Toast.makeText(getApplicationContext(),
+						"You have answered the bonus question.",
+						Toast.LENGTH_SHORT).show();
+				GameSettings.hasAnsweredBonus = true;
+			}
+	}
+
+	private boolean checkAnswer() {
+		if (letters[0].getText().toString().equals("S")
+				&& letters[1].getText().toString().equals("A")
+				&& letters[2].getText().toString().equals("R")
+				&& letters[3].getText().toString().equals("A")
+				&& letters[4].getText().toString().equals("N")
+				&& letters[5].getText().toString().equals("G")
+				&& letters[6].getText().toString().equals("G")
+				&& letters[7].getText().toString().equals("O")
+				&& letters[8].getText().toString().equals("L")
+				&& letters[9].getText().toString().equals("A"))
+			return true;
+		return false;
 	}
 
 	private boolean[] hasLetter = new boolean[10];

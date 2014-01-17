@@ -27,8 +27,10 @@ public class Constants {
 	
 	public static final String SAVEINIT = "hasBeenSaved";
 	public static final String SAVEBONUSLEVEL ="bonuslevel";
+	public static final String SAVEBONUSLEVELANSWERED ="hasAnsweredBonus";
 	
 	public static final String PLAYEDLEVEL ="levelPlayed";
+	public static final String ANSWEREDALLQUESTIONINLEVEL ="levelAllQuestionsAnswered";
 	
 	public static int BTNQUESTIONCOUNTER = 0;
 	
