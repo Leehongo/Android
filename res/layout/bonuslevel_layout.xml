@@ -1,14 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="@drawable/background">
 
     <LinearLayout
         android:id="@+id/wordhintlist"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:background="#BBBBBB"
         android:gravity="top"
         android:orientation="vertical" >
 
@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="dp"
             android:layout_marginTop="2dp"
-            android:background="#990099"
             android:text="Misteryosong Bagay : "
             android:textSize="36sp" />
 
@@ -27,8 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="dp"
-            android:layout_marginTop="2dp"
-            android:background="#990099"
+            android:layout_marginTop="10dp"
             android:text="word1"
             android:textSize="36sp" />
 
@@ -38,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
-            android:background="#990099"
             android:text="word2"
             android:textSize="36sp" />
 
@@ -48,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
-            android:background="#990099"
             android:text="word3"
             android:textSize="36sp" />
 
@@ -58,7 +54,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
-            android:background="#990099"
             android:text="word4"
             android:textSize="36sp" />
 
@@ -68,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
-            android:background="#990099"
             android:text="word5"
             android:textSize="36sp" />
     </LinearLayout>
@@ -216,50 +210,60 @@
             android:padding="5dp"
             android:weightSum="5" >
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_01"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:textSize="20sp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:gravity="center"
+                android:text="L"
+                android:layout_weight="1"/>
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_02"
                 android:layout_width="0dp"
+                android:textSize="20sp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:text="O"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_03"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:text="D"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1"/>
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_04"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:textSize="20sp"
                 android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:text="S"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1"/>
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_05"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="A"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow
@@ -269,50 +273,60 @@
             android:padding="5dp"
             android:weightSum="5" >
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_06"
                 android:layout_width="0dp"
+                android:text="G"
                 android:layout_height="60dp"
                 android:layout_marginLeft="2dp"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_07"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:text="N"
+                android:gravity="center"
+                android:textSize="20sp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1"/>
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_08"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="2dp"
+                android:textSize="20sp"
+                android:text="E"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:gravity="center"
+                android:layout_weight="1" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_09"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:text="P"
+                android:layout_weight="1" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/hint_10"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
+                android:text="R"
                 android:layout_marginLeft="2dp"
+                android:gravity="center"
+                android:textSize="18sp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:background="#009900" />
+                android:layout_weight="1"/>
         </TableRow>
     </TableLayout>
 
@@ -323,7 +337,6 @@
         android:layout_above="@+id/letterAnswers"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
-        android:background="#990099"
         android:gravity="center_horizontal"
         android:text="Buto’t balat na malapad, kay galing kung lumipad."
         android:textSize="24sp" />

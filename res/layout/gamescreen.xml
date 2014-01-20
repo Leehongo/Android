@@ -6,7 +6,7 @@
     <LinearLayout
         android:id="@+id/topmenu"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/gamescreen_top_panel_bg"
         android:gravity="center" >
 

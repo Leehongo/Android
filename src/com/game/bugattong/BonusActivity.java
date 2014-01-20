@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +20,10 @@ public class BonusActivity extends Activity implements OnClickListener {
 	'N','E','P','R' }; // "SARANGGOLA";
 	private final static String BONUSQUESTION = "Buto’t balat na malapad, kay galing kung lumipad.";
 	private TextView[] letters = new TextView[10];
-	private ImageView[] letterHints = new ImageView[10];
+	private TextView[] letterHints = new TextView[10];
 	private TextView tvQuestion;
 	private TextView[] hintedWords = new TextView[5];
+	private TextView txtMysteryongBagay;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,17 +41,18 @@ public class BonusActivity extends Activity implements OnClickListener {
 		letters[7] = (TextView) findViewById(R.id.answer_08);
 		letters[8] = (TextView) findViewById(R.id.answer_09);
 		letters[9] = (TextView) findViewById(R.id.answer_10);
+		txtMysteryongBagay = (TextView) findViewById(R.id.word_0);
 
-		letterHints[0] = (ImageView) findViewById(R.id.hint_01); // L
-		letterHints[1] = (ImageView) findViewById(R.id.hint_02); // O
-		letterHints[2] = (ImageView) findViewById(R.id.hint_03); // D
-		letterHints[3] = (ImageView) findViewById(R.id.hint_04); // S
-		letterHints[4] = (ImageView) findViewById(R.id.hint_05); // A
-		letterHints[5] = (ImageView) findViewById(R.id.hint_06); // G
-		letterHints[6] = (ImageView) findViewById(R.id.hint_07); // N
-		letterHints[7] = (ImageView) findViewById(R.id.hint_08); // E
-		letterHints[8] = (ImageView) findViewById(R.id.hint_09); // P
-		letterHints[9] = (ImageView) findViewById(R.id.hint_10); // R
+		letterHints[0] = (TextView) findViewById(R.id.hint_01); // L
+		letterHints[1] = (TextView) findViewById(R.id.hint_02); // O
+		letterHints[2] = (TextView) findViewById(R.id.hint_03); // D
+		letterHints[3] = (TextView) findViewById(R.id.hint_04); // S
+		letterHints[4] = (TextView) findViewById(R.id.hint_05); // A
+		letterHints[5] = (TextView) findViewById(R.id.hint_06); // G
+		letterHints[6] = (TextView) findViewById(R.id.hint_07); // N
+		letterHints[7] = (TextView) findViewById(R.id.hint_08); // E
+		letterHints[8] = (TextView) findViewById(R.id.hint_09); // P
+		letterHints[9] = (TextView) findViewById(R.id.hint_10); // R
 
 		hintedWords[0] = (TextView) findViewById(R.id.hintword_1);
 		hintedWords[1] = (TextView) findViewById(R.id.hintword_2);
@@ -63,7 +65,18 @@ public class BonusActivity extends Activity implements OnClickListener {
 		hintedWords[2].setText("DYARYO");
 		hintedWords[3].setText("LAPIS");
 		hintedWords[4].setText("GUNTING");
-
+		
+		
+		GameSettings.CustomTextView(BonusActivity.this, tvQuestion);
+		GameSettings.CustomTextView(BonusActivity.this, txtMysteryongBagay);
+		
+		int hintCounter = 0;
+		while(hintCounter < 5){
+			GameSettings.CustomTextView(BonusActivity.this, hintedWords[hintCounter]);
+			
+		}
+		
+		
 		letters[0].setOnClickListener(this);
 		letters[1].setOnClickListener(this);
 		letters[2].setOnClickListener(this);

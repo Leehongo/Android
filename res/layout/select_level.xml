@@ -52,8 +52,9 @@
                 android:id="@+id/level_1_answered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
-            </TextView>
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -82,7 +83,9 @@
                 android:id="@+id/level_2_answered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
             </TextView>
         </RelativeLayout>
 
@@ -112,7 +115,9 @@
                 android:id="@+id/level_3_answered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
             </TextView>
         </RelativeLayout>
     </LinearLayout>
@@ -151,7 +156,9 @@
                 android:id="@+id/level_4_answered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
             </TextView>
         </RelativeLayout>
 
@@ -205,7 +212,9 @@
                 android:id="@+id/level_5_answered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" >
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
             </TextView>
         </RelativeLayout>
     </LinearLayout>

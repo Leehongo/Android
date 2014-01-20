@@ -33,6 +33,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	private RelativeLayout gameArea;
 	private Button btnqstnumber, btnhint, btnPause;
 	private Button menuBtnResume, menuBtnLevel, menuBtnMain, menuBtnSounds;
+	private Button btnDialogOk;
 
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
@@ -237,9 +238,28 @@ public class GameActivity extends Activity implements OnClickListener {
 		// all questions have been answered
 		if (correctCount == Constants.MAXQUESTIONS) {
 			if (!GameSettings.levelAllQuestionsAnswered[GameSettings.currentLevel - 1]) {
-				Toast.makeText(getApplicationContext(),
-						"All Questions have been answered", Toast.LENGTH_SHORT)
-						.show();
+//				Toast.makeText(getApplicationContext(),"All Questions have been answered", Toast.LENGTH_SHORT).show();
+				
+				gameDialog = new Dialog(this);
+				gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+				gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
+
+				TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
+				btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+
+				textDialogAllAnswered.setText("All question has been answered.");
+				GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+
+				btnDialogOk.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						goToSelectLevel();
+					}
+				});
+				gameDialog.show();
+				
+				
 				GameSettings.levelAllQuestionsAnswered[GameSettings.currentLevel - 1] = true;
 			}
 		}
@@ -251,8 +271,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				if (GameSettings.levelLocked[GameSettings.currentLevel]) {
 					gameDialog = new Dialog(this);
 					gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-					gameDialog
-							.setContentView(R.layout.gamescreen__dialog_unlock_level);
+					gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
 
 					TextView txtViewNote = (TextView) gameDialog
 							.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_note);
@@ -534,7 +553,6 @@ public class GameActivity extends Activity implements OnClickListener {
 
 			case R.id.game_screen_menu_btn_sound:
 				int msg = 0;
-				System.out.println("May Imgay ? " + isSoundOn);
 				if (!isSoundOn) {
 					msg = R.drawable.button_sounds_on_state;
 					isSoundOn = true;
@@ -712,17 +730,50 @@ public class GameActivity extends Activity implements OnClickListener {
 				break;
 			}
 		}
-
 		if (completed) {
-			Toast.makeText(getApplicationContext(),
-					"All Questions have been answeded.", Toast.LENGTH_SHORT)
-					.show();
+			gameDialog = new Dialog(this);
+			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
+
+			TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
+			btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+
+			textDialogAllAnswered.setText("All question has been answered.");
+			GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+
+			btnDialogOk.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					goToSelectLevel();
+				}
+			});
+			gameDialog.show();
+			
 		}
 
 		if (unlockBonus) {
 			GameSettings.bonusLevelLocked = false;
-			Toast.makeText(getApplicationContext(), "BONUS STAGE UNLOCKED",
-					Toast.LENGTH_SHORT).show();
+			
+			gameDialog = new Dialog(this);
+			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
+
+			TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
+			btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+			
+			
+			textDialogAllAnswered.setText("Mystery Level Unlocked!");
+			GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+
+			btnDialogOk.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					goToSelectLevel();
+				}
+			});
+			gameDialog.show();
 		}
 		// End Bonus Stage
 	}
