@@ -142,6 +142,7 @@ public class MainScreen extends Activity implements OnClickListener {
 			GameSettings.init(this, true);
 			fileGenerator.removeFile(SELECTEDCHAR);
 			startIntent(LoadingScreen.class);
+			GameSettings.init(this, true);
 			break;
 
 		case R.id.main_screen_btn_sound:
@@ -149,6 +150,7 @@ public class MainScreen extends Activity implements OnClickListener {
 					: R.drawable.button_sounds_on_state;
 			btnSound.setBackgroundResource(msg);
 			GameActivity.isSoundOn = !GameActivity.isSoundOn;
+			saveUtility.saveSoundSettings(GameActivity.isSoundOn);
 			break;
 
 		case R.id.main_screen_btn_help:

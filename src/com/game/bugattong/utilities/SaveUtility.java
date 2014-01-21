@@ -313,5 +313,11 @@ public class SaveUtility {
 		return savedata;
 	}
 	
+	public void saveSoundSettings(boolean value){
+		saveBoolean(value, Constants.SAVESOUND);
+	}
 	
+	public boolean getSoundSettings(){
+		return gamePreferences.getBoolean(Constants.SAVESOUND, false);
+	}
 }

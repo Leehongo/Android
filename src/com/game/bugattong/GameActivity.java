@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
+import com.game.bugattong.utilities.SaveUtility;
 
 public class GameActivity extends Activity implements OnClickListener {
 
@@ -48,11 +49,14 @@ public class GameActivity extends Activity implements OnClickListener {
 	private int errorSound;
 	private boolean isInit = false;
 	private boolean isQuestionMenuVisible = false;
-
+	
+	private SaveUtility saveUtil;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamescreen);
+		saveUtil = new SaveUtility(this);
 		init();
 		initImages();
 
@@ -61,6 +65,8 @@ public class GameActivity extends Activity implements OnClickListener {
 			isInit = true;
 		}
 
+		isSoundOn = saveUtil.getSoundSettings();
+		
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 		sounds.setOnLoadCompleteListener(new OnLoadCompleteListener() {
@@ -560,6 +566,7 @@ public class GameActivity extends Activity implements OnClickListener {
 					msg = R.drawable.button_sounds_off_state;
 					isSoundOn = false;
 				}
+				saveUtil.saveSoundSettings(isSoundOn);
 				menuBtnSounds.setBackgroundResource(msg);
 				break;
 			}

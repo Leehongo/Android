@@ -25,6 +25,7 @@ public class Constants {
 	public static final String SAVEUNLOCKEDLEVELS = "levellocked";
 	public static final String SAVECURRENTQUESTION = "currentquestion";
 	
+	public static final String SAVESOUND = "soundstate";
 	public static final String SAVEINIT = "hasBeenSaved";
 	public static final String SAVEBONUSLEVEL ="bonuslevel";
 	public static final String SAVEBONUSLEVELANSWERED ="hasAnsweredBonus";
