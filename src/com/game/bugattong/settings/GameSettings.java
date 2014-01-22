@@ -34,7 +34,7 @@ public class GameSettings {
 		savegame = new SaveUtility(act);
 
 		// load data
-		if (!savegame.isInit() || reset) {
+		if (!savegame.isInit() || reset) {		
 			for (int level = 0; level < Constants.MAXLEVELS; level++) {
 				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 					userCorrectAnswers[level][question] = false;
@@ -56,7 +56,6 @@ public class GameSettings {
 			hasAnsweredBonus = false;
 			savegame.setInit(true);
 			saveAll();
-
 		} else {
 			userHintedNumbers = savegame.getUserHintedNumbers();
 			userCorrectAnswers = savegame.getUserCorrectAnswers();

@@ -13,6 +13,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -49,9 +50,9 @@ public class GameActivity extends Activity implements OnClickListener {
 	private int errorSound;
 	private boolean isInit = false;
 	private boolean isQuestionMenuVisible = false;
-	
+
 	private SaveUtility saveUtil;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,7 +67,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		}
 
 		isSoundOn = saveUtil.getSoundSettings();
-		
+
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 		sounds.setOnLoadCompleteListener(new OnLoadCompleteListener() {
@@ -193,11 +194,12 @@ public class GameActivity extends Activity implements OnClickListener {
 		gameArea.setOnClickListener(this);
 
 		int levelObjectCounter = 0;
-		while(levelObjectCounter < Constants.MAXQUESTIONS){
-			ivImages[levelObjectCounter].setBackgroundResource(GameSettings.levelObjects[GameSettings.currentLevel-1][levelObjectCounter]);
+		while (levelObjectCounter < Constants.MAXQUESTIONS) {
+			ivImages[levelObjectCounter]
+					.setBackgroundResource(GameSettings.levelObjects[GameSettings.currentLevel - 1][levelObjectCounter]);
 			levelObjectCounter++;
 		}
-	
+
 		ivImages[0].setOnClickListener(this);
 		ivImages[1].setOnClickListener(this);
 		ivImages[2].setOnClickListener(this);
@@ -244,28 +246,33 @@ public class GameActivity extends Activity implements OnClickListener {
 		// all questions have been answered
 		if (correctCount == Constants.MAXQUESTIONS) {
 			if (!GameSettings.levelAllQuestionsAnswered[GameSettings.currentLevel - 1]) {
-//				Toast.makeText(getApplicationContext(),"All Questions have been answered", Toast.LENGTH_SHORT).show();
-				
+				// Toast.makeText(getApplicationContext(),"All Questions have been answered",
+				// Toast.LENGTH_SHORT).show();
+
 				gameDialog = new Dialog(this);
 				gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
+				gameDialog
+						.setContentView(R.layout.gamescreen_dialog_all_answered);
 
-				TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
-				btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+				TextView textDialogAllAnswered = (TextView) gameDialog
+						.findViewById(R.id.gamescreen_all_answered_text_msg);
+				btnDialogOk = (Button) gameDialog
+						.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
 
-				textDialogAllAnswered.setText("All question has been answered.");
-				GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+				textDialogAllAnswered
+						.setText("All question has been answered.");
+				GameSettings.CustomTextView(GameActivity.this,
+						textDialogAllAnswered);
 
 				btnDialogOk.setOnClickListener(new OnClickListener() {
-					
+
 					@Override
 					public void onClick(View v) {
 						goToSelectLevel();
 					}
 				});
 				gameDialog.show();
-				
-				
+
 				GameSettings.levelAllQuestionsAnswered[GameSettings.currentLevel - 1] = true;
 			}
 		}
@@ -277,7 +284,8 @@ public class GameActivity extends Activity implements OnClickListener {
 				if (GameSettings.levelLocked[GameSettings.currentLevel]) {
 					gameDialog = new Dialog(this);
 					gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-					gameDialog.setContentView(R.layout.gamescreen__dialog_unlock_level);
+					gameDialog
+							.setContentView(R.layout.gamescreen__dialog_unlock_level);
 
 					TextView txtViewNote = (TextView) gameDialog
 							.findViewById(R.id.game_screen_unlock_level_dialog_txt_congrats_note);
@@ -588,6 +596,8 @@ public class GameActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	final Handler questionhandler = new Handler();
+
 	private void setCorrectAnswer(int btnquestionIndex) {
 
 		if (!questionsmenu.isShown()) {
@@ -604,6 +614,51 @@ public class GameActivity extends Activity implements OnClickListener {
 				String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 						.getAnswer();
 				tvanswer.setText(answer);
+
+				// put delay
+
+				// show next Question
+				questionhandler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (GameSettings.currentQuestion < Constants.MAXQUESTIONS - 1) {
+							int questionIndex = 0;
+							boolean hasPreviousUnswered = false;
+							boolean hasNextUnAnswered = false;
+							int previousIndex = 0;
+							int afterIndex = 0;
+
+							for (questionIndex = 0; questionIndex < Constants.MAXQUESTIONS;questionIndex++) {
+								if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][questionIndex]) {
+									if (!hasPreviousUnswered
+											&& questionIndex < GameSettings.currentQuestion) {
+										hasPreviousUnswered = true;
+										previousIndex = questionIndex;
+									} else if (!hasNextUnAnswered
+											&& questionIndex > GameSettings.currentQuestion) {
+										hasNextUnAnswered = true;
+										afterIndex = questionIndex;
+									}
+								}
+							}
+
+							if (hasNextUnAnswered) {
+								GameSettings.currentQuestion = afterIndex;
+							} else {
+								GameSettings.currentQuestion = previousIndex;
+							}
+
+							showQuestion();
+
+							btnqstnumber
+									.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
+							btnqstnumber.setTextColor(getResources().getColor(
+									R.color.white));
+
+							showAnswer(false, false);
+						}
+					}
+				}, 1000);
 
 				if (btnquestionIndex == 15) {
 					btnquestions[btnquestionIndex - 1]
@@ -742,39 +797,44 @@ public class GameActivity extends Activity implements OnClickListener {
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
 
-			TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
-			btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+			TextView textDialogAllAnswered = (TextView) gameDialog
+					.findViewById(R.id.gamescreen_all_answered_text_msg);
+			btnDialogOk = (Button) gameDialog
+					.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
 
 			textDialogAllAnswered.setText("All question has been answered.");
-			GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+			GameSettings.CustomTextView(GameActivity.this,
+					textDialogAllAnswered);
 
 			btnDialogOk.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					goToSelectLevel();
 				}
 			});
 			gameDialog.show();
-			
+
 		}
 
 		if (unlockBonus) {
 			GameSettings.bonusLevelLocked = false;
-			
+
 			gameDialog = new Dialog(this);
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen_dialog_all_answered);
 
-			TextView textDialogAllAnswered = (TextView) gameDialog.findViewById(R.id.gamescreen_all_answered_text_msg);
-			btnDialogOk = (Button) gameDialog.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
-			
-			
+			TextView textDialogAllAnswered = (TextView) gameDialog
+					.findViewById(R.id.gamescreen_all_answered_text_msg);
+			btnDialogOk = (Button) gameDialog
+					.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
+
 			textDialogAllAnswered.setText("Mystery Level Unlocked!");
-			GameSettings.CustomTextView(GameActivity.this, textDialogAllAnswered);
+			GameSettings.CustomTextView(GameActivity.this,
+					textDialogAllAnswered);
 
 			btnDialogOk.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					goToSelectLevel();
