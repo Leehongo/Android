@@ -158,11 +158,10 @@ public class SelectLevel extends Activity {
 
 			case R.id.btn_level_mystery:
 				if (!GameSettings.bonusLevelLocked) {
-					startBonus();
+//					startBonus();
+					startlevel("mystery");
 				} else {
-					Toast.makeText(getApplicationContext(),
-							"Please answer all questions first.",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Please answer all questions first.",Toast.LENGTH_SHORT).show();
 				}
 
 				break;

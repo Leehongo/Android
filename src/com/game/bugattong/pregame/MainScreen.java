@@ -29,6 +29,7 @@ public class MainScreen extends Activity implements OnClickListener {
 	private FileGenerator fileGenerator;
 	private SharedValues sharedValues;
 	private SaveUtility saveUtility;
+	private SaveUtility saveUtil;
 
 	private Dialog dialog;
 
@@ -37,10 +38,13 @@ public class MainScreen extends Activity implements OnClickListener {
 		setContentView(R.layout.main_screen);
 		super.onCreate(savedInstanceState);
 
+		saveUtil = new SaveUtility(this);
 		sharedValues = new SharedValues(MainScreen.this);
 		saveUtility = new SaveUtility(MainScreen.this);
 		fileGenerator = new FileGenerator();
 		initUI();
+				
+
 	}
 
 	private void initUI() {
@@ -52,10 +56,6 @@ public class MainScreen extends Activity implements OnClickListener {
 		btnExit = (Button) findViewById(R.id.main_screen_btn_exit);
 		txtTouchToStart = (ImageView) findViewById(R.id.mainscreen_txt_touch_to_continue);
 
-		// Typeface font = Typeface.createFromAsset(getAssets(),
-		// "BADABB__.TTF");
-		// txtTouchToStart.setTypeface(font);
-		// GameSettings.CustomTextView(MainScreen.this, txtTouchToStart);
 	}
 
 	@Override

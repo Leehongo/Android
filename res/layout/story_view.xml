@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:gravity="center" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background" >
 
-    <TextView
-        android:id="@+id/layout_title"
+    <ImageView
+        android:id="@+id/story_view_image_story_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textStyle="bold" />
+        android:background="@drawable/select_char_title" />
 
-    <LinearLayout
-        android:id="@+id/layout_story"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_title"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        android:padding="10dp" >
+    <RelativeLayout
+        android:layout_width="700dp"
+        android:layout_height="330dp"
+        android:layout_below="@+id/story_view_image_story_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="39dp"
+        android:layout_marginTop="10dp" >
 
-        <TextView
-            android:id="@+id/layout_story_text"
+        <ImageView
+            android:id="@+id/story_view_image_story"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/platinum" />
+
+        <Button
+            android:id="@+id/story_view_btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_alignBottom="@+id/story_view_image_story"
+            android:layout_alignRight="@+id/story_view_image_story"
+            android:background="@drawable/button_next_state"
+            android:textColor="@color/white"
             android:textStyle="bold" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/button_next_state"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>
