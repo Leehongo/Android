@@ -621,14 +621,14 @@ public class GameActivity extends Activity implements OnClickListener {
 				questionhandler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
-						if (GameSettings.currentQuestion < Constants.MAXQUESTIONS - 1) {
+						if (GameSettings.currentQuestion <= Constants.MAXQUESTIONS) {
 							int questionIndex = 0;
 							boolean hasPreviousUnswered = false;
 							boolean hasNextUnAnswered = false;
 							int previousIndex = 0;
 							int afterIndex = 0;
 
-							for (questionIndex = 0; questionIndex < Constants.MAXQUESTIONS;questionIndex++) {
+							for (questionIndex = 0; questionIndex < Constants.MAXQUESTIONS; questionIndex++) {
 								if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][questionIndex]) {
 									if (!hasPreviousUnswered
 											&& questionIndex < GameSettings.currentQuestion) {
@@ -644,8 +644,12 @@ public class GameActivity extends Activity implements OnClickListener {
 
 							if (hasNextUnAnswered) {
 								GameSettings.currentQuestion = afterIndex;
-							} else {
-								GameSettings.currentQuestion = previousIndex;
+								System.out.println("Chosen Next : "
+										+ afterIndex);
+							} else if(hasPreviousUnswered){
+								GameSettings.currentQuestion = previousIndex + 1;
+								System.out.println("Chosen Previous : "
+										+ previousIndex);
 							}
 
 							showQuestion();

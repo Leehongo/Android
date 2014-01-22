@@ -139,10 +139,10 @@ public class MainScreen extends Activity implements OnClickListener {
 		case R.id.main_screen_btn_restart:
 			sharedValues.clearData();
 			saveUtility.clearData();
-			GameSettings.init(this, true);
 			fileGenerator.removeFile(SELECTEDCHAR);
 			startIntent(LoadingScreen.class);
 			GameSettings.init(this, true);
+			GameSettings.saveAll();
 			break;
 
 		case R.id.main_screen_btn_sound:
