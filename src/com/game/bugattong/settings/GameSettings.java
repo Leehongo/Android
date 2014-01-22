@@ -34,7 +34,7 @@ public class GameSettings {
 		savegame = new SaveUtility(act);
 
 		// load data
-		if (!savegame.isInit() || reset) {		
+		if (!savegame.isInit() || reset) {
 			for (int level = 0; level < Constants.MAXLEVELS; level++) {
 				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 					userCorrectAnswers[level][question] = false;
@@ -56,6 +56,7 @@ public class GameSettings {
 			hasAnsweredBonus = false;
 			savegame.setInit(true);
 			saveAll();
+
 		} else {
 			userHintedNumbers = savegame.getUserHintedNumbers();
 			userCorrectAnswers = savegame.getUserCorrectAnswers();
@@ -301,81 +302,81 @@ public class GameSettings {
 
 		// set image locations
 		levelSearchObjects[0][0] = new SearchObject(339, 127);
-		levelSearchObjects[0][1] = new SearchObject(70, 130);
-		levelSearchObjects[0][2] = new SearchObject(130, 38);
+		levelSearchObjects[0][1] = new SearchObject(70, 50);
+		levelSearchObjects[0][2] = new SearchObject(130, 130);
 		levelSearchObjects[0][3] = new SearchObject(38, 17);
-		levelSearchObjects[0][4] = new SearchObject(00, 90);
-		levelSearchObjects[0][5] = new SearchObject(282, 119);
+		levelSearchObjects[0][4] = new SearchObject(200, 130);
+		levelSearchObjects[0][5] = new SearchObject(282, 209);
 		levelSearchObjects[0][6] = new SearchObject(76, 173);
-		levelSearchObjects[0][7] = new SearchObject(406, 30);
-		levelSearchObjects[0][8] = new SearchObject(535, 12);
+		levelSearchObjects[0][7] = new SearchObject(456, 30);
+		levelSearchObjects[0][8] = new SearchObject(435, 12);
 		levelSearchObjects[0][9] = new SearchObject(521, 122);
 		levelSearchObjects[0][10] = new SearchObject(601, 180);
-		levelSearchObjects[0][11] = new SearchObject(340, 10);
-		levelSearchObjects[0][12] = new SearchObject(267, 13);
-		levelSearchObjects[0][13] = new SearchObject(232, 10);
-		levelSearchObjects[0][14] = new SearchObject(630, 100);
+		levelSearchObjects[0][11] = new SearchObject(240, 10);
+		levelSearchObjects[0][12] = new SearchObject(267, 203);
+		levelSearchObjects[0][13] = new SearchObject(492, 200);
+		levelSearchObjects[0][14] = new SearchObject(630, 180);
 
 		levelSearchObjects[1][0] = new SearchObject(45, 125);
-		levelSearchObjects[1][1] = new SearchObject(69, 176);
+		levelSearchObjects[1][1] = new SearchObject(69, 236);
 		levelSearchObjects[1][2] = new SearchObject(210, 130);
 		levelSearchObjects[1][3] = new SearchObject(558, 119);
 		levelSearchObjects[1][4] = new SearchObject(518, 23);
-		levelSearchObjects[1][5] = new SearchObject(27, 113);
+		levelSearchObjects[1][5] = new SearchObject(27, 223);
 		levelSearchObjects[1][6] = new SearchObject(252, 29);
-		levelSearchObjects[1][7] = new SearchObject(354, 110);
-		levelSearchObjects[1][8] = new SearchObject(176, 142);
+		levelSearchObjects[1][7] = new SearchObject(354, 220);
+		levelSearchObjects[1][8] = new SearchObject(176, 202);
 		levelSearchObjects[1][9] = new SearchObject(434, 137);
-		levelSearchObjects[1][10] = new SearchObject(232, 143);
+		levelSearchObjects[1][10] = new SearchObject(232, 173);
 		levelSearchObjects[1][11] = new SearchObject(174, 89);
 		levelSearchObjects[1][12] = new SearchObject(51, 30);
 		levelSearchObjects[1][13] = new SearchObject(18, 69);
-		levelSearchObjects[1][14] = new SearchObject(177, 180);
+		levelSearchObjects[1][14] = new SearchObject(177, 230);
 
-		levelSearchObjects[2][0] = new SearchObject(544, 185);
+		levelSearchObjects[2][0] = new SearchObject(544, 235);
 		levelSearchObjects[2][1] = new SearchObject(150, 10);
-		levelSearchObjects[2][2] = new SearchObject(16, 107);
-		levelSearchObjects[2][3] = new SearchObject(238, 143);
+		levelSearchObjects[2][2] = new SearchObject(16, 227);
+		levelSearchObjects[2][3] = new SearchObject(238, 223);
 		levelSearchObjects[2][4] = new SearchObject(610, 167);
 		levelSearchObjects[2][5] = new SearchObject(22, 103);
 		levelSearchObjects[2][6] = new SearchObject(371, 179);
 		levelSearchObjects[2][7] = new SearchObject(152, 181);
 		levelSearchObjects[2][8] = new SearchObject(268, 76);
-		levelSearchObjects[2][9] = new SearchObject(28, 111);
+		levelSearchObjects[2][9] = new SearchObject(28, 231);
 		levelSearchObjects[2][10] = new SearchObject(246, 42);
-		levelSearchObjects[2][11] = new SearchObject(103, 126);
-		levelSearchObjects[2][12] = new SearchObject(158, 141);
+		levelSearchObjects[2][11] = new SearchObject(103, 266);
+		levelSearchObjects[2][12] = new SearchObject(158, 231);
 		levelSearchObjects[2][13] = new SearchObject(100, 150);
 		levelSearchObjects[2][14] = new SearchObject(19, 45);
 
-		levelSearchObjects[3][0] = new SearchObject(10, 185);
+		levelSearchObjects[3][0] = new SearchObject(10, 235);
 		levelSearchObjects[3][1] = new SearchObject(70, 164);
-		levelSearchObjects[3][2] = new SearchObject(530, 120);
+		levelSearchObjects[3][2] = new SearchObject(530, 220);
 		levelSearchObjects[3][3] = new SearchObject(190, 20);
-		levelSearchObjects[3][4] = new SearchObject(450, 172);
-		levelSearchObjects[3][5] = new SearchObject(390, 10);
-		levelSearchObjects[3][6] = new SearchObject(200, 126);
+		levelSearchObjects[3][4] = new SearchObject(450, 202);
+		levelSearchObjects[3][5] = new SearchObject(390, 200);
+		levelSearchObjects[3][6] = new SearchObject(200, 246);
 		levelSearchObjects[3][7] = new SearchObject(310, 20);
 		levelSearchObjects[3][8] = new SearchObject(410, 190);
 		levelSearchObjects[3][9] = new SearchObject(70, 180);
 		levelSearchObjects[3][10] = new SearchObject(01, 01);
-		levelSearchObjects[3][11] = new SearchObject(190, 160);
+		levelSearchObjects[3][11] = new SearchObject(190, 200);
 		levelSearchObjects[3][12] = new SearchObject(550, 102);
 		levelSearchObjects[3][13] = new SearchObject(110, 102);
-		levelSearchObjects[3][14] = new SearchObject(20, 184);
+		levelSearchObjects[3][14] = new SearchObject(20, 254);
 
-		levelSearchObjects[4][0] = new SearchObject(10, 11);
+		levelSearchObjects[4][0] = new SearchObject(10, 111);
 		levelSearchObjects[4][1] = new SearchObject(70, 52);
-		levelSearchObjects[4][2] = new SearchObject(130, 110);
-		levelSearchObjects[4][3] = new SearchObject(290,44);
-		levelSearchObjects[4][4] = new SearchObject(350, 122);
+		levelSearchObjects[4][2] = new SearchObject(130, 210);
+		levelSearchObjects[4][3] = new SearchObject(290,204);
+		levelSearchObjects[4][4] = new SearchObject(350, 232);
 		levelSearchObjects[4][5] = new SearchObject(210, 10);
 		levelSearchObjects[4][6] = new SearchObject(401, 20);
 		levelSearchObjects[4][7] = new SearchObject(110, 123);
 		levelSearchObjects[4][8] = new SearchObject(10, 24);
 		levelSearchObjects[4][9] = new SearchObject(470, 160);
-		levelSearchObjects[4][10] = new SearchObject(130, 187);
-		levelSearchObjects[4][11] = new SearchObject(80, 127);
+		levelSearchObjects[4][10] = new SearchObject(130, 217);
+		levelSearchObjects[4][11] = new SearchObject(80, 207);
 		levelSearchObjects[4][12] = new SearchObject(450, 48);
 		levelSearchObjects[4][13] = new SearchObject(510, 132);
 		levelSearchObjects[4][14] = new SearchObject(370, 192);
