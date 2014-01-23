@@ -13,11 +13,11 @@ import com.game.bugattong.settings.GameSettings;
 public class BonusActivity extends Activity implements OnClickListener {
 
 	// private SaveUtility saveinstance;
-	// private final static char[] BONUSANSWER = { 'S', 'A', 'R', 'N', 'G', 'O',
-	// 'L', }; // "SARANGGOLA";
-
+//	private final static char[] BONUSANSWER = { 'S', 'A', 'R', 'N', 'G', 'O',
+//			'L', }; // "SARANGGOLA";
+	
 	private final static char[] BONUSANSWER = { 'L', 'O', 'D', 'S', 'A', 'G',
-			'N', 'E', 'P', 'R' }; // "SARANGGOLA";
+	'N','E','P','R' }; // "SARANGGOLA";
 	private final static String BONUSQUESTION = "Buto’t balat na malapad, kay galing kung lumipad.";
 	private TextView[] letters = new TextView[10];
 	private TextView[] letterHints = new TextView[10];
@@ -65,17 +65,19 @@ public class BonusActivity extends Activity implements OnClickListener {
 		hintedWords[2].setText("DYARYO");
 		hintedWords[3].setText("LAPIS");
 		hintedWords[4].setText("GUNTING");
-
+		
+		
 		GameSettings.CustomTextView(BonusActivity.this, tvQuestion);
 		GameSettings.CustomTextView(BonusActivity.this, txtMysteryongBagay);
-		// CHECK : Need to review
-		// int hintCounter = 0;
-		// while (hintCounter < 5) {
-		// GameSettings.CustomTextView(BonusActivity.this,
-		// hintedWords[hintCounter]);
+		
+//		int hintCounter = 0;
+//		while(hintCounter < 5){
+//			GameSettings.CustomTextView(BonusActivity.this, hintedWords[hintCounter]);
+//			hintedWords[hintCounter]);
 		// hintCounter ++;
-		// }
-
+//		}
+		
+		
 		letters[0].setOnClickListener(this);
 		letters[1].setOnClickListener(this);
 		letters[2].setOnClickListener(this);
@@ -111,7 +113,7 @@ public class BonusActivity extends Activity implements OnClickListener {
 		case R.id.hint_02:
 			setLetter(BONUSANSWER[1]);
 			break;
-		case R.id.hint_03: //
+		case R.id.hint_03:				//
 			setLetter(BONUSANSWER[2]);
 			break;
 		case R.id.hint_04:
@@ -126,10 +128,10 @@ public class BonusActivity extends Activity implements OnClickListener {
 		case R.id.hint_07:
 			setLetter(BONUSANSWER[6]);
 			break;
-		case R.id.hint_08: //
+		case R.id.hint_08:			//
 			setLetter(BONUSANSWER[7]);
 			break;
-		case R.id.hint_09: //
+		case R.id.hint_09:			//
 			setLetter(BONUSANSWER[8]);
 			break;
 		case R.id.hint_10:
@@ -201,12 +203,15 @@ public class BonusActivity extends Activity implements OnClickListener {
 				hasLetter[index] = true;
 				letters[index].setText(hintLetter + "");
 				break;
+
 			}
 		}
 	}
 
 	public void removeLetter(int index) {
+
 		hasLetter[index] = false;
 		letters[index].setText(" ");
+
 	}
 }

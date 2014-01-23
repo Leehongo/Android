@@ -14,7 +14,7 @@ import com.game.bugattong.pregame.MainScreen;
 public class StoryView extends Activity {
 
 	Button btnOk;
-	ImageView imgTitle, imgStory;
+	ImageView imgStory;
 	String nextPage;
 	
 	
@@ -27,10 +27,10 @@ public class StoryView extends Activity {
 	String strLevel5 = "level5";
 	
 
-	int titles[] = {R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title,
-			R.drawable.select_level_title,R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title};
+//	int titles[] = {R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title,
+//			R.drawable.select_level_title,R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title};
 	
-	int stories[] = {R.drawable.kwento_panimula,R.drawable.bg_hardin,R.drawable.bg_tulugan,
+	int stories[] = {R.drawable.kwento_panimula,R.drawable.kwento_hardin,R.drawable.kwento_tulugan,
 			R.drawable.bg_sala,R.drawable.bg_kagubatan,R.drawable.bg_attic,R.drawable.background};
 	
 
@@ -53,35 +53,27 @@ public class StoryView extends Activity {
  
 	private void initUI() {
 		btnOk = (Button) findViewById(R.id.story_view_btn_ok);
-		imgTitle = (ImageView) findViewById(R.id.story_view_image_story_title);
 		imgStory = (ImageView) findViewById(R.id.story_view_image_story);
 		
 		if (nextPage.equals(strInitial)) {
-			imgTitle.setBackgroundResource(titles[0]);
 			imgStory.setBackgroundResource(stories[0]);
 			
 		}else if(nextPage.equals(strLevel1)) {
-			imgTitle.setBackgroundResource(titles[1]);
 			imgStory.setBackgroundResource(stories[1]);
 			
 		}else if(nextPage.equals(strLevel2)) {
-			imgTitle.setBackgroundResource(titles[2]);
 			imgStory.setBackgroundResource(stories[2]);
 			
 		}else if(nextPage.equals(strLevel3)) {
-			imgTitle.setBackgroundResource(titles[3]);
 			imgStory.setBackgroundResource(stories[3]);
 			
 		}else if(nextPage.equals(strLevel4)) {
-			imgTitle.setBackgroundResource(titles[4]);
 			imgStory.setBackgroundResource(stories[4]);
 			
 		}else if(nextPage.equals(strLevel5)) {
-			imgTitle.setBackgroundResource(titles[5]);
 			imgStory.setBackgroundResource(stories[5]);
 			
 		}else if(nextPage.equals(strMystery)) {
-			imgTitle.setBackgroundResource(titles[6]);
 			imgStory.setBackgroundResource(stories[6]);
 			
 		}

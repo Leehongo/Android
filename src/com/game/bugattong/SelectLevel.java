@@ -159,10 +159,9 @@ public class SelectLevel extends Activity {
 			case R.id.btn_level_mystery:
 				if (!GameSettings.bonusLevelLocked) {
 					startBonus();
+//					startlevel("mystery");
 				} else {
-					Toast.makeText(getApplicationContext(),
-							"Please answer all questions first.",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Please answer all questions first.",Toast.LENGTH_SHORT).show();
 				}
 
 				break;
@@ -173,7 +172,8 @@ public class SelectLevel extends Activity {
 
 	private void startBonus() {
 
-		Intent intent = new Intent(SelectLevel.this, BonusActivity.class);
+		Intent intent = new Intent(SelectLevel.this, StoryView.class);
+		intent.putExtra("getNextPage", "mystery");
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 		finish();
