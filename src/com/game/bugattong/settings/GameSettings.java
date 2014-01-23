@@ -37,19 +37,20 @@ public class GameSettings {
 		if (!savegame.isInit() || reset) {
 			for (int level = 0; level < Constants.MAXLEVELS; level++) {
 				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
-					userCorrectAnswers[level][question] = false;
+					//CHECK: set false to set questions false
+					userCorrectAnswers[level][question] = true;
 					userHintedNumbers[level][question] = false;
 					userHintedNumbersHintsShown[level][question] = 0;
 				}
-				levelPlayed[level] = false;
-				levelAllQuestionsAnswered[level] = false;
+				levelPlayed[level] = true;
+				levelAllQuestionsAnswered[level] = true;
 			}
 
 			levelLocked[0] = false;
-			levelLocked[1] = true;
-			levelLocked[2] = true;
-			levelLocked[3] = true;
-			levelLocked[4] = true;
+			levelLocked[1] = false;
+			levelLocked[2] = false;
+			levelLocked[3] = false;
+			levelLocked[4] = false;
 			wrongClicks = 0;
 			bonusLevelLocked = true;
 			currentPoints = 100;
