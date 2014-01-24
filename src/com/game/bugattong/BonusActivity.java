@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +25,15 @@ public class BonusActivity extends Activity implements OnClickListener {
 	private TextView tvQuestion;
 	private TextView[] hintedWords = new TextView[5];
 	private TextView txtMysteryongBagay;
+	
+	private ImageView imgItem;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bonuslevel_layout);
+		
+		imgItem = (ImageView) findViewById(R.id.bonus_item_saranggola);
 
 		tvQuestion = (TextView) findViewById(R.id.question);
 		letters[0] = (TextView) findViewById(R.id.answer_01);
@@ -172,9 +177,8 @@ public class BonusActivity extends Activity implements OnClickListener {
 
 		if (!GameSettings.hasAnsweredBonus)
 			if (checkAnswer()) {
-				Toast.makeText(getApplicationContext(),
-						"You have answered the bonus question.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),"You have answered the bonus question.",Toast.LENGTH_SHORT).show();
+				imgItem.setBackgroundResource(R.drawable.saranggola);
 				GameSettings.hasAnsweredBonus = true;
 			}
 	}

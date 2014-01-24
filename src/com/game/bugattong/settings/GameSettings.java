@@ -362,7 +362,7 @@ public class GameSettings {
 		levelSearchObjects[3][10] = new SearchObject(452, 01);
 		levelSearchObjects[3][11] = new SearchObject(280, 200);
 		levelSearchObjects[3][12] = new SearchObject(550, 102);
-		levelSearchObjects[3][13] = new SearchObject(110, 102);
+		levelSearchObjects[3][13] = new SearchObject(410, 102);
 		levelSearchObjects[3][14] = new SearchObject(320, 254);
 
 		levelSearchObjects[4][0] = new SearchObject(580, 111);	//ATTIC
