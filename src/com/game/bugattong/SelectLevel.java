@@ -80,7 +80,7 @@ public class SelectLevel extends Activity {
 
 		if (GameSettings.levelLocked[1])
 			imgLockLevel2.setVisibility(View.VISIBLE);
-		else
+		else	
 			imgLockLevel2.setVisibility(View.GONE);
 
 		if (GameSettings.levelLocked[2])
@@ -182,9 +182,9 @@ public class SelectLevel extends Activity {
 	private void startlevel(String str) {
 		Intent intent;
 
-		if (GameSettings.levelPlayed[GameSettings.currentLevel - 1])
-			intent = new Intent(SelectLevel.this, GameActivity.class);
-		else
+//		if (GameSettings.levelPlayed[GameSettings.currentLevel - 1])	//enable if need to show one time only
+//			intent = new Intent(SelectLevel.this, GameActivity.class);
+//		else
 			intent = new Intent(SelectLevel.this, StoryView.class);
 
 		intent.putExtra("getNextPage", str);

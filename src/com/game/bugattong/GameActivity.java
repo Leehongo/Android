@@ -27,19 +27,26 @@ import android.widget.Toast;
 import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.GameSettings;
+import com.game.bugattong.settings.SharedValues;
 import com.game.bugattong.utilities.SaveUtility;
 
 public class GameActivity extends Activity implements OnClickListener {
+	
+
+	private SharedValues sharedValues;
+	private SaveUtility saveUtil;
 
 	private LinearLayout questionsmenu;
 	private RelativeLayout gameArea;
 	private Button btnqstnumber, btnhint, btnPause;
 	private Button menuBtnResume, menuBtnLevel, menuBtnMain, menuBtnSounds;
 	private Button btnDialogOk;
+	private ImageView gamescreenChar;
 
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
+	
 	private int shownHints = 0;
 	public static boolean isSoundOn;
 
@@ -50,14 +57,16 @@ public class GameActivity extends Activity implements OnClickListener {
 	private int errorSound;
 	private boolean isInit = false;
 	private boolean isQuestionMenuVisible = false;
+	
+	private String selectedChar;
 
-	private SaveUtility saveUtil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamescreen);
 		saveUtil = new SaveUtility(this);
+		sharedValues = new SharedValues(this);
 		init();
 		initImages();
 
@@ -83,6 +92,9 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 
 	private void init() {
+		
+
+		selectedChar = sharedValues.getSelectedChar().trim();
 
 		gameArea = (RelativeLayout) findViewById(R.id.gamearea);
 		questionsmenu = (LinearLayout) findViewById(R.id.questionmenu);
@@ -92,9 +104,15 @@ public class GameActivity extends Activity implements OnClickListener {
 		tvquestion = (TextView) findViewById(R.id.tvquestion);
 		tvpoints = (TextView) findViewById(R.id.tvpoints);
 		tvanswer = (TextView) findViewById(R.id.tvanswer);
-
+		gamescreenChar = (ImageView) findViewById(R.id.gamescreen_char);
 		btnqstnumber.setTextColor(getResources().getColor(R.color.white));
-
+		
+		if (selectedChar.equals("bug")) 
+			gamescreenChar.setImageResource(R.drawable.gamescreen_bug);
+		else
+			gamescreenChar.setImageResource(R.drawable.gamescreen_tong);
+		
+		
 		GameSettings.CustomTextView(GameActivity.this, tvquestion);
 		GameSettings.CustomTextView(GameActivity.this, tvpoints);
 		GameSettings.CustomTextView(GameActivity.this, tvanswer);
@@ -259,10 +277,8 @@ public class GameActivity extends Activity implements OnClickListener {
 				btnDialogOk = (Button) gameDialog
 						.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
 
-				textDialogAllAnswered
-						.setText("All question has been answered.");
-				GameSettings.CustomTextView(GameActivity.this,
-						textDialogAllAnswered);
+				textDialogAllAnswered.setText("All question has been answered.");
+				GameSettings.CustomTextView(GameActivity.this,textDialogAllAnswered);
 
 				btnDialogOk.setOnClickListener(new OnClickListener() {
 
@@ -814,7 +830,8 @@ public class GameActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					goToSelectLevel();
+					gameDialog.dismiss();
+//					goToSelectLevel();
 				}
 			});
 			gameDialog.show();
