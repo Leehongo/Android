@@ -13,8 +13,7 @@
         <ImageView
             android:id="@+id/story_view_image_story"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/platinum" />
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/story_view_btn_ok"

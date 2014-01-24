@@ -31,7 +31,7 @@ public class StoryView extends Activity {
 //			R.drawable.select_level_title,R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title};
 	
 	int stories[] = {R.drawable.kwento_panimula,R.drawable.kwento_hardin,R.drawable.kwento_tulugan,
-			R.drawable.bg_sala,R.drawable.bg_kagubatan,R.drawable.bg_attic,R.drawable.background};
+			R.drawable.kwento_sala,R.drawable.kwento_kagubatan,R.drawable.kwento_attic,R.drawable.background};
 	
 
 	@Override
