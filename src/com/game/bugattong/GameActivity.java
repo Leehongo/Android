@@ -31,7 +31,6 @@ import com.game.bugattong.settings.SharedValues;
 import com.game.bugattong.utilities.SaveUtility;
 
 public class GameActivity extends Activity implements OnClickListener {
-	
 
 	private SharedValues sharedValues;
 	private SaveUtility saveUtil;
@@ -46,7 +45,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
-	
+
 	private int shownHints = 0;
 	public static boolean isSoundOn;
 
@@ -57,9 +56,8 @@ public class GameActivity extends Activity implements OnClickListener {
 	private int errorSound;
 	private boolean isInit = false;
 	private boolean isQuestionMenuVisible = false;
-	
-	private String selectedChar;
 
+	private String selectedChar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +90,6 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		
 
 		selectedChar = sharedValues.getSelectedChar().trim();
 
@@ -106,13 +103,12 @@ public class GameActivity extends Activity implements OnClickListener {
 		tvanswer = (TextView) findViewById(R.id.tvanswer);
 		gamescreenChar = (ImageView) findViewById(R.id.gamescreen_char);
 		btnqstnumber.setTextColor(getResources().getColor(R.color.white));
-		
-		if (selectedChar.equals("bug")) 
+
+		if (selectedChar.equals("bug"))
 			gamescreenChar.setImageResource(R.drawable.gamescreen_bug);
 		else
 			gamescreenChar.setImageResource(R.drawable.gamescreen_tong);
-		
-		
+
 		GameSettings.CustomTextView(GameActivity.this, tvquestion);
 		GameSettings.CustomTextView(GameActivity.this, tvpoints);
 		GameSettings.CustomTextView(GameActivity.this, tvanswer);
@@ -218,27 +214,12 @@ public class GameActivity extends Activity implements OnClickListener {
 			levelObjectCounter++;
 		}
 
-		ivImages[0].setOnClickListener(this);
-		ivImages[1].setOnClickListener(this);
-		ivImages[2].setOnClickListener(this);
-		ivImages[3].setOnClickListener(this);
-		ivImages[4].setOnClickListener(this);
-		ivImages[5].setOnClickListener(this);
-		ivImages[6].setOnClickListener(this);
-		ivImages[7].setOnClickListener(this);
-		ivImages[8].setOnClickListener(this);
-		ivImages[9].setOnClickListener(this);
-		ivImages[10].setOnClickListener(this);
-		ivImages[11].setOnClickListener(this);
-		ivImages[12].setOnClickListener(this);
-		ivImages[13].setOnClickListener(this);
-		ivImages[14].setOnClickListener(this);
-
 		for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question])
 				ivImages[question].setVisibility(View.GONE);
 			else
 				ivImages[question].setVisibility(View.VISIBLE);
+			ivImages[question].setOnClickListener(this);
 		}
 
 		shownHints = 0;
@@ -277,8 +258,10 @@ public class GameActivity extends Activity implements OnClickListener {
 				btnDialogOk = (Button) gameDialog
 						.findViewById(R.id.gamescreen_all_answered_dialog_btn_ok);
 
-				textDialogAllAnswered.setText("All question has been answered.");
-				GameSettings.CustomTextView(GameActivity.this,textDialogAllAnswered);
+				textDialogAllAnswered
+						.setText("All question has been answered.");
+				GameSettings.CustomTextView(GameActivity.this,
+						textDialogAllAnswered);
 
 				btnDialogOk.setOnClickListener(new OnClickListener() {
 
@@ -387,20 +370,15 @@ public class GameActivity extends Activity implements OnClickListener {
 			int msg = 0;
 			if (!isSoundOn) {
 				msg = R.drawable.button_sounds_off_state;
-
 			} else {
 				msg = R.drawable.button_sounds_on_state;
-
 			}
 			menuBtnSounds.setBackgroundResource(msg);
-
 			menuBtnResume.setOnClickListener(menuOnClick);
 			menuBtnLevel.setOnClickListener(menuOnClick);
 			menuBtnMain.setOnClickListener(menuOnClick);
 			menuBtnSounds.setOnClickListener(menuOnClick);
-
 			gameDialog.show();
-
 			break;
 
 		case R.id.btnquestion1_1:
@@ -463,7 +441,6 @@ public class GameActivity extends Activity implements OnClickListener {
 			GameSettings.currentQuestion = 15;
 			reset();
 			break;
-
 		case R.id.image01:
 			setCorrectAnswer(1);
 			checkToUnlockLevel();
@@ -654,6 +631,14 @@ public class GameActivity extends Activity implements OnClickListener {
 											&& questionIndex > GameSettings.currentQuestion) {
 										hasNextUnAnswered = true;
 										afterIndex = questionIndex;
+									} else if (!hasNextUnAnswered
+											&& questionIndex > GameSettings.currentQuestion) {
+										hasNextUnAnswered = true;
+										afterIndex = questionIndex;
+									} else if (!hasNextUnAnswered
+											&& questionIndex == GameSettings.currentQuestion) {
+										hasNextUnAnswered = true;
+										afterIndex = questionIndex + 1;
 									}
 								}
 							}
@@ -662,7 +647,7 @@ public class GameActivity extends Activity implements OnClickListener {
 								GameSettings.currentQuestion = afterIndex;
 								System.out.println("Chosen Next : "
 										+ afterIndex);
-							} else if(hasPreviousUnswered){
+							} else if (hasPreviousUnswered) {
 								GameSettings.currentQuestion = previousIndex + 1;
 								System.out.println("Chosen Previous : "
 										+ previousIndex);
@@ -831,7 +816,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					gameDialog.dismiss();
-//					goToSelectLevel();
+					// goToSelectLevel();
 				}
 			});
 			gameDialog.show();
