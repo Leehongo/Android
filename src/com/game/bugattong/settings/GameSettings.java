@@ -71,7 +71,7 @@ public class GameSettings {
 			hasAnsweredBonus = savegame.isBonusLevelAnswered();
 		}
 
-		levelQuestions[0][0] = new LevelQuestion(
+		levelQuestions[0][0] = new LevelQuestion(			//HARDIN
 				"Takbo roon, takbo rito, hindi makaalis sa tayong ito.",
 				"DUYAN", "4,1,0,3,2");
 		levelQuestions[0][1] = new LevelQuestion(
@@ -115,7 +115,7 @@ public class GameSettings {
 				"Dumaing paa\'y walang kamay, may pamigkis sa baywang,\n ang ulo\'y parang tagayan, alagad ng kalinisan.",
 				"WALIS-TINGTING", "10,1,0,6,4,7,12,1,3,9,5,13,8,2,11", true);
 
-		// Question Level 2
+		// Question Level 2			- TULUGAN
 		levelQuestions[1][0] = new LevelQuestion(
 				"Alipin ng hari, hindi makalakad, kung hindi itali.",
 				"SAPATOS", "6,1,4,0,2,3,5");
@@ -159,10 +159,10 @@ public class GameSettings {
 				"Hinila ko ang tadyang, lumapad ang tiyan.", "PAYONG",
 				"3,5,1,4,2,0");
 		levelQuestions[1][14] = new LevelQuestion(
-				"Saranggolang naglalayag sa kalangitan, Napapalayo pa nito ang paglalakbay",
+				"Saranggolang naglalayag sa kalangitan,\n Napapalayo pa nito ang paglalakbay",
 				"PISI", "3,1,0,2", true);
 
-		// Question Level 3
+		// Question Level 3		-SALA
 		levelQuestions[2][0] = new LevelQuestion(
 				"Sa buhatan ay may silbi, sa igiban ay walang sinabi.",
 				"BASKET", "3,5,1,4,2,0");
@@ -208,7 +208,7 @@ public class GameSettings {
 				"Tangan-tangan sa umaga, galaw ng bansa ay nakikita.",
 				"DYARYO", "3,5,1,4,2,0", true);
 
-		// Question Level 4
+		// Question Level 4			-KAGUBTAN
 		levelQuestions[3][0] = new LevelQuestion(
 				"Heto na si bayaw, dala-dala\'y ilaw.", "ALITAPTAP",
 				"0,2,4,8,3,5,7,1,6");
@@ -254,7 +254,7 @@ public class GameSettings {
 				"Sandata ng mga matalino, papel lamang ang hasaan.", "LAPIS",
 				"4,1,0,3,2", true);
 
-		// Question Level 5
+		// Question Level 5			- ATTIC
 		levelQuestions[4][0] = new LevelQuestion(
 				"Dumaan ang hari, nagkagatan ang mga pari.", "SIPER",
 				"4,1,0,3,2");
@@ -371,15 +371,15 @@ public class GameSettings {
 		levelSearchObjects[4][3] = new SearchObject(290,204);
 		levelSearchObjects[4][4] = new SearchObject(350, 12);
 		levelSearchObjects[4][5] = new SearchObject(210, 10);
-		levelSearchObjects[4][6] = new SearchObject(401, 20);
+		levelSearchObjects[4][6] = new SearchObject(501, 20); //
 		levelSearchObjects[4][7] = new SearchObject(290, 123);
 		levelSearchObjects[4][8] = new SearchObject(10, 10);
 		levelSearchObjects[4][9] = new SearchObject(470, 160);
 		levelSearchObjects[4][10] = new SearchObject(330, 217);
 		levelSearchObjects[4][11] = new SearchObject(430, 207);
 		levelSearchObjects[4][12] = new SearchObject(450, 48);
-		levelSearchObjects[4][13] = new SearchObject(510, 132);
-		levelSearchObjects[4][14] = new SearchObject(420, 10);
+		levelSearchObjects[4][13] = new SearchObject(540, 132);
+		levelSearchObjects[4][14] = new SearchObject(420, 10);//
 		
 		
 		levelObjects[0][0] = new Integer(R.drawable.hardin_1_duyan);

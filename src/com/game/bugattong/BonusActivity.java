@@ -1,7 +1,9 @@
 package com.game.bugattong;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -75,12 +77,11 @@ public class BonusActivity extends Activity implements OnClickListener {
 		GameSettings.CustomTextView(BonusActivity.this, tvQuestion);
 		GameSettings.CustomTextView(BonusActivity.this, txtMysteryongBagay);
 		
-//		int hintCounter = 0;
-//		while(hintCounter < 5){
-//			GameSettings.CustomTextView(BonusActivity.this, hintedWords[hintCounter]);
-//			hintedWords[hintCounter]);
-		// hintCounter ++;
-//		}
+		int hintCounter = 0;
+		while(hintCounter < 5){
+			GameSettings.CustomTextView(BonusActivity.this, hintedWords[hintCounter]);
+		 hintCounter ++;
+		}
 		
 		
 		letters[0].setOnClickListener(this);
@@ -178,6 +179,7 @@ public class BonusActivity extends Activity implements OnClickListener {
 		if (!GameSettings.hasAnsweredBonus)
 			if (checkAnswer()) {
 				Toast.makeText(getApplicationContext(),"You have answered the bonus question.",Toast.LENGTH_SHORT).show();
+				startActivityIntent();
 				imgItem.setBackgroundResource(R.drawable.saranggola);
 				GameSettings.hasAnsweredBonus = true;
 			}
@@ -217,5 +219,23 @@ public class BonusActivity extends Activity implements OnClickListener {
 		hasLetter[index] = false;
 		letters[index].setText(" ");
 
+	}
+	
+	
+	private void startActivityIntent(){
+		
+		CountDownTimer timer = new CountDownTimer(3000,1000) {
+			@Override
+			public void onTick(long millisUntilFinished) {
+			}
+			@Override
+			public void onFinish() {
+				Intent intent = new Intent(BonusActivity.this, StoryView.class);
+				intent.putExtra("getNextPage", "wakas");
+				startActivity(intent);
+				finish();				
+			}
+		}.start();
+		
 	}
 }

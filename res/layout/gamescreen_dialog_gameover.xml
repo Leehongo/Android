@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="300dp"
+    android:background="@drawable/dialog_background"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/gamescreen_dialog_gameover_text_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="GAME OVER"
+        android:textColor="@color/mocha"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/gamescreen_dialog_gameover_dialog_btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_ok_state"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+</LinearLayout>

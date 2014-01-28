@@ -9,29 +9,40 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.game.bugattong.pregame.LoadingScreen;
 import com.game.bugattong.pregame.MainScreen;
+import com.game.bugattong.settings.FileGenerator;
+import com.game.bugattong.settings.GameSettings;
+import com.game.bugattong.settings.SharedValues;
+import com.game.bugattong.utilities.SaveUtility;
 
 public class StoryView extends Activity {
+	private SharedValues sharedValues;
+	private SaveUtility saveUtility;
+	private FileGenerator fileGenerator;
 
-	Button btnOk;
-	ImageView imgStory;
-	String nextPage;
+	private Button btnOk;
+	private ImageView imgStory;
+	private String nextPage;
 	
+	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	
-	String strInitial = "initial";
-	String strMystery = "mystery";
-	String strLevel1 = "level1";
-	String strLevel2 = "level2";
-	String strLevel3 = "level3";
-	String strLevel4 = "level4";
-	String strLevel5 = "level5";
+	private final String strInitial = "initial";
+	private final String strMystery = "mystery";
+	private final String strLevel1 = "level1";
+	private final String strLevel2 = "level2";
+	private final String strLevel3 = "level3";
+	private final String strLevel4 = "level4";
+	private final String strLevel5 = "level5";
+	private final String strWakas = "wakas";
 	
 
 //	int titles[] = {R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title,
 //			R.drawable.select_level_title,R.drawable.select_char_title,R.drawable.select_level_title,R.drawable.select_char_title};
 	
 	int stories[] = {R.drawable.kwento_panimula,R.drawable.kwento_hardin,R.drawable.kwento_tulugan,
-			R.drawable.kwento_sala,R.drawable.kwento_kagubatan,R.drawable.kwento_attic,R.drawable.background};
+			R.drawable.kwento_sala,R.drawable.kwento_kagubatan,R.drawable.kwento_attic,
+			R.drawable.background, R.drawable.kwento_wakas};
 	
 
 	@Override
@@ -39,6 +50,10 @@ public class StoryView extends Activity {
 
 		setContentView(R.layout.story_view);
 		super.onCreate(savedInstanceState);
+		
+		sharedValues = new SharedValues(StoryView.this);
+		saveUtility = new SaveUtility(StoryView.this);
+		fileGenerator = new FileGenerator();
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -76,6 +91,8 @@ public class StoryView extends Activity {
 		}else if(nextPage.equals(strMystery)) {
 			imgStory.setBackgroundResource(stories[6]);
 			
+		}else if(nextPage.equals(strWakas)) {
+			imgStory.setBackgroundResource(stories[7]);
 		}
 	}
 
@@ -88,6 +105,15 @@ public class StoryView extends Activity {
 				startNewIntent(SelectLevel.class);
 			}else if (nextPage.equals(strMystery)){
 				startNewIntent(BonusActivity.class);
+			}else if(nextPage.equals(strWakas)){
+				
+				sharedValues.clearData();
+				saveUtility.clearData();
+				fileGenerator.removeFile(SELECTEDCHAR);
+				startNewIntent(LoadingScreen.class);
+				GameSettings.init(StoryView.this, true);
+				GameSettings.saveAll();
+				
 			}else{
 				startNewIntent(GameActivity.class);
 			}

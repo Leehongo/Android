@@ -24,8 +24,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.game.bugattong.pregame.LoadingScreen;
 import com.game.bugattong.pregame.MainScreen;
 import com.game.bugattong.settings.Constants;
+import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.GameSettings;
 import com.game.bugattong.settings.SharedValues;
 import com.game.bugattong.utilities.SaveUtility;
@@ -33,7 +35,8 @@ import com.game.bugattong.utilities.SaveUtility;
 public class GameActivity extends Activity implements OnClickListener {
 
 	private SharedValues sharedValues;
-	private SaveUtility saveUtil;
+	private SaveUtility saveUtility;
+	private FileGenerator fileGenerator;
 
 	private LinearLayout questionsmenu;
 	private RelativeLayout gameArea;
@@ -50,8 +53,10 @@ public class GameActivity extends Activity implements OnClickListener {
 	public static boolean isSoundOn;
 
 	private Dialog gameDialog;
-
 	private SoundPool sounds = null;
+	
+
+	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	private int correctSound;
 	private int errorSound;
 	private boolean isInit = false;
@@ -63,8 +68,10 @@ public class GameActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamescreen);
-		saveUtil = new SaveUtility(this);
+		saveUtility = new SaveUtility(this);
 		sharedValues = new SharedValues(this);
+		fileGenerator = new FileGenerator();
+		
 		init();
 		initImages();
 
@@ -73,7 +80,7 @@ public class GameActivity extends Activity implements OnClickListener {
 			isInit = true;
 		}
 
-		isSoundOn = saveUtil.getSoundSettings();
+		isSoundOn = saveUtility.getSoundSettings();
 
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
@@ -267,7 +274,7 @@ public class GameActivity extends Activity implements OnClickListener {
 
 					@Override
 					public void onClick(View v) {
-						goToSelectLevel();
+						startNewIntent(SelectLevel.class);
 					}
 				});
 				gameDialog.show();
@@ -338,18 +345,12 @@ public class GameActivity extends Activity implements OnClickListener {
 					showAnswer(true, false);
 					showPoints();
 				} else if (GameSettings.currentPoints < Constants.HINTPENALTYPOINTS)
-					Toast.makeText(getApplicationContext(),
-							"Not Enough Points to show Hints",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Not Enough Points to show Hints",Toast.LENGTH_SHORT).show();
 				else if (shownHints == GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 						.getAnswer().length() - 1)
-					Toast.makeText(getApplicationContext(),
-							"No More Hints can be shown", Toast.LENGTH_SHORT)
-							.show();
+					Toast.makeText(getApplicationContext(),"No More Hints can be shown", Toast.LENGTH_SHORT).show();
 			} else {
-				Toast.makeText(getApplicationContext(),
-						"This Question has been answered.", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(getApplicationContext(),"This Question has been answered.", Toast.LENGTH_SHORT).show();
 			}
 			break;
 
@@ -519,19 +520,14 @@ public class GameActivity extends Activity implements OnClickListener {
 					&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					&& !isLevelComplete) {
 				GameSettings.wrongClicks = 0;
-				Toast.makeText(
-						getApplicationContext(),
-						"You have clicked 5 wrong items. 15 Points was deducted.",
-						Toast.LENGTH_SHORT).show();
-
 				if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
+					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
 					GameSettings.currentPoints -= 15;
 				} else {
 					GameSettings.currentPoints = 0;
 				}
 				showPoints();
 			}
-
 			break;
 		}
 	}
@@ -549,13 +545,12 @@ public class GameActivity extends Activity implements OnClickListener {
 
 			case R.id.game_screen_menu_btn_level:
 				gameDialog.dismiss();
-				goToSelectLevel();
+				startNewIntent(SelectLevel.class);
 				break;
 
 			case R.id.game_screen_menu_btn_main:
 				gameDialog.dismiss();
-				startActivity(new Intent(getBaseContext(), MainScreen.class));
-				finish();
+				startNewIntent(MainScreen.class);
 				break;
 
 			case R.id.game_screen_menu_btn_sound:
@@ -567,7 +562,7 @@ public class GameActivity extends Activity implements OnClickListener {
 					msg = R.drawable.button_sounds_off_state;
 					isSoundOn = false;
 				}
-				saveUtil.saveSoundSettings(isSoundOn);
+				saveUtility.saveSoundSettings(isSoundOn);
 				menuBtnSounds.setBackgroundResource(msg);
 				break;
 			}
@@ -707,10 +702,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				if (GameSettings.wrongClicks == Constants.WRONGCLICKPENALTYCOUNT
 						&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 					GameSettings.wrongClicks = 0;
-					Toast.makeText(
-							getApplicationContext(),
-							"You have clicked 5 wrong items. 15 Points was deducted.",
-							1).show();
+					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
 
 					if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
 						GameSettings.currentPoints -= 15;
@@ -735,6 +727,36 @@ public class GameActivity extends Activity implements OnClickListener {
 
 	private void showPoints() {
 		tvpoints.setText(GameSettings.currentPoints + "");
+			//TODO must show dialog before restart the game
+		
+		
+		if(GameSettings.currentPoints == 0){
+			
+			gameDialog = new Dialog(this);
+			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			gameDialog.setContentView(R.layout.gamescreen_dialog_gameover);
+
+			TextView txtViewNote = (TextView) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_text_msg);
+			GameSettings.CustomTextView(GameActivity.this, txtViewNote);
+
+			Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_dialog_btn_ok);
+
+			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							gameDialog.dismiss();
+							sharedValues.clearData();
+							saveUtility.clearData();
+//							fileGenerator.removeFile(SELECTEDCHAR);
+							startNewIntent(LoadingScreen.class);
+							GameSettings.init(GameActivity.this, true);
+							GameSettings.saveAll();
+						}
+					});
+
+			gameDialog.show();
+		}
 	}
 
 	private void reset() {
@@ -843,7 +865,7 @@ public class GameActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					goToSelectLevel();
+					startNewIntent(SelectLevel.class);
 				}
 			});
 			gameDialog.show();
@@ -963,17 +985,14 @@ public class GameActivity extends Activity implements OnClickListener {
 
 	}
 
-	private void goToSelectLevel() {
-		// Intent intent = ;
-		// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(new Intent(GameActivity.this, SelectLevel.class));
-		finish();
-	}
-
 	@Override
 	public void onBackPressed() {
-		goToSelectLevel();
-		finish();
 		super.onBackPressed();
+		startNewIntent(SelectLevel.class);
+	}
+	
+	private void startNewIntent(Class s){
+		startActivity(new Intent(GameActivity.this, s));
+		finish();
 	}
 }
