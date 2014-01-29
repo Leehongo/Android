@@ -56,14 +56,59 @@
                 android:textSize="17sp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnhint"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/gamescreen_hint_button_state"
-            android:padding="3dp"
-            android:textColor="@color/white" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btnhint"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/gamescreen_hint_button_state"
+                android:padding="3dp"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/layoutpressed"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:orientation="horizontal" 
+                android:layout_below="@+id/btnhint">
+
+                <ImageView
+                    android:id="@+id/wrong1"
+                    android:layout_width="18dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/green_w" />
+
+                <ImageView
+                    android:id="@+id/wrong2"
+                    android:layout_width="18dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/green_w" />
+
+                <ImageView
+                    android:id="@+id/wrong3"
+                    android:layout_width="18dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/green_w" />
+
+                <ImageView
+                    android:id="@+id/wrong4"
+                    android:layout_width="18dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/green_w" />
+
+                <ImageView
+                    android:id="@+id/wrong5"
+                    android:layout_width="18dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/green_w" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"

@@ -48,13 +48,12 @@ public class GameActivity extends Activity implements OnClickListener {
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
-
+	private ImageView[] wrongImages = new ImageView[5];
 	private int shownHints = 0;
 	public static boolean isSoundOn;
 
 	private Dialog gameDialog;
 	private SoundPool sounds = null;
-	
 
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	private int correctSound;
@@ -71,7 +70,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		saveUtility = new SaveUtility(this);
 		sharedValues = new SharedValues(this);
 		fileGenerator = new FileGenerator();
-		
+
 		init();
 		initImages();
 
@@ -233,8 +232,13 @@ public class GameActivity extends Activity implements OnClickListener {
 		showQuestion();
 		reset();
 		showPoints();
-
 		GameSettings.levelPlayed[GameSettings.currentLevel - 1] = true;
+
+		wrongImages[0] = (ImageView) findViewById(R.id.wrong1);
+		wrongImages[1] = (ImageView) findViewById(R.id.wrong2);
+		wrongImages[2] = (ImageView) findViewById(R.id.wrong3);
+		wrongImages[3] = (ImageView) findViewById(R.id.wrong4);
+		wrongImages[4] = (ImageView) findViewById(R.id.wrong5);
 	}
 
 	private void checkToUnlockLevel() {
@@ -345,12 +349,18 @@ public class GameActivity extends Activity implements OnClickListener {
 					showAnswer(true, false);
 					showPoints();
 				} else if (GameSettings.currentPoints < Constants.HINTPENALTYPOINTS)
-					Toast.makeText(getApplicationContext(),"Not Enough Points to show Hints",Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),
+							"Not Enough Points to show Hints",
+							Toast.LENGTH_SHORT).show();
 				else if (shownHints == GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 						.getAnswer().length() - 1)
-					Toast.makeText(getApplicationContext(),"No More Hints can be shown", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),
+							"No More Hints can be shown", Toast.LENGTH_SHORT)
+							.show();
 			} else {
-				Toast.makeText(getApplicationContext(),"This Question has been answered.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),
+						"This Question has been answered.", Toast.LENGTH_SHORT)
+						.show();
 			}
 			break;
 
@@ -508,6 +518,7 @@ public class GameActivity extends Activity implements OnClickListener {
 			questionsmenu.setVisibility(View.GONE);
 
 			GameSettings.wrongClicks++;
+
 			boolean isLevelComplete = true;
 			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 				if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question]) {
@@ -519,15 +530,21 @@ public class GameActivity extends Activity implements OnClickListener {
 			if (GameSettings.wrongClicks >= Constants.WRONGCLICKPENALTYCOUNT
 					&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					&& !isLevelComplete) {
+				updateWrongClicks();
 				GameSettings.wrongClicks = 0;
 				if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
-					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
+					Toast.makeText(
+							getApplicationContext(),
+							"You have clicked 5 wrong items. 15 Points was deducted.",
+							1).show();
 					GameSettings.currentPoints -= 15;
 				} else {
 					GameSettings.currentPoints = 0;
 				}
 				showPoints();
 			}
+			
+			updateWrongClicks();
 			break;
 		}
 	}
@@ -640,12 +657,9 @@ public class GameActivity extends Activity implements OnClickListener {
 
 							if (hasNextUnAnswered) {
 								GameSettings.currentQuestion = afterIndex;
-								System.out.println("Chosen Next : "
-										+ afterIndex);
 							} else if (hasPreviousUnswered) {
 								GameSettings.currentQuestion = previousIndex + 1;
-								System.out.println("Chosen Previous : "
-										+ previousIndex);
+
 							}
 
 							showQuestion();
@@ -701,8 +715,12 @@ public class GameActivity extends Activity implements OnClickListener {
 
 				if (GameSettings.wrongClicks == Constants.WRONGCLICKPENALTYCOUNT
 						&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
+					updateWrongClicks();
 					GameSettings.wrongClicks = 0;
-					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
+					Toast.makeText(
+							getApplicationContext(),
+							"You have clicked 5 wrong items. 15 Points was deducted.",
+							1).show();
 
 					if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
 						GameSettings.currentPoints -= 15;
@@ -710,6 +728,8 @@ public class GameActivity extends Activity implements OnClickListener {
 						GameSettings.currentPoints = 0;
 					}
 				}
+				
+				updateWrongClicks();
 
 			}
 
@@ -717,6 +737,16 @@ public class GameActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	private void updateWrongClicks(){
+		for(int index = 0; index < Constants.WRONGCLICKPENALTYCOUNT; index++){
+			if(index <= GameSettings.wrongClicks -1){
+				wrongImages[index].setBackgroundResource(R.color.red);
+			}else{
+				wrongImages[index].setBackgroundResource(R.color.green_w);
+			}
+		}
+	}
+	
 	private void showQuestion() {
 		tvquestion
 				.setText(GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
@@ -727,33 +757,34 @@ public class GameActivity extends Activity implements OnClickListener {
 
 	private void showPoints() {
 		tvpoints.setText(GameSettings.currentPoints + "");
-			//TODO must show dialog before restart the game
-		
-		
-		if(GameSettings.currentPoints == 0){
-			
+		// TODO must show dialog before restart the game
+
+		if (GameSettings.currentPoints == 0) {
+
 			gameDialog = new Dialog(this);
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen_dialog_gameover);
 
-			TextView txtViewNote = (TextView) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_text_msg);
+			TextView txtViewNote = (TextView) gameDialog
+					.findViewById(R.id.gamescreen_dialog_gameover_text_msg);
 			GameSettings.CustomTextView(GameActivity.this, txtViewNote);
 
-			Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_dialog_btn_ok);
+			Button unlockLevelDialogBtnOk = (Button) gameDialog
+					.findViewById(R.id.gamescreen_dialog_gameover_dialog_btn_ok);
 
 			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
 
-						@Override
-						public void onClick(View v) {
-							gameDialog.dismiss();
-							sharedValues.clearData();
-							saveUtility.clearData();
-//							fileGenerator.removeFile(SELECTEDCHAR);
-							startNewIntent(LoadingScreen.class);
-							GameSettings.init(GameActivity.this, true);
-							GameSettings.saveAll();
-						}
-					});
+				@Override
+				public void onClick(View v) {
+					gameDialog.dismiss();
+					sharedValues.clearData();
+					saveUtility.clearData();
+					// fileGenerator.removeFile(SELECTEDCHAR);
+					startNewIntent(LoadingScreen.class);
+					GameSettings.init(GameActivity.this, true);
+					GameSettings.saveAll();
+				}
+			});
 
 			gameDialog.show();
 		}
@@ -990,8 +1021,8 @@ public class GameActivity extends Activity implements OnClickListener {
 		super.onBackPressed();
 		startNewIntent(SelectLevel.class);
 	}
-	
-	private void startNewIntent(Class s){
+
+	private void startNewIntent(Class s) {
 		startActivity(new Intent(GameActivity.this, s));
 		finish();
 	}
