@@ -42,7 +42,7 @@ public class StoryView extends Activity {
 	
 	int stories[] = {R.drawable.kwento_panimula,R.drawable.kwento_hardin,R.drawable.kwento_tulugan,
 			R.drawable.kwento_sala,R.drawable.kwento_kagubatan,R.drawable.kwento_attic,
-			R.drawable.background, R.drawable.kwento_wakas};
+			R.drawable.kwento_mystery, R.drawable.kwento_wakas};
 	
 
 	@Override

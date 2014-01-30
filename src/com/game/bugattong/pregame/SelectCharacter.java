@@ -57,6 +57,7 @@ public class SelectCharacter extends Activity {
 					fileGenerator.writeFile(SELECTEDCHAR, "bug");
 					sharedValues.setSelectedChar("bug");
 					sharedValues.setCharacterTop(R.drawable.bug_top1);
+					sharedValues.setGameScreenCharacter(R.drawable.gamescreen_bug1);
 					sharedValues.setCharacterBottom(R.drawable.bug_bottom1);
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();
@@ -66,6 +67,7 @@ public class SelectCharacter extends Activity {
 					fileGenerator.writeFile(SELECTEDCHAR, "tong");
 					sharedValues.setSelectedChar("tong");
 					sharedValues.setCharacterTop(R.drawable.tong_top1);
+					sharedValues.setGameScreenCharacter(R.drawable.gamescreen_tong1);
 					sharedValues.setCharacterBottom(R.drawable.tong_bottom1);
 					startActivity(new Intent(SelectCharacter.this, MainScreen.class));
 					finish();

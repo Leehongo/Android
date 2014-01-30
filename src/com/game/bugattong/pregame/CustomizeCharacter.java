@@ -21,6 +21,7 @@ public class CustomizeCharacter extends Activity {
 	
 	private String selectedCharName;
 	private int selectedTop, selectedBottom;
+	private int selectedGameScreen;
 	
 	private SharedValues sharedValues;
 	private FileGenerator fileGenerator;
@@ -123,11 +124,11 @@ public class CustomizeCharacter extends Activity {
 
 			//TOP 
 			case R.id.select_dress_top_1:			 
-				setTop(R.drawable.tong_top1); break;
+				setTop(R.drawable.tong_top1,R.drawable.gamescreen_tong1); break;
 			case R.id.select_dress_top_2:
-				setTop(R.drawable.tong_top2); break;
+				setTop(R.drawable.tong_top2,R.drawable.gamescreen_tong2); break;
 			case R.id.select_dress_top_3:
-				setTop(R.drawable.tong_top3); break; 
+				setTop(R.drawable.tong_top3,R.drawable.gamescreen_tong3); break; 
 				//BOTTOM 
 				
 			case R.id.select_dress_bottom_1:
@@ -150,11 +151,11 @@ public class CustomizeCharacter extends Activity {
 
 			//TOP 
 			case R.id.select_dress_top_1:			 
-				setTop(R.drawable.bug_top1); break;
+				setTop(R.drawable.bug_top1,R.drawable.gamescreen_bug1); break;
 			case R.id.select_dress_top_2:
-				setTop(R.drawable.bug_top2); break;
+				setTop(R.drawable.bug_top2,R.drawable.gamescreen_bug2); break;
 			case R.id.select_dress_top_3:
-				setTop(R.drawable.bug_top3); break;
+				setTop(R.drawable.bug_top3,R.drawable.gamescreen_bug3); break;
 				
 				//BOTTOM 
 				
@@ -178,6 +179,7 @@ public class CustomizeCharacter extends Activity {
 			case R.id.btn_save:
 				//TODO insert here save the new looks
 				sharedValues.setCharacterTop(selectedTop);
+				sharedValues.setGameScreenCharacter(selectedGameScreen);
 				sharedValues.setCharacterBottom(selectedBottom);
 //				startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
 //				finish();
@@ -195,9 +197,10 @@ public class CustomizeCharacter extends Activity {
 		}
 	};
 	
-	private void setTop(int top){
+	private void setTop(int top, int gameScreenTop){
 		topDressSelected.setImageResource(top);
 		selectedTop = top;
+		selectedGameScreen = gameScreenTop;
 	}
 	
 	private void setBottom(int bottom){

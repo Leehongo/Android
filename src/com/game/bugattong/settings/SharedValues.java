@@ -35,6 +35,14 @@ public class SharedValues {
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putInt("getCharacterBottom", bottom).commit();
 	}
+	
+	public void setGameScreenCharacter(int gameScreenChar){
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putInt("getGameScreenCharacter", gameScreenChar).commit();
+	}
+ 
+	
+	//=================
 
 	public String getSelectedChar(){
 		return sharedPreferences.getString("getSelectedChar", "");
@@ -47,6 +55,8 @@ public class SharedValues {
 		return sharedPreferences.getInt("getCharacterBottom", 0);
 	}
 	
-	
+	public int getGameScreenCharacter(){
+		return sharedPreferences.getInt("getGameScreenCharacter", 0);
+	}
 
 }

@@ -110,10 +110,7 @@ public class GameActivity extends Activity implements OnClickListener {
 		gamescreenChar = (ImageView) findViewById(R.id.gamescreen_char);
 		btnqstnumber.setTextColor(getResources().getColor(R.color.white));
 
-		if (selectedChar.equals("bug"))
-			gamescreenChar.setImageResource(R.drawable.gamescreen_bug);
-		else
-			gamescreenChar.setImageResource(R.drawable.gamescreen_tong);
+		gamescreenChar.setImageResource(sharedValues.getGameScreenCharacter());
 
 		GameSettings.CustomTextView(GameActivity.this, tvquestion);
 		GameSettings.CustomTextView(GameActivity.this, tvpoints);
@@ -533,10 +530,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				updateWrongClicks();
 				GameSettings.wrongClicks = 0;
 				if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
-					Toast.makeText(
-							getApplicationContext(),
-							"You have clicked 5 wrong items. 15 Points was deducted.",
-							1).show();
+					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
 					GameSettings.currentPoints -= 15;
 				} else {
 					GameSettings.currentPoints = 0;
@@ -612,12 +606,13 @@ public class GameActivity extends Activity implements OnClickListener {
 					playClickSound(false);
 				GameSettings.currentPoints += Constants.CORRECTPOINT;
 				GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
+				
+				GameSettings.wrongClicks = 0;
+				updateWrongClicks();
 
-				ivImages[GameSettings.currentQuestion - 1]
-						.setVisibility(View.GONE);
+				ivImages[GameSettings.currentQuestion - 1].setVisibility(View.GONE);
 
-				String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-						.getAnswer();
+				String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1].getAnswer();
 				tvanswer.setText(answer);
 
 				// put delay
@@ -635,20 +630,16 @@ public class GameActivity extends Activity implements OnClickListener {
 
 							for (questionIndex = 0; questionIndex < Constants.MAXQUESTIONS; questionIndex++) {
 								if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][questionIndex]) {
-									if (!hasPreviousUnswered
-											&& questionIndex < GameSettings.currentQuestion) {
+									if (!hasPreviousUnswered&& questionIndex < GameSettings.currentQuestion) {
 										hasPreviousUnswered = true;
 										previousIndex = questionIndex;
-									} else if (!hasNextUnAnswered
-											&& questionIndex > GameSettings.currentQuestion) {
+									} else if (!hasNextUnAnswered&& questionIndex > GameSettings.currentQuestion) {
 										hasNextUnAnswered = true;
 										afterIndex = questionIndex;
-									} else if (!hasNextUnAnswered
-											&& questionIndex > GameSettings.currentQuestion) {
+									} else if (!hasNextUnAnswered&& questionIndex > GameSettings.currentQuestion) {
 										hasNextUnAnswered = true;
 										afterIndex = questionIndex;
-									} else if (!hasNextUnAnswered
-											&& questionIndex == GameSettings.currentQuestion) {
+									} else if (!hasNextUnAnswered&& questionIndex == GameSettings.currentQuestion) {
 										hasNextUnAnswered = true;
 										afterIndex = questionIndex + 1;
 									}
@@ -664,10 +655,8 @@ public class GameActivity extends Activity implements OnClickListener {
 
 							showQuestion();
 
-							btnqstnumber
-									.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
-							btnqstnumber.setTextColor(getResources().getColor(
-									R.color.white));
+							btnqstnumber.setBackgroundResource(R.drawable.game_select_question_btn_red_normal);
+							btnqstnumber.setTextColor(getResources().getColor(R.color.white));
 
 							showAnswer(false, false);
 						}
@@ -675,11 +664,8 @@ public class GameActivity extends Activity implements OnClickListener {
 				}, 1000);
 
 				if (btnquestionIndex == 15) {
-					btnquestions[btnquestionIndex - 1]
-							.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
-					btnquestions[btnquestionIndex - 1]
-							.setTextColor(getResources()
-									.getColor(R.color.black));
+					btnquestions[btnquestionIndex - 1].setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
+					btnquestions[btnquestionIndex - 1].setTextColor(getResources().getColor(R.color.black));
 				} else {
 					btnquestions[btnquestionIndex - 1]
 							.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
@@ -690,15 +676,11 @@ public class GameActivity extends Activity implements OnClickListener {
 
 				if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 					if (GameSettings.currentQuestion == Constants.MAXQUESTIONS) {
-						btnqstnumber
-								.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
-						btnqstnumber.setTextColor(getResources().getColor(
-								R.color.black));
+						btnqstnumber.setBackgroundResource(R.drawable.game_select_question_btn_yellow_normal);
+						btnqstnumber.setTextColor(getResources().getColor(R.color.black));
 					} else {
-						btnqstnumber
-								.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
-						btnqstnumber.setTextColor(getResources().getColor(
-								R.color.white));
+						btnqstnumber.setBackgroundResource(R.drawable.game_select_question_btn_green_normal);
+						btnqstnumber.setTextColor(getResources().getColor(R.color.white));
 					}
 				} else {
 					btnqstnumber
@@ -717,10 +699,7 @@ public class GameActivity extends Activity implements OnClickListener {
 						&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]) {
 					updateWrongClicks();
 					GameSettings.wrongClicks = 0;
-					Toast.makeText(
-							getApplicationContext(),
-							"You have clicked 5 wrong items. 15 Points was deducted.",
-							1).show();
+					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
 
 					if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
 						GameSettings.currentPoints -= 15;
@@ -748,9 +727,7 @@ public class GameActivity extends Activity implements OnClickListener {
 	}
 	
 	private void showQuestion() {
-		tvquestion
-				.setText(GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-						.getQuestion());
+		tvquestion.setText(GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1].getQuestion());
 		btnqstnumber.setText(GameSettings.currentQuestion + "");
 
 	}

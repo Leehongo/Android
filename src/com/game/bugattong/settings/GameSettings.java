@@ -31,30 +31,6 @@ public class GameSettings {
 	public static boolean hasAnsweredBonus = false;
 	public static Integer[][] levelObjects = new Integer[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 
-	// for random
-	public static LevelQuestion[][] randomlevelQuestions = new LevelQuestion[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
-	public static SearchObject[][] randomlevelSearchObjects = new SearchObject[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
-
-	public int[] randomizeOrder() {
-		int questionOrder[] = new int[Constants.MAXQUESTIONS];
-		int[] questionSequence = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-				13, 14 };
-		Random rnd = new Random();
-
-		for (int i = questionSequence.length; i > 0; i--) {
-			int index = rnd.nextInt(i + 1);
-			int a = questionSequence[index];
-			questionSequence[index] = questionSequence[i];
-			questionSequence[i] = a;
-		}
-
-		for (int i = 0; i < Constants.MAXQUESTIONS; i++) {
-			questionOrder[i] = questionSequence[i];
-		}
-
-		return questionOrder;
-	}
-
 	public static void init(Activity act, boolean reset) {
 		savegame = new SaveUtility(act);
 
@@ -62,11 +38,11 @@ public class GameSettings {
 		if (!savegame.isInit() || reset) {
 			for (int level = 0; level < Constants.MAXLEVELS; level++) {
 				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
-					userCorrectAnswers[level][question] = false; // // test true
+					userCorrectAnswers[level][question] = false;	// // test true
 					userHintedNumbers[level][question] = false;
 					userHintedNumbersHintsShown[level][question] = 0;
 				}
-				levelPlayed[level] = false; // test true
+				levelPlayed[level] = false;	// test true
 				levelAllQuestionsAnswered[level] = false;// test true
 			}
 
@@ -85,8 +61,7 @@ public class GameSettings {
 		} else {
 			userHintedNumbers = savegame.getUserHintedNumbers();
 			userCorrectAnswers = savegame.getUserCorrectAnswers();
-			userHintedNumbersHintsShown = savegame
-					.getUserHintedNumbersHintsShown();
+			userHintedNumbersHintsShown = savegame.getUserHintedNumbersHintsShown();
 			currentLevel = savegame.getCurrentLevel();
 			levelLocked = savegame.getUnlockedLevels();
 			currentQuestion = savegame.getCurrentQuestion();
@@ -97,8 +72,7 @@ public class GameSettings {
 			hasAnsweredBonus = savegame.isBonusLevelAnswered();
 		}
 
-		levelQuestions[0][0] = new LevelQuestion(
-				// HARDIN
+		levelQuestions[0][0] = new LevelQuestion(			//HARDIN
 				"Takbo roon, takbo rito, hindi makaalis sa tayong ito.",
 				"DUYAN", "4,1,0,3,2");
 		levelQuestions[0][1] = new LevelQuestion(
@@ -142,7 +116,7 @@ public class GameSettings {
 				"Dumaing paa\'y walang kamay, may pamigkis sa baywang,\n ang ulo\'y parang tagayan, alagad ng kalinisan.",
 				"WALIS-TINGTING", "10,1,0,6,4,7,12,1,3,9,5,13,8,2,11", true);
 
-		// Question Level 2 - TULUGAN
+		// Question Level 2			- TULUGAN
 		levelQuestions[1][0] = new LevelQuestion(
 				"Alipin ng hari, hindi makalakad, kung hindi itali.",
 				"SAPATOS", "6,1,4,0,2,3,5");
@@ -189,7 +163,7 @@ public class GameSettings {
 				"Saranggolang naglalayag sa kalangitan,\n Napapalayo pa nito ang paglalakbay",
 				"PISI", "3,1,0,2", true);
 
-		// Question Level 3 -SALA
+		// Question Level 3		-SALA
 		levelQuestions[2][0] = new LevelQuestion(
 				"Sa buhatan ay may silbi, sa igiban ay walang sinabi.",
 				"BASKET", "3,5,1,4,2,0");
@@ -235,7 +209,7 @@ public class GameSettings {
 				"Tangan-tangan sa umaga, galaw ng bansa ay nakikita.",
 				"DYARYO", "3,5,1,4,2,0", true);
 
-		// Question Level 4 -KAGUBTAN
+		// Question Level 4			-KAGUBTAN
 		levelQuestions[3][0] = new LevelQuestion(
 				"Heto na si bayaw, dala-dala\'y ilaw.", "ALITAPTAP",
 				"0,2,4,8,3,5,7,1,6");
@@ -281,7 +255,7 @@ public class GameSettings {
 				"Sandata ng mga matalino, papel lamang ang hasaan.", "LAPIS",
 				"4,1,0,3,2", true);
 
-		// Question Level 5 - ATTIC
+		// Question Level 5			- ATTIC
 		levelQuestions[4][0] = new LevelQuestion(
 				"Dumaan ang hari, nagkagatan ang mga pari.", "SIPER",
 				"4,1,0,3,2");
@@ -328,7 +302,7 @@ public class GameSettings {
 				"GUNTING", "6,1,4,0,2,3,5", true);
 
 		// set image locations
-		levelSearchObjects[0][0] = new SearchObject(250, 10); // HARDIN
+		levelSearchObjects[0][0] = new SearchObject(250, 10);		//HARDIN
 		levelSearchObjects[0][1] = new SearchObject(170, 05);
 		levelSearchObjects[0][2] = new SearchObject(230, 90);
 		levelSearchObjects[0][3] = new SearchObject(18, 15);
@@ -344,7 +318,7 @@ public class GameSettings {
 		levelSearchObjects[0][13] = new SearchObject(492, 150);
 		levelSearchObjects[0][14] = new SearchObject(660, 110);
 
-		levelSearchObjects[1][0] = new SearchObject(45, 15); // TULUGAN
+		levelSearchObjects[1][0] = new SearchObject(45, 15);	//TULUGAN
 		levelSearchObjects[1][1] = new SearchObject(369, 180);
 		levelSearchObjects[1][2] = new SearchObject(210, 60);
 		levelSearchObjects[1][3] = new SearchObject(558, 119);
@@ -360,7 +334,7 @@ public class GameSettings {
 		levelSearchObjects[1][13] = new SearchObject(18, 24);
 		levelSearchObjects[1][14] = new SearchObject(500, 140);
 
-		levelSearchObjects[2][0] = new SearchObject(564, 110); // SALA
+		levelSearchObjects[2][0] = new SearchObject(564, 110);	// SALA
 		levelSearchObjects[2][1] = new SearchObject(350, 10);
 		levelSearchObjects[2][2] = new SearchObject(400, 147);
 		levelSearchObjects[2][3] = new SearchObject(238, 80);
@@ -376,7 +350,7 @@ public class GameSettings {
 		levelSearchObjects[2][13] = new SearchObject(500, 10);
 		levelSearchObjects[2][14] = new SearchObject(519, 45);
 
-		levelSearchObjects[3][0] = new SearchObject(350, 165); // KAGUBATAN
+		levelSearchObjects[3][0] = new SearchObject(350, 165);	//KAGUBATAN
 		levelSearchObjects[3][1] = new SearchObject(200, 164);
 		levelSearchObjects[3][2] = new SearchObject(530, 220);
 		levelSearchObjects[3][3] = new SearchObject(190, 20);
@@ -392,10 +366,10 @@ public class GameSettings {
 		levelSearchObjects[3][13] = new SearchObject(410, 102);
 		levelSearchObjects[3][14] = new SearchObject(320, 254);
 
-		levelSearchObjects[4][0] = new SearchObject(580, 111); // ATTIC
+		levelSearchObjects[4][0] = new SearchObject(580, 111);	//ATTIC
 		levelSearchObjects[4][1] = new SearchObject(570, 10);
 		levelSearchObjects[4][2] = new SearchObject(620, 100);
-		levelSearchObjects[4][3] = new SearchObject(290, 204);
+		levelSearchObjects[4][3] = new SearchObject(290,204);
 		levelSearchObjects[4][4] = new SearchObject(350, 12);
 		levelSearchObjects[4][5] = new SearchObject(210, 10);
 		levelSearchObjects[4][6] = new SearchObject(501, 20); //
@@ -407,7 +381,8 @@ public class GameSettings {
 		levelSearchObjects[4][12] = new SearchObject(450, 48);
 		levelSearchObjects[4][13] = new SearchObject(540, 132);
 		levelSearchObjects[4][14] = new SearchObject(420, 10);//
-
+		
+		
 		levelObjects[0][0] = new Integer(R.drawable.hardin_1_duyan);
 		levelObjects[0][1] = new Integer(R.drawable.hardin_2_bubuyog);
 		levelObjects[0][2] = new Integer(R.drawable.hardin_3_bisikleta);
@@ -423,7 +398,7 @@ public class GameSettings {
 		levelObjects[0][12] = new Integer(R.drawable.hardin_13_gumamela);
 		levelObjects[0][13] = new Integer(R.drawable.hardin_14_papaya);
 		levelObjects[0][14] = new Integer(R.drawable.hardin_15_walistingting);
-
+		
 		levelObjects[1][0] = new Integer(R.drawable.tulugan_1_sapatos);
 		levelObjects[1][1] = new Integer(R.drawable.tulugan_2_bangka);
 		levelObjects[1][2] = new Integer(R.drawable.tulugan_3_unan);
@@ -439,7 +414,7 @@ public class GameSettings {
 		levelObjects[1][12] = new Integer(R.drawable.tulugan_13_posporo);
 		levelObjects[1][13] = new Integer(R.drawable.tulugan_14_payong);
 		levelObjects[1][14] = new Integer(R.drawable.tulugan_15_pisi);
-
+		
 		levelObjects[2][0] = new Integer(R.drawable.sala_1_basket);
 		levelObjects[2][1] = new Integer(R.drawable.sala_2_aklat);
 		levelObjects[2][2] = new Integer(R.drawable.sala_3_telebisyon);
@@ -487,7 +462,7 @@ public class GameSettings {
 		levelObjects[4][12] = new Integer(R.drawable.attic_13_posporo);
 		levelObjects[4][13] = new Integer(R.drawable.attic_14_salamin);
 		levelObjects[4][14] = new Integer(R.drawable.attic_15_gunting);
-
+		
 	}
 
 	public static void saveAll() {
