@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ import com.game.bugattong.settings.GameSettings;
 import com.game.bugattong.settings.SharedValues;
 import com.game.bugattong.utilities.SaveUtility;
 
-public class GameActivity extends Activity implements OnClickListener {
+public class GameActivity extends Activity implements OnClickListener{
 
 	private SharedValues sharedValues;
 	private SaveUtility saveUtility;
@@ -62,7 +64,8 @@ public class GameActivity extends Activity implements OnClickListener {
 	private boolean isQuestionMenuVisible = false;
 
 	private String selectedChar;
-
+	private MediaPlayer mediaplayer;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,6 +98,38 @@ public class GameActivity extends Activity implements OnClickListener {
 		errorSound = sounds.load(this, R.raw.error, 1);
 	}
 
+	public void onStart(){
+		super.onStart();
+		play();
+	}
+	
+	public void onStop(){
+		super.onStop();
+		stop();
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		stop();
+	} 
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		play();
+	}
+	
+	public void play(){
+		mediaplayer = MediaPlayer.create(this, R.raw.dungeon);
+		mediaplayer.setLooping(true);
+		mediaplayer.start();
+	}
+	
+	public void stop(){
+		mediaplayer.stop();
+		mediaplayer.release();
+	}
 	private void init() {
 
 		selectedChar = sharedValues.getSelectedChar().trim();
@@ -378,8 +413,10 @@ public class GameActivity extends Activity implements OnClickListener {
 			int msg = 0;
 			if (!isSoundOn) {
 				msg = R.drawable.button_sounds_off_state;
+				stop();
 			} else {
 				msg = R.drawable.button_sounds_on_state;
+				play();
 			}
 			menuBtnSounds.setBackgroundResource(msg);
 			menuBtnResume.setOnClickListener(menuOnClick);
@@ -537,7 +574,7 @@ public class GameActivity extends Activity implements OnClickListener {
 				}
 				showPoints();
 			}
-			
+
 			updateWrongClicks();
 			break;
 		}
@@ -568,9 +605,11 @@ public class GameActivity extends Activity implements OnClickListener {
 				int msg = 0;
 				if (!isSoundOn) {
 					msg = R.drawable.button_sounds_on_state;
+					play();
 					isSoundOn = true;
 				} else {
 					msg = R.drawable.button_sounds_off_state;
+					stop();
 					isSoundOn = false;
 				}
 				saveUtility.saveSoundSettings(isSoundOn);
@@ -707,7 +746,7 @@ public class GameActivity extends Activity implements OnClickListener {
 						GameSettings.currentPoints = 0;
 					}
 				}
-				
+
 				updateWrongClicks();
 
 			}
@@ -716,16 +755,16 @@ public class GameActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private void updateWrongClicks(){
-		for(int index = 0; index < Constants.WRONGCLICKPENALTYCOUNT; index++){
-			if(index <= GameSettings.wrongClicks -1){
+	private void updateWrongClicks() {
+		for (int index = 0; index < Constants.WRONGCLICKPENALTYCOUNT; index++) {
+			if (index <= GameSettings.wrongClicks - 1) {
 				wrongImages[index].setBackgroundResource(R.color.red);
-			}else{
+			} else {
 				wrongImages[index].setBackgroundResource(R.color.green_w);
 			}
 		}
 	}
-	
+
 	private void showQuestion() {
 		tvquestion.setText(GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1].getQuestion());
 		btnqstnumber.setText(GameSettings.currentQuestion + "");
