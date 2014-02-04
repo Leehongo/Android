@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.game.bugattong.GameActivity;
+import com.game.bugattong.HelpMenu;
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
 import com.game.bugattong.settings.FileGenerator;
@@ -154,6 +155,7 @@ public class MainScreen extends Activity implements OnClickListener {
 			break;
 
 		case R.id.main_screen_btn_help:
+			startIntent(HelpMenu.class);
 			break;
 
 		case R.id.main_screen_btn_customize:

@@ -94,7 +94,7 @@ public class GameActivity extends Activity implements OnClickListener{
 			}
 		});
 
-		correctSound = sounds.load(this, R.raw.normal, 1);
+		correctSound = sounds.load(this, R.raw.dungeon, 1);
 		errorSound = sounds.load(this, R.raw.error, 1);
 	}
 
@@ -121,7 +121,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	}
 	
 	public void play(){
-		mediaplayer = MediaPlayer.create(this, R.raw.dungeon);
+		mediaplayer = MediaPlayer.create(this, R.raw.normal);
 		mediaplayer.setLooping(true);
 		mediaplayer.start();
 	}
@@ -130,6 +130,7 @@ public class GameActivity extends Activity implements OnClickListener{
 		mediaplayer.stop();
 		mediaplayer.release();
 	}
+	
 	private void init() {
 
 		selectedChar = sharedValues.getSelectedChar().trim();
@@ -169,15 +170,6 @@ public class GameActivity extends Activity implements OnClickListener{
 
 		GameSettings.CustomTextView(GameActivity.this, btnqstnumber);
 		btnqstnumber.setTextSize(20);
-
-		// while(Constants.BTNQUESTIONCOUNTER < Constants.MAXQUESTIONS){
-		// System.out.println(Constants.BTNQUESTIONCOUNTER);
-		// GameSettings.CustomTextView(GameActivity.this,
-		// btnquestions[Constants.BTNQUESTIONCOUNTER]);
-		// btnquestions[Constants.BTNQUESTIONCOUNTER].setTextColor(getResources().getColor(R.color.white));
-		// Constants.BTNQUESTIONCOUNTER++;
-		//
-		// }
 
 		btnqstnumber.setOnClickListener(this);
 		btnhint.setOnClickListener(this);

@@ -58,8 +58,7 @@ public class Constants {
 		,R.drawable.attic_6_sandok,R.drawable.attic_7_kampana,R.drawable.attic_8_kwintas,R.drawable.attic_9_lagari,R.drawable.attic_10_gitara
 		,R.drawable.attic_11_pako,R.drawable.attic_12_plantsa,R.drawable.attic_13_posporo,R.drawable.attic_14_salamin,R.drawable.attic_15_gunting };
 	
-	
-	
+	public static int HELPIMAGES[] = {R.drawable.help1,R.drawable.help2};
 	
 	
 	
