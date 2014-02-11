@@ -76,6 +76,9 @@ public class SelectCharacter extends Activity {
 				default:
 					break;
 				}
+				
+				System.gc();
+			    Runtime.getRuntime().gc();  
 		}
 	};
 

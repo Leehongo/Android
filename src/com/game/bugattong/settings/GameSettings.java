@@ -35,29 +35,29 @@ public class GameSettings {
 	public static LevelQuestion[][] randomlevelQuestions = new LevelQuestion[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 	public static SearchObject[][] randomlevelSearchObjects = new SearchObject[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 
-	private static int[] randomizeOrder() {
-		int questionOrder[] = new int[Constants.MAXQUESTIONS];
-		int[] questionSequence = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-		Random rnd = new Random();
-
-		for (int i = questionSequence.length; i > 0; i--) {
-			int index = rnd.nextInt(i + 1);
-			int a = questionSequence[index];
-			questionSequence[index] = questionSequence[i - 1];
-			questionSequence[i - 1] = a;
-		}
-
-		for (int i = 0; i < Constants.MAXQUESTIONS - 1; i++) {
-			questionOrder[i] = questionSequence[i];
-		}
-		questionOrder[14] = 14;
-
-		for (int i = 0; i < Constants.MAXQUESTIONS; i++) {
-			System.out.println("Question : " + questionOrder[i]);
-		}
-
-		return questionOrder;
-	}
+//	private static int[] randomizeOrder() {
+//		int questionOrder[] = new int[Constants.MAXQUESTIONS];
+//		int[] questionSequence = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+//		Random rnd = new Random();
+//
+//		for (int i = questionSequence.length; i > 0; i--) {
+//			int index = rnd.nextInt(i + 1);
+//			int a = questionSequence[index];
+//			questionSequence[index] = questionSequence[i - 1];
+//			questionSequence[i - 1] = a;
+//		}
+//
+//		for (int i = 0; i < Constants.MAXQUESTIONS - 1; i++) {
+//			questionOrder[i] = questionSequence[i];
+//		}
+//		questionOrder[14] = 14;
+//
+//		for (int i = 0; i < Constants.MAXQUESTIONS; i++) {
+//			System.out.println("Question : " + questionOrder[i]);
+//		}
+//
+//		return questionOrder;
+//	}
 
 	public static void init(Activity act, boolean reset) {
 		savegame = new SaveUtility(act);
@@ -490,7 +490,7 @@ public class GameSettings {
 		levelObjects[4][12] = new Integer(R.drawable.attic_13_posporo);
 		levelObjects[4][13] = new Integer(R.drawable.attic_14_salamin);
 		levelObjects[4][14] = new Integer(R.drawable.attic_15_gunting);
-		int[] newSequence = randomizeOrder();
+//		int[] newSequence = randomizeOrder();
 	}
 
 	public static void saveAll() {

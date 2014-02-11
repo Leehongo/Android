@@ -79,11 +79,12 @@ public class GameActivity extends Activity implements OnClickListener{
 
 		if (!isInit) {
 			isSoundOn = true;
+			saveUtility.saveSoundSettings(true);
 			isInit = true;
 		}
 
 		isSoundOn = saveUtility.getSoundSettings();
-
+		
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
 		sounds.setOnLoadCompleteListener(new OnLoadCompleteListener() {
@@ -94,14 +95,15 @@ public class GameActivity extends Activity implements OnClickListener{
 			}
 		});
 
-		correctSound = sounds.load(this, R.raw.bg_sounds, 1);
+		correctSound = sounds.load(this, R.raw.normal, 1);
 		errorSound = sounds.load(this, R.raw.error, 1);
+		
 	}
 
 	public void onStart() {
 		super.onStart();
-		if (isSoundOn)
-			play();
+//		if (isSoundOn)
+//			play();
 	}
 
 	public void onStop() {
@@ -118,7 +120,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
-		play();
+//		play();
 	}
 
 	public void play() {
@@ -395,6 +397,16 @@ public class GameActivity extends Activity implements OnClickListener{
 			break;
 
 		case R.id.game_screen_btn_pause:
+			
+			correctSound = sounds.load(this, R.raw.normal, 1);
+
+			AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+			float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+			float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+			float volume = actualVolume / maxVolume;
+
+				sounds.play(correctSound, volume, volume, 1, 0, 1f);
+				
 			gameDialog = new Dialog(this);
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen_pause_menu);
@@ -409,12 +421,12 @@ public class GameActivity extends Activity implements OnClickListener{
 					.findViewById(R.id.game_screen_menu_btn_sound);
 
 			int msg = 0;
-			if (!isSoundOn) {
-				msg = R.drawable.button_sounds_off_state;
-				play();
-			} else {
+			if (isSoundOn == true) {
 				msg = R.drawable.button_sounds_on_state;
-				stop();
+				System.out.println("sounds ON");
+			} else {
+				msg = R.drawable.button_sounds_off_state;
+				System.out.println("sounds OFF");
 			}
 			menuBtnSounds.setBackgroundResource(msg);
 			menuBtnResume.setOnClickListener(menuOnClick);
@@ -545,36 +557,51 @@ public class GameActivity extends Activity implements OnClickListener{
 			checkToUnlockLevel();
 			break;
 		case R.id.gamearea:
-			if (isSoundOn)
-				playClickSound(true);
-			questionsmenu.setVisibility(View.GONE);
 
-			GameSettings.wrongClicks++;
-
-			boolean isLevelComplete = true;
-			for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
-				if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question]) {
-					isLevelComplete = false;
-					break;
+			if(!questionsmenu.isShown()){
+				if (isSoundOn == true)
+					playClickSound(false);
+			
+//				questionsmenu.setVisibility(View.GONE);
+	//			btnPause.setVisibility(View.VISIBLE);
+	
+				GameSettings.wrongClicks++;
+	
+				boolean isLevelComplete = true;
+				for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
+					if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question]) {
+						isLevelComplete = false;
+						break;
+					}
 				}
-			}
-
-			if (GameSettings.wrongClicks >= Constants.WRONGCLICKPENALTYCOUNT
-					&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
-					&& !isLevelComplete) {
+	
+				if (GameSettings.wrongClicks >= Constants.WRONGCLICKPENALTYCOUNT
+						&& !GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
+						&& !isLevelComplete) {
+					updateWrongClicks();
+					GameSettings.wrongClicks = 0;
+					if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
+						Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
+						GameSettings.currentPoints -= 15;
+					} else {
+						GameSettings.currentPoints = 0;
+					}
+					showPoints();
+				}
+	
 				updateWrongClicks();
-				GameSettings.wrongClicks = 0;
-				if (GameSettings.currentPoints >= Constants.WRONGCLICKPENALTYPOINTS) {
-					Toast.makeText(getApplicationContext(),"You have clicked 5 wrong items. 15 Points was deducted.",1).show();
-					GameSettings.currentPoints -= 15;
-				} else {
-					GameSettings.currentPoints = 0;
-				}
-				showPoints();
+			
+			}else{
+				questionsmenu.setVisibility(View.GONE);
+				btnPause.setVisibility(View.VISIBLE);
 			}
-
-			updateWrongClicks();
 			break;
+			
+		case R.id.gamescreen_char:
+			if(questionsmenu.isShown()){
+				questionsmenu.setVisibility(View.GONE);
+				btnPause.setVisibility(View.VISIBLE);
+			}
 		}
 	}
 
@@ -600,16 +627,19 @@ public class GameActivity extends Activity implements OnClickListener{
 				break;
 
 			case R.id.game_screen_menu_btn_sound:
+
 				int msg = 0;
-				if (!isSoundOn) {
-					msg = R.drawable.button_sounds_on_state;
-					stop();
-					isSoundOn = true;
-				} else {
+				if (isSoundOn == true) {
 					msg = R.drawable.button_sounds_off_state;
-					play();
+					stop();
 					isSoundOn = false;
+				} else {
+					msg = R.drawable.button_sounds_on_state;
+					play();
+					isSoundOn = true;
 				}
+				
+				
 				saveUtility.saveSoundSettings(isSoundOn);
 				menuBtnSounds.setBackgroundResource(msg);
 				break;
@@ -625,7 +655,7 @@ public class GameActivity extends Activity implements OnClickListener{
 				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		float volume = actualVolume / maxVolume;
 
-		if (isError) {
+		if (isError == false) {
 			sounds.play(errorSound, volume, volume, 1, 0, 1f);
 		} else {
 			sounds.play(correctSound, volume, volume, 1, 0, 1f);
@@ -639,8 +669,9 @@ public class GameActivity extends Activity implements OnClickListener{
 		if (!questionsmenu.isShown()) {
 			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					&& btnquestionIndex == GameSettings.currentQuestion) {
-				if (isSoundOn)
-					playClickSound(false);
+				if (isSoundOn = true)
+					playClickSound(true);
+				
 				GameSettings.currentPoints += Constants.CORRECTPOINT;
 				GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1] = true;
 				
@@ -727,8 +758,8 @@ public class GameActivity extends Activity implements OnClickListener{
 
 				}
 			} else {
-				if (isSoundOn)
-					playClickSound(true);
+				if (isSoundOn == true)
+					playClickSound(false);
 
 				GameSettings.wrongClicks++;
 
@@ -1038,6 +1069,8 @@ public class GameActivity extends Activity implements OnClickListener{
 
 	private void startNewIntent(Class s) {
 		startActivity(new Intent(GameActivity.this, s));
+		System.gc();
+	    Runtime.getRuntime().gc();  
 		finish();
 	}
 }

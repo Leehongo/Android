@@ -128,6 +128,8 @@ public class StoryView extends Activity {
 	private void startNewIntent(Class s){
 		
 		startActivity(new Intent(StoryView.this, s));
+		System.gc();
+	    Runtime.getRuntime().gc();  
 		finish();
 	}
 

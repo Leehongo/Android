@@ -233,6 +233,8 @@ public class BonusActivity extends Activity implements OnClickListener {
 				Intent intent = new Intent(BonusActivity.this, StoryView.class);
 				intent.putExtra("getNextPage", "wakas");
 				startActivity(intent);
+				System.gc();
+			    Runtime.getRuntime().gc();
 				finish();				
 			}
 		}.start();

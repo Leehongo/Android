@@ -105,6 +105,8 @@ public class MainScreen extends Activity implements OnClickListener {
 
 	private void startIntent(Class c) {
 		startActivity(new Intent(MainScreen.this, c));
+		System.gc();
+	    Runtime.getRuntime().gc();
 		finish();
 	}
 

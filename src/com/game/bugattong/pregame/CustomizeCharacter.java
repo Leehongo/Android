@@ -191,8 +191,7 @@ public class CustomizeCharacter extends Activity {
 				break;
 			}
 			
-			startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
-			finish();
+			startIntentClass();
 
 		}
 	};
@@ -210,10 +209,15 @@ public class CustomizeCharacter extends Activity {
 	
 	
 	public void onBackPressed() {
-
-		startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
-		finish();
+		startIntentClass();
 		
 	};
+	
+	private void startIntentClass(){
+		startActivity(new Intent(CustomizeCharacter.this, MainScreen.class));
+		System.gc();
+	    Runtime.getRuntime().gc();  
+		finish();
+	}
 
 }
