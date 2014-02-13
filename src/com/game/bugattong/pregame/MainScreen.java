@@ -15,6 +15,7 @@ import com.game.bugattong.GameActivity;
 import com.game.bugattong.HelpMenu;
 import com.game.bugattong.R;
 import com.game.bugattong.StoryView;
+import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.GameSettings;
 import com.game.bugattong.settings.SharedValues;
@@ -30,7 +31,6 @@ public class MainScreen extends Activity implements OnClickListener {
 	private FileGenerator fileGenerator;
 	private SharedValues sharedValues;
 	private SaveUtility saveUtility;
-	private SaveUtility saveUtil;
 
 	private Dialog dialog;
 
@@ -39,12 +39,10 @@ public class MainScreen extends Activity implements OnClickListener {
 		setContentView(R.layout.main_screen);
 		super.onCreate(savedInstanceState);
 
-		saveUtil = new SaveUtility(this);
 		sharedValues = new SharedValues(MainScreen.this);
 		saveUtility = new SaveUtility(MainScreen.this);
 		fileGenerator = new FileGenerator();
 		initUI();
-				
 
 	}
 
@@ -56,6 +54,17 @@ public class MainScreen extends Activity implements OnClickListener {
 		btnCustomize = (Button) findViewById(R.id.main_screen_btn_customize);
 		btnExit = (Button) findViewById(R.id.main_screen_btn_exit);
 		txtTouchToStart = (ImageView) findViewById(R.id.mainscreen_txt_touch_to_continue);
+		
+		
+		System.out.println("main sounds: " + Constants.isSoundOn);
+		
+		int msg = 0;
+		if (Constants.isSoundOn == true) 
+			msg = R.drawable.button_sounds_on_state;
+		 else 
+			msg = R.drawable.button_sounds_off_state;
+		
+		btnSound.setBackgroundResource(msg);
 
 	}
 
@@ -149,11 +158,15 @@ public class MainScreen extends Activity implements OnClickListener {
 			break;
 
 		case R.id.main_screen_btn_sound:
-			int msg = (GameActivity.isSoundOn == true) ? R.drawable.button_sounds_off_state
-					: R.drawable.button_sounds_on_state;
-			btnSound.setBackgroundResource(msg);
-			GameActivity.isSoundOn = !GameActivity.isSoundOn;
-			saveUtility.saveSoundSettings(GameActivity.isSoundOn);
+			
+			if(Constants.isSoundOn == true){
+				btnSound.setBackgroundResource(R.drawable.button_sounds_off_state);
+				Constants.isSoundOn = false;
+			}else{
+				btnSound.setBackgroundResource(R.drawable.button_sounds_on_state);
+				Constants.isSoundOn = true;
+			}
+			saveUtility.saveSoundSettings(Constants.isSoundOn);
 			break;
 
 		case R.id.main_screen_btn_help:

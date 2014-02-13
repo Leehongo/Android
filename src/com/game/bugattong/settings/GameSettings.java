@@ -372,7 +372,7 @@ public class GameSettings {
 		levelSearchObjects[2][7] = new SearchObject(252, 181);
 		levelSearchObjects[2][8] = new SearchObject(268, 76);
 		levelSearchObjects[2][9] = new SearchObject(28, 01);
-		levelSearchObjects[2][10] = new SearchObject(246, 42);
+		levelSearchObjects[2][10] = new SearchObject(596, 42);
 		levelSearchObjects[2][11] = new SearchObject(303, 206);
 		levelSearchObjects[2][12] = new SearchObject(428, 210);
 		levelSearchObjects[2][13] = new SearchObject(500, 10);

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:weightSum="10" >
+
+    <LinearLayout
+        android:id="@+id/select_level_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/select_char_img"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:background="@drawable/select_level_title" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_level_layout_1st"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:visibility="visible" >
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_1_hardin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_hardin"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_1_hardin_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_hardin_lock"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/level_1_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_2_silid_tulugan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_silid_tulugan"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_2_silid_tulugan_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_silid_tulugan_lock"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/level_2_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_3_sala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_sala"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_3_sala_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_sala_lock"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/level_3_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_level_layout_2nd"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:visibility="visible" >
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_4_kagubatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/lvl_btn_kagubatan"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_4_kagubatan_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_kagubatan_lock"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/level_4_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_mystery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/lvl_btn_mystery"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_mystery_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_mystery_lock"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="50dp" >
+
+            <Button
+                android:id="@+id/btn_level_5_attic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_attic"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btn_level_5_attic_lock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/lvl_btn_attic_lock"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/level_5_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="17sp" >
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

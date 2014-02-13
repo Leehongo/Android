@@ -32,6 +32,8 @@ public class Constants {
 	
 	public static final String PLAYEDLEVEL ="levelPlayed";
 	public static final String ANSWEREDALLQUESTIONINLEVEL ="levelAllQuestionsAnswered";
+
+	public static boolean isSoundOn;
 	
 	public static int BTNQUESTIONCOUNTER = 0;
 	
@@ -59,8 +61,5 @@ public class Constants {
 		,R.drawable.attic_11_pako,R.drawable.attic_12_plantsa,R.drawable.attic_13_posporo,R.drawable.attic_14_salamin,R.drawable.attic_15_gunting };
 	
 	public static int HELPIMAGES[] = {R.drawable.help1,R.drawable.help2};
-	
-	
-	
 	
 }

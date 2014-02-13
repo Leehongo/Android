@@ -52,7 +52,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private ImageView[] wrongImages = new ImageView[5];
 	private int shownHints = 0;
-	public static boolean isSoundOn;
+//	public static boolean isSoundOn;
 
 	private Dialog gameDialog;
 	private SoundPool sounds = null;
@@ -60,7 +60,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	private int correctSound;
 	private int errorSound;
-	private boolean isInit = false;
+//	private boolean isInit = false;
 	private boolean isQuestionMenuVisible = false;
 
 	private String selectedChar;
@@ -77,13 +77,15 @@ public class GameActivity extends Activity implements OnClickListener{
 		init();
 		initImages();
 
-		if (!isInit) {
-			isSoundOn = true;
-			saveUtility.saveSoundSettings(true);
-			isInit = true;
-		}
+//		if (!isInit) {
+//			isSoundOn = true;
+//			saveUtility.saveSoundSettings(true);
+//			isInit = true;
+//		}
 
-		isSoundOn = saveUtility.getSoundSettings();
+		Constants.isSoundOn = saveUtility.getSoundSettings();
+
+		System.out.println("game sounds: " + Constants.isSoundOn);
 		
 		// load music
 		sounds = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
@@ -102,8 +104,8 @@ public class GameActivity extends Activity implements OnClickListener{
 
 	public void onStart() {
 		super.onStart();
-//		if (isSoundOn)
-//			play();
+		if (Constants.isSoundOn == true)
+			play();
 	}
 
 	public void onStop() {
@@ -421,7 +423,7 @@ public class GameActivity extends Activity implements OnClickListener{
 					.findViewById(R.id.game_screen_menu_btn_sound);
 
 			int msg = 0;
-			if (isSoundOn == true) {
+			if (Constants.isSoundOn == true) {
 				msg = R.drawable.button_sounds_on_state;
 				System.out.println("sounds ON");
 			} else {
@@ -559,7 +561,7 @@ public class GameActivity extends Activity implements OnClickListener{
 		case R.id.gamearea:
 
 			if(!questionsmenu.isShown()){
-				if (isSoundOn == true)
+				if (Constants.isSoundOn == true)
 					playClickSound(false);
 			
 //				questionsmenu.setVisibility(View.GONE);
@@ -629,21 +631,21 @@ public class GameActivity extends Activity implements OnClickListener{
 			case R.id.game_screen_menu_btn_sound:
 
 				int msg = 0;
-				if (isSoundOn == true) {
+				if (Constants.isSoundOn == true) {
 					msg = R.drawable.button_sounds_off_state;
 					stop();
-					isSoundOn = false;
+					Constants.isSoundOn = false;
 				} else {
 					msg = R.drawable.button_sounds_on_state;
 					play();
-					isSoundOn = true;
+					Constants.isSoundOn = true;
 				}
-				
-				
-				saveUtility.saveSoundSettings(isSoundOn);
 				menuBtnSounds.setBackgroundResource(msg);
+				saveUtility.saveSoundSettings(Constants.isSoundOn);
 				break;
 			}
+
+			saveUtility.saveSoundSettings(Constants.isSoundOn);
 		}
 	};
 
@@ -669,7 +671,7 @@ public class GameActivity extends Activity implements OnClickListener{
 		if (!questionsmenu.isShown()) {
 			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					&& btnquestionIndex == GameSettings.currentQuestion) {
-				if (isSoundOn = true)
+				if (Constants.isSoundOn = true)
 					playClickSound(true);
 				
 				GameSettings.currentPoints += Constants.CORRECTPOINT;
@@ -758,7 +760,7 @@ public class GameActivity extends Activity implements OnClickListener{
 
 				}
 			} else {
-				if (isSoundOn == true)
+				if (Constants.isSoundOn == true)
 					playClickSound(false);
 
 				GameSettings.wrongClicks++;
@@ -1065,6 +1067,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	public void onBackPressed() {
 		super.onBackPressed();
 		startNewIntent(SelectLevel.class);
+		saveUtility.saveSoundSettings(Constants.isSoundOn);
 	}
 
 	private void startNewIntent(Class s) {

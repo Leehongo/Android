@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.game.bugattong.R;
+import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.SharedValues;
+import com.game.bugattong.utilities.SaveUtility;
 
 public class LoadingScreen extends Activity {
 	
@@ -17,6 +19,7 @@ public class LoadingScreen extends Activity {
 	private FileGenerator fileGenerator;
 	private File filePath;
 	private SharedValues sharedValues;
+	private SaveUtility saveUtility;
 	
 	private final String[] DIRECTORIES = {"/data/data/com.game.bugattong/files/",
 			"/data/data/com.game.bugattong/files/character/"};
@@ -31,6 +34,10 @@ public class LoadingScreen extends Activity {
 		
 		fileGenerator = new FileGenerator();
 		sharedValues = new SharedValues(LoadingScreen.this);
+		saveUtility = new SaveUtility(LoadingScreen.this);
+
+		Constants.isSoundOn = saveUtility.getSoundSettings();
+		System.out.println("loading: sounds " + Constants.isSoundOn);
 		
 		timer = new CountDownTimer(3000,1000) {
 			
@@ -61,6 +68,7 @@ public class LoadingScreen extends Activity {
 				
 			}
 		}.start();
+
 	}
 
  

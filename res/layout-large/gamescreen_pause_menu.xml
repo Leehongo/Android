@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="500dp"
+    android:layout_height="300dp"
+    android:background="@drawable/dialog_background"
+    android:orientation="horizontal">
+
+ 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center" >
+        
+        
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logo"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/game_screen_menu_btn_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_play_state"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/game_screen_menu_btn_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/gamescreen_pause_menu_level_state"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/game_screen_menu_btn_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/gamescreen_pause_menu_home_state"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/game_screen_menu_btn_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_sounds_on_state"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
