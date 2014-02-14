@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/help_view_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <Button
             android:id="@+id/help_view_prev"
@@ -25,11 +25,14 @@
 
         <Button
             android:id="@+id/help_view_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/help_view_img"
-            android:layout_alignRight="@+id/help_view_img"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/button_next_state" />
+
     </RelativeLayout>
 
 </RelativeLayout>

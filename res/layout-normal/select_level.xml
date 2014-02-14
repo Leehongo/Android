@@ -14,22 +14,22 @@
 
         <ImageView
             android:id="@+id/select_char_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
             android:background="@drawable/select_level_title" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/select_level_layout_1st"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="110dp"
         android:gravity="center"
         android:visibility="visible" >
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_1_hardin"
@@ -58,9 +58,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_2_silid_tulugan"
@@ -90,9 +90,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_3_sala"
@@ -125,14 +125,14 @@
     <LinearLayout
         android:id="@+id/select_level_layout_2nd"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="110dp"
         android:gravity="center"
         android:visibility="visible" >
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_4_kagubatan"
@@ -163,9 +163,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_mystery"
@@ -187,9 +187,9 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp" >
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_5_attic"
