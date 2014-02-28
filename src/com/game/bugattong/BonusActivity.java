@@ -66,13 +66,6 @@ public class BonusActivity extends Activity implements OnClickListener {
 		hintedWords[2] = (TextView) findViewById(R.id.hintword_3);
 		hintedWords[3] = (TextView) findViewById(R.id.hintword_4);
 		hintedWords[4] = (TextView) findViewById(R.id.hintword_5);
-
-		hintedWords[0].setText("WALIS-TINGTING");
-		hintedWords[1].setText("PISI");
-		hintedWords[2].setText("DYARYO");
-		hintedWords[3].setText("LAPIS");
-		hintedWords[4].setText("GUNTING");
-		
 		
 		GameSettings.CustomTextView(BonusActivity.this, tvQuestion);
 		GameSettings.CustomTextView(BonusActivity.this, txtMysteryongBagay);
@@ -82,6 +75,13 @@ public class BonusActivity extends Activity implements OnClickListener {
 			GameSettings.CustomTextView(BonusActivity.this, hintedWords[hintCounter]);
 		 hintCounter ++;
 		}
+		
+
+		hintedWords[0].setText("WALIS-TINGTING");
+		hintedWords[1].setText("PISI");
+		hintedWords[2].setText("DYARYO");
+		hintedWords[3].setText("LAPIS");
+		hintedWords[4].setText("GUNTING");
 		
 		
 		letters[0].setOnClickListener(this);

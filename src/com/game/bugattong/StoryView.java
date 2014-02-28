@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.game.bugattong.pregame.LoadingScreen;
 import com.game.bugattong.pregame.MainScreen;
+import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.GameSettings;
 import com.game.bugattong.settings.SharedValues;
@@ -25,7 +26,7 @@ public class StoryView extends Activity {
 	private ImageView imgStory;
 	private String nextPage;
 	
-	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+//	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	
 	private final String strInitial = "initial";
 	private final String strMystery = "mystery";
@@ -107,12 +108,12 @@ public class StoryView extends Activity {
 				startNewIntent(BonusActivity.class);
 			}else if(nextPage.equals(strWakas)){
 				
-				sharedValues.clearData();
-				saveUtility.clearData();
-				fileGenerator.removeFile(SELECTEDCHAR);
-				startNewIntent(LoadingScreen.class);
-				GameSettings.init(StoryView.this, true);
-				GameSettings.saveAll();
+//				sharedValues.clearData();
+//				saveUtility.clearData();
+//				fileGenerator.removeFile(Constants.SELECTEDCHAR);
+				startNewIntent(CreditView.class);
+//				GameSettings.init(StoryView.this, true);
+//				GameSettings.saveAll();
 				
 			}else{
 				startNewIntent(GameActivity.class);

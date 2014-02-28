@@ -31,33 +31,6 @@ public class GameSettings {
 	public static boolean hasAnsweredBonus = false;
 	public static Integer[][] levelObjects = new Integer[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
 
-	// for random
-	public static LevelQuestion[][] randomlevelQuestions = new LevelQuestion[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
-	public static SearchObject[][] randomlevelSearchObjects = new SearchObject[Constants.MAXLEVELS][Constants.MAXQUESTIONS];
-
-//	private static int[] randomizeOrder() {
-//		int questionOrder[] = new int[Constants.MAXQUESTIONS];
-//		int[] questionSequence = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-//		Random rnd = new Random();
-//
-//		for (int i = questionSequence.length; i > 0; i--) {
-//			int index = rnd.nextInt(i + 1);
-//			int a = questionSequence[index];
-//			questionSequence[index] = questionSequence[i - 1];
-//			questionSequence[i - 1] = a;
-//		}
-//
-//		for (int i = 0; i < Constants.MAXQUESTIONS - 1; i++) {
-//			questionOrder[i] = questionSequence[i];
-//		}
-//		questionOrder[14] = 14;
-//
-//		for (int i = 0; i < Constants.MAXQUESTIONS; i++) {
-//			System.out.println("Question : " + questionOrder[i]);
-//		}
-//
-//		return questionOrder;
-//	}
 
 	public static void init(Activity act, boolean reset) {
 		savegame = new SaveUtility(act);

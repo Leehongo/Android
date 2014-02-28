@@ -4,6 +4,7 @@ import java.io.File;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
@@ -23,7 +24,7 @@ public class LoadingScreen extends Activity {
 	
 	private final String[] DIRECTORIES = {"/data/data/com.game.bugattong/files/",
 			"/data/data/com.game.bugattong/files/character/"};
-	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+//	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	
 	String existingSelectedChar;
 
@@ -39,6 +40,12 @@ public class LoadingScreen extends Activity {
 		Constants.isSoundOn = saveUtility.getSoundSettings();
 		System.out.println("loading: sounds " + Constants.isSoundOn);
 		
+		sizeIdentifier();
+		startCountDown();
+	}
+	
+	private void startCountDown(){
+			
 		timer = new CountDownTimer(3000,1000) {
 			
 			@Override
@@ -54,9 +61,9 @@ public class LoadingScreen extends Activity {
 			@Override
 			public void onFinish() {
 
-				filePath = new File(SELECTEDCHAR);
+				filePath = new File(Constants.SELECTEDCHAR);
 				if(filePath.exists()){
-					existingSelectedChar = fileGenerator.readFile(SELECTEDCHAR).trim();
+					existingSelectedChar = fileGenerator.readFile(Constants.SELECTEDCHAR).trim();
 					sharedValues.setSelectedChar(existingSelectedChar);
 					
 					startActivity(new Intent(LoadingScreen.this, MainScreen.class));
@@ -68,7 +75,28 @@ public class LoadingScreen extends Activity {
 				
 			}
 		}.start();
-
+	}
+	
+	private void sizeIdentifier(){
+		
+		switch ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)) {
+		
+		case Configuration.SCREENLAYOUT_SIZE_SMALL:
+			System.out.println("small");
+			break;
+		case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+			System.out.println("normal");
+			break;
+		
+		case Configuration.SCREENLAYOUT_SIZE_LARGE:
+			System.out.println("large");
+			break;
+			
+			case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+				System.out.println("x-large");
+				break;
+ 
+		}
 	}
 
  

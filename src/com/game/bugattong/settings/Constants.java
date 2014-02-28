@@ -37,6 +37,8 @@ public class Constants {
 	
 	public static int BTNQUESTIONCOUNTER = 0;
 	
+	public static final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+	
 	public static int UNLOCKLEVELIMAGEDIALOG[] = {R.drawable.lvl_btn_silid_tulugan,R.drawable.lvl_btn_sala
 			,R.drawable.lvl_btn_kagubatan,R.drawable.lvl_btn_attic};
 	

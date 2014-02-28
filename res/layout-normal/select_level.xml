@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/select_level_layout_title"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="50dp"
         android:gravity="center" >
 
         <ImageView
@@ -22,19 +22,19 @@
     <LinearLayout
         android:id="@+id/select_level_layout_1st"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="130dp"
         android:gravity="center"
         android:visibility="visible" >
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_1_hardin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_hardin"
                 android:textColor="@color/white"
@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/btn_level_1_hardin_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_hardin_lock"
                 android:visibility="gone" />
@@ -59,13 +59,13 @@
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_2_silid_tulugan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_silid_tulugan"
                 android:textColor="@color/white"
@@ -73,8 +73,8 @@
 
             <ImageView
                 android:id="@+id/btn_level_2_silid_tulugan_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_silid_tulugan_lock"
                 android:visibility="visible" />
@@ -91,13 +91,13 @@
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:layout_marginRight="20dp" >
 
             <Button
                 android:id="@+id/btn_level_3_sala"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_sala"
                 android:textColor="@color/white"
@@ -105,8 +105,8 @@
 
             <ImageView
                 android:id="@+id/btn_level_3_sala_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_sala_lock"
                 android:visibility="visible" />
@@ -125,29 +125,28 @@
     <LinearLayout
         android:id="@+id/select_level_layout_2nd"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="130dp"
         android:gravity="center"
         android:visibility="visible" >
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp" >
+            android:layout_height="130dp"
+            android:layout_marginRight="10dp" >
 
             <Button
                 android:id="@+id/btn_level_4_kagubatan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="50dp"
                 android:background="@drawable/lvl_btn_kagubatan"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/btn_level_4_kagubatan_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_kagubatan_lock"
                 android:visibility="visible" />
@@ -164,13 +163,13 @@
 
         <RelativeLayout
             android:layout_width="170dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp" >
+            android:layout_height="130dp"
+            android:layout_marginRight="10dp" >
 
             <Button
                 android:id="@+id/btn_level_mystery"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:layout_marginRight="50dp"
                 android:background="@drawable/lvl_btn_mystery"
@@ -180,7 +179,7 @@
             <ImageView
                 android:id="@+id/btn_level_mystery_lock"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_mystery_lock"
                 android:visibility="visible" />
@@ -188,13 +187,12 @@
 
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp" >
+            android:layout_height="130dp"  >
 
             <Button
                 android:id="@+id/btn_level_5_attic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_attic"
                 android:textColor="@color/white"
@@ -202,8 +200,8 @@
 
             <ImageView
                 android:id="@+id/btn_level_5_attic_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/lvl_btn_attic_lock"
                 android:visibility="visible" />

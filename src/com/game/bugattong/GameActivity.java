@@ -57,7 +57,6 @@ public class GameActivity extends Activity implements OnClickListener{
 	private Dialog gameDialog;
 	private SoundPool sounds = null;
 
-	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	private int correctSound;
 	private int errorSound;
 //	private boolean isInit = false;
@@ -812,19 +811,17 @@ public class GameActivity extends Activity implements OnClickListener{
 			gameDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			gameDialog.setContentView(R.layout.gamescreen_dialog_gameover);
 
-			TextView txtViewNote = (TextView) gameDialog
-					.findViewById(R.id.gamescreen_dialog_gameover_text_msg);
+			TextView txtViewNote = (TextView) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_text_msg);
 			GameSettings.CustomTextView(GameActivity.this, txtViewNote);
 
-			Button unlockLevelDialogBtnOk = (Button) gameDialog
-					.findViewById(R.id.gamescreen_dialog_gameover_dialog_btn_ok);
+			Button unlockLevelDialogBtnOk = (Button) gameDialog.findViewById(R.id.gamescreen_dialog_gameover_dialog_btn_ok);
 
 			unlockLevelDialogBtnOk.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					gameDialog.dismiss();
-					sharedValues.clearData();
+//					sharedValues.clearData();
 					saveUtility.clearData();
 					// fileGenerator.removeFile(SELECTEDCHAR);
 					startNewIntent(LoadingScreen.class);

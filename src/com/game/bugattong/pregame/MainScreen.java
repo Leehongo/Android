@@ -27,7 +27,7 @@ public class MainScreen extends Activity implements OnClickListener {
 	private Button btnRestart, btnSound, btnHelp, btnCustomize, btnExit;
 	private ImageView txtTouchToStart;
 
-	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+//	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	private FileGenerator fileGenerator;
 	private SharedValues sharedValues;
 	private SaveUtility saveUtility;
@@ -151,7 +151,7 @@ public class MainScreen extends Activity implements OnClickListener {
 		case R.id.main_screen_btn_restart:
 			sharedValues.clearData();
 			saveUtility.clearData();
-			fileGenerator.removeFile(SELECTEDCHAR);
+			fileGenerator.removeFile(Constants.SELECTEDCHAR);
 			startIntent(LoadingScreen.class);
 			GameSettings.init(this, true);
 			GameSettings.saveAll();

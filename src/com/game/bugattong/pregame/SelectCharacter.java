@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.game.bugattong.R;
+import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.FileGenerator;
 import com.game.bugattong.settings.SharedValues;
 
@@ -17,7 +18,7 @@ public class SelectCharacter extends Activity {
 	private FileGenerator fileGenerator;
 	
 
-	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
+//	private final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	
 	
 	@Override
@@ -54,7 +55,7 @@ public class SelectCharacter extends Activity {
 				switch (v.getId()) {
 	
 				case R.id.select_char_img_bug:
-					fileGenerator.writeFile(SELECTEDCHAR, "bug");
+					fileGenerator.writeFile(Constants.SELECTEDCHAR, "bug");
 					sharedValues.setSelectedChar("bug");
 					sharedValues.setCharacterTop(R.drawable.bug_top1);
 					sharedValues.setGameScreenCharacter(R.drawable.gamescreen_bug1);
@@ -64,7 +65,7 @@ public class SelectCharacter extends Activity {
 					break;
 	
 				case R.id.select_char_img_tong:
-					fileGenerator.writeFile(SELECTEDCHAR, "tong");
+					fileGenerator.writeFile(Constants.SELECTEDCHAR, "tong");
 					sharedValues.setSelectedChar("tong");
 					sharedValues.setCharacterTop(R.drawable.tong_top1);
 					sharedValues.setGameScreenCharacter(R.drawable.gamescreen_tong1);
