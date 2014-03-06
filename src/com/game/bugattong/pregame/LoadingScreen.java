@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import com.game.bugattong.R;
 import com.game.bugattong.settings.Constants;
 import com.game.bugattong.settings.FileGenerator;
+import com.game.bugattong.settings.ScreenSize;
 import com.game.bugattong.settings.SharedValues;
 import com.game.bugattong.utilities.SaveUtility;
 
@@ -83,17 +84,21 @@ public class LoadingScreen extends Activity {
 		
 		case Configuration.SCREENLAYOUT_SIZE_SMALL:
 			System.out.println("small");
+			Constants.SCREENSIZE = ScreenSize.SMALL;
 			break;
 		case Configuration.SCREENLAYOUT_SIZE_NORMAL:
 			System.out.println("normal");
+			Constants.SCREENSIZE = ScreenSize.NORMAL;
 			break;
 		
 		case Configuration.SCREENLAYOUT_SIZE_LARGE:
 			System.out.println("large");
+			Constants.SCREENSIZE = ScreenSize.LARGE;
 			break;
 			
 			case Configuration.SCREENLAYOUT_SIZE_XLARGE:
 				System.out.println("x-large");
+				Constants.SCREENSIZE = ScreenSize.XLARGE;
 				break;
  
 		}

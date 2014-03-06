@@ -1,5 +1,7 @@
 package com.game.bugattong.settings;
 
+import android.widget.ImageView;
+
 import com.game.bugattong.R;
 
 
@@ -36,6 +38,11 @@ public class Constants {
 	public static boolean isSoundOn;
 	
 	public static int BTNQUESTIONCOUNTER = 0;
+	
+	public static ScreenSize SCREENSIZE;
+	
+
+	public static ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
 	
 	public static final String SELECTEDCHAR = "/data/data/com.game.bugattong/files/character/selectedChar";
 	

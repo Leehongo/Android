@@ -133,8 +133,7 @@
         android:id="@+id/gamearea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/topmenu"
-        android:paddingTop="60dp" >
+        android:layout_below="@+id/topmenu"  >
 
         <ImageView
             android:id="@+id/image01"

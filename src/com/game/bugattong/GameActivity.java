@@ -49,7 +49,7 @@ public class GameActivity extends Activity implements OnClickListener{
 
 	private TextView tvquestion, tvpoints, tvanswer;
 	private Button[] btnquestions = new Button[Constants.MAXQUESTIONS];
-	private ImageView[] ivImages = new ImageView[Constants.MAXQUESTIONS];
+//	public static ImageView[] Constants.ivImages = new ImageView[Constants.MAXQUESTIONS];
 	private ImageView[] wrongImages = new ImageView[5];
 	private int shownHints = 0;
 //	public static boolean isSoundOn;
@@ -156,6 +156,9 @@ public class GameActivity extends Activity implements OnClickListener{
 		btnqstnumber.setTextColor(getResources().getColor(R.color.white));
 
 		gamescreenChar.setImageResource(sharedValues.getGameScreenCharacter());
+		
+		
+		System.out.println("TEST SCREEN SIZE: " + Constants.SCREENSIZE);
 
 		GameSettings.CustomTextView(GameActivity.this, tvquestion);
 		GameSettings.CustomTextView(GameActivity.this, tvpoints);
@@ -216,21 +219,29 @@ public class GameActivity extends Activity implements OnClickListener{
 			btnquestions[questionIndex].setOnClickListener(this);
 		}
 
-		ivImages[0] = (ImageView) findViewById(R.id.image01);
-		ivImages[1] = (ImageView) findViewById(R.id.image02);
-		ivImages[2] = (ImageView) findViewById(R.id.image03);
-		ivImages[3] = (ImageView) findViewById(R.id.image04);
-		ivImages[4] = (ImageView) findViewById(R.id.image05);
-		ivImages[5] = (ImageView) findViewById(R.id.image06);
-		ivImages[6] = (ImageView) findViewById(R.id.image07);
-		ivImages[7] = (ImageView) findViewById(R.id.image08);
-		ivImages[8] = (ImageView) findViewById(R.id.image09);
-		ivImages[9] = (ImageView) findViewById(R.id.image10);
-		ivImages[10] = (ImageView) findViewById(R.id.image11);
-		ivImages[11] = (ImageView) findViewById(R.id.image12);
-		ivImages[12] = (ImageView) findViewById(R.id.image13);
-		ivImages[13] = (ImageView) findViewById(R.id.image14);
-		ivImages[14] = (ImageView) findViewById(R.id.image15);
+		
+		System.out.println("GAME ACT!!!!!");
+		
+		
+		Constants.ivImages[0] = (ImageView) findViewById(R.id.image01);
+		Constants.ivImages[1] = (ImageView) findViewById(R.id.image02);
+		Constants.ivImages[2] = (ImageView) findViewById(R.id.image03);
+		Constants.ivImages[3] = (ImageView) findViewById(R.id.image04);
+		Constants.ivImages[4] = (ImageView) findViewById(R.id.image05);
+		Constants.ivImages[5] = (ImageView) findViewById(R.id.image06);
+		Constants.ivImages[6] = (ImageView) findViewById(R.id.image07);
+		Constants.ivImages[7] = (ImageView) findViewById(R.id.image08);
+		Constants.ivImages[8] = (ImageView) findViewById(R.id.image09);
+		Constants.ivImages[9] = (ImageView) findViewById(R.id.image10);
+		Constants.ivImages[10] = (ImageView) findViewById(R.id.image11);
+		Constants.ivImages[11] = (ImageView) findViewById(R.id.image12);
+		Constants.ivImages[12] = (ImageView) findViewById(R.id.image13);
+		Constants.ivImages[13] = (ImageView) findViewById(R.id.image14);
+		Constants.ivImages[14] = (ImageView) findViewById(R.id.image15);
+		
+//		setImageSize();
+//		GameSettings.setNormalImages(GameActivity.this);
+
 
 		if (GameSettings.currentLevel == 1) {
 			gameArea.setBackgroundResource(R.drawable.bg_hardin);
@@ -248,17 +259,16 @@ public class GameActivity extends Activity implements OnClickListener{
 
 		int levelObjectCounter = 0;
 		while (levelObjectCounter < Constants.MAXQUESTIONS) {
-			ivImages[levelObjectCounter]
-					.setBackgroundResource(GameSettings.levelObjects[GameSettings.currentLevel - 1][levelObjectCounter]);
+			Constants.ivImages[levelObjectCounter].setBackgroundResource(GameSettings.levelObjects[GameSettings.currentLevel - 1][levelObjectCounter]);
 			levelObjectCounter++;
 		}
 
 		for (int question = 0; question < Constants.MAXQUESTIONS; question++) {
 			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][question])
-				ivImages[question].setVisibility(View.GONE);
+				Constants.ivImages[question].setVisibility(View.GONE);
 			else
-				ivImages[question].setVisibility(View.VISIBLE);
-			ivImages[question].setOnClickListener(this);
+				Constants.ivImages[question].setVisibility(View.VISIBLE);
+			Constants.ivImages[question].setOnClickListener(this);
 		}
 
 		shownHints = 0;
@@ -274,6 +284,11 @@ public class GameActivity extends Activity implements OnClickListener{
 		wrongImages[4] = (ImageView) findViewById(R.id.wrong5);
 	}
 
+//	private void setImageSize(){
+//		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(30, 30);
+//		Constants.ivImages[0].setLayoutParams(layoutParams);
+//	}
+	
 	private void checkToUnlockLevel() {
 
 		// check if all has been answered
@@ -679,7 +694,7 @@ public class GameActivity extends Activity implements OnClickListener{
 				GameSettings.wrongClicks = 0;
 				updateWrongClicks();
 
-				ivImages[GameSettings.currentQuestion - 1].setVisibility(View.GONE);
+				Constants.ivImages[GameSettings.currentQuestion - 1].setVisibility(View.GONE);
 
 				String answer = GameSettings.levelQuestions[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1].getAnswer();
 				tvanswer.setText(answer);
@@ -1051,11 +1066,9 @@ public class GameActivity extends Activity implements OnClickListener{
 
 	private void initImages() {
 		for (int index = 0; index < Constants.MAXQUESTIONS; index++) {
-			View tempView = ivImages[index];
-			tempView.setX(GameSettings.levelSearchObjects[GameSettings.currentLevel - 1][index]
-					.getTranslationX());
-			tempView.setY(GameSettings.levelSearchObjects[GameSettings.currentLevel - 1][index]
-					.getTranslationY());
+			View tempView = Constants.ivImages[index];
+			tempView.setX(GameSettings.levelSearchObjects[GameSettings.currentLevel - 1][index].getTranslationX());
+			tempView.setY(GameSettings.levelSearchObjects[GameSettings.currentLevel - 1][index].getTranslationY());
 		}
 
 	}
