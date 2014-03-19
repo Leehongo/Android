@@ -207,7 +207,7 @@ public class GameSettings {
 				"Tumutugtuog, umaawit, walang pagod ang pagpihit.", "RADYO",
 				"4,1,0,3,2");
 		levelQuestions[2][13] = new LevelQuestion(
-				"Sapagkat lahat na ay nakahihipo, walang kasindumi\'t walang kasimbaho, \n bakit mahal nati\'t ipinakatatago.",
+				"Sapagkat lahat na ay nakahihipo, walang kasindumi\'t \n walang kasimbaho,  bakit mahal nati\'t ipinakatatago.",
 				"SALAPI", "3,5,1,4,2,0");
 		levelQuestions[2][14] = new LevelQuestion(
 				"Tangan-tangan sa umaga, galaw ng bansa ay nakikita.",

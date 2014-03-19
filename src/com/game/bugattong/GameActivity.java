@@ -82,8 +82,6 @@ public class GameActivity extends Activity implements OnClickListener{
 //			isInit = true;
 //		}
 
-		Constants.isSoundOn = saveUtility.getSoundSettings();
-
 		System.out.println("game sounds: " + Constants.isSoundOn);
 		
 		// load music
@@ -192,15 +190,11 @@ public class GameActivity extends Activity implements OnClickListener{
 		for (int questionIndex = 0; questionIndex < Constants.MAXQUESTIONS; questionIndex++) {
 			if (GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][questionIndex]) {
 				if (questionIndex == Constants.MAXQUESTIONS - 1) {
-					btnquestions[questionIndex]
-							.setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
-					btnquestions[questionIndex].setTextColor(getResources()
-							.getColor(R.color.black));
+					btnquestions[questionIndex].setBackgroundResource(R.drawable.gamescreen_question_button_yellow_state);
+					btnquestions[questionIndex].setTextColor(getResources().getColor(R.color.black));
 				} else {
-					btnquestions[questionIndex]
-							.setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
-					btnquestions[questionIndex].setTextColor(getResources()
-							.getColor(R.color.white));
+					btnquestions[questionIndex].setBackgroundResource(R.drawable.gamescreen_question_button_green_state);
+					btnquestions[questionIndex].setTextColor(getResources().getColor(R.color.white));
 				}
 
 			} else {
@@ -576,7 +570,7 @@ public class GameActivity extends Activity implements OnClickListener{
 
 			if(!questionsmenu.isShown()){
 				if (Constants.isSoundOn == true)
-					playClickSound(false);
+					playClickSound(false);	// sounds is wrong
 			
 //				questionsmenu.setVisibility(View.GONE);
 	//			btnPause.setVisibility(View.VISIBLE);
@@ -685,7 +679,7 @@ public class GameActivity extends Activity implements OnClickListener{
 		if (!questionsmenu.isShown()) {
 			if (!GameSettings.userCorrectAnswers[GameSettings.currentLevel - 1][GameSettings.currentQuestion - 1]
 					&& btnquestionIndex == GameSettings.currentQuestion) {
-				if (Constants.isSoundOn = true)
+				if (Constants.isSoundOn == true)
 					playClickSound(true);
 				
 				GameSettings.currentPoints += Constants.CORRECTPOINT;
